@@ -164,7 +164,7 @@
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="True" valType="bool" updates="constant" name="autoLog"/>
         <Param val="False" valType="bool" updates="constant" name="bold"/>
-        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="$(0.8824, 0.9451, 1.0000)" valType="color" updates="constant" name="borderColor"/>
         <Param val="2" valType="num" updates="constant" name="borderWidth"/>
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -443,7 +443,7 @@
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="True" valType="bool" updates="constant" name="autoLog"/>
         <Param val="False" valType="bool" updates="constant" name="bold"/>
-        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="$(0.8824, 0.9451, 1.0000)" valType="color" updates="constant" name="borderColor"/>
         <Param val="2" valType="num" updates="constant" name="borderWidth"/>
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -599,6 +599,23 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <CodeComponent name="code_main" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Both" valType="str" updates="None" name="Code Type"/>
+        <Param val="&amp;#10;" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="// Get the last key pressed (handles array vs single value)&amp;#10;let _lastKey = null;&amp;#10;if (typeof yesno_response_main.keys !== 'undefined' &amp;&amp; yesno_response_main.keys !== null) {&amp;#10;  _lastKey = Array.isArray(yesno_response_main.keys) ? yesno_response_main.keys.slice(-1)[0] : yesno_response_main.keys;&amp;#10;}&amp;#10;&amp;#10;// True if last key was 'y' or 'left'&amp;#10;needTextInput = ((_lastKey === 'y') || (_lastKey === 'left'));" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# PYTHON (auto-translated to JS by PsychoPy if &quot;Both&quot; is selected)&amp;#10;# Get the last key pressed (handles list vs single value)&amp;#10;_lastKey = None&amp;#10;if yesno_response_main.keys is not None:&amp;#10;    _lastKey = yesno_response_main.keys[-1] if isinstance(yesno_response_main.keys, list) else yesno_response_main.keys&amp;#10;&amp;#10;needTextInput = (_lastKey in ['y', 'left'])&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_main" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
     <Routine name="end">
       <RoutineSettingsComponent name="end" plugin="None">

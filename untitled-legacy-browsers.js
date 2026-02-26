@@ -191,7 +191,7 @@ async function experimentInit() {
     size: [0.5, 0.5],  units: undefined, 
     ori: 0.0,
     color: 'white', colorSpace: 'rgb',
-    fillColor: undefined, borderColor: undefined,
+    fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
     languageStyle: 'LTR',
     bold: false, italic: false,
     opacity: undefined,
@@ -276,7 +276,7 @@ async function experimentInit() {
     size: [0.5, 0.5],  units: undefined, 
     ori: 0.0,
     color: 'white', colorSpace: 'rgb',
-    fillColor: undefined, borderColor: undefined,
+    fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
     languageStyle: 'LTR',
     bold: false, italic: false,
     opacity: undefined,
@@ -1313,6 +1313,15 @@ function main_stimulus_presentationRoutineEnd(snapshot) {
         }
     
     yesno_response_main.stop();
+    // Run 'End Routine' code from code_main
+    // Get the last key pressed (handles array vs single value)
+    let _lastKey = null;
+    if (typeof yesno_response_main.keys !== 'undefined' && yesno_response_main.keys !== null) {
+      _lastKey = Array.isArray(yesno_response_main.keys) ? yesno_response_main.keys.slice(-1)[0] : yesno_response_main.keys;
+    }
+    
+    // True if last key was 'y' or 'left'
+    needTextInput = ((_lastKey === 'y') || (_lastKey === 'left'));
     // the Routine "main_stimulus_presentation" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
