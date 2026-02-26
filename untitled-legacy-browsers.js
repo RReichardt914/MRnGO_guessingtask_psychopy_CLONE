@@ -719,7 +719,7 @@ function training_stimulus_presentationRoutineEachFrame() {
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.0 + Number.parseFloat(expInfo["stimPresTime"]) - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       // keep track of stop time/frame for later
       stimulus_presentation_train.tStop = t;  // not accounting for scr refresh
@@ -1271,7 +1271,7 @@ function main_stimulus_presentationRoutineEachFrame() {
     if (stimulus_presentation_main.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.0 + Number.parseFloat(expInfo["stimPresTime"]) - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (stimulus_presentation_main.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       // keep track of stop time/frame for later
       stimulus_presentation_main.tStop = t;  // not accounting for scr refresh
