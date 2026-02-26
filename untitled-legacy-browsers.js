@@ -181,14 +181,14 @@ async function experimentInit() {
   textbox_response_training = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_training',
-    text: '',
-    placeholder: 'Melyik fogalomra gondoltál?',
+    text: 'Melyik fogalomra gondoltál?',
+    placeholder: undefined,
     font: 'Arial',
     pos: [0, 0.2], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
-    size: [0.5, 0.5],  units: undefined, 
+    size: [0.5, 0.1],  units: undefined, 
     ori: 0.0,
     color: 'white', colorSpace: 'rgb',
     fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
@@ -266,14 +266,14 @@ async function experimentInit() {
   textbox_response_main = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_main',
-    text: 'Any text\n\nincluding line breaks',
+    text: 'Melyik fogalomra gondoltál?',
     placeholder: 'Type here...',
     font: 'Arial',
     pos: [0, 0.2], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
-    size: [0.5, 0.5],  units: undefined, 
+    size: [0.5, 0.1],  units: undefined, 
     ori: 0.0,
     color: 'white', colorSpace: 'rgb',
     fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
@@ -283,7 +283,7 @@ async function experimentInit() {
     padding: 0.0,
     alignment: 'center',
     overflow: 'visible',
-    editable: false,
+    editable: true,
     multiline: true,
     anchor: 'center',
     depth: 0.0 
@@ -862,7 +862,7 @@ function training_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     training_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
-    textbox_response_training.setText('');
+    textbox_response_training.setText('Melyik fogalomra gondoltál?');
     textbox_response_training.refresh();
     // reset end_textinput_button to account for continued clicks & clear times on/off
     end_textinput_button.reset()
@@ -1351,6 +1351,8 @@ function main_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     main_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
+    textbox_response_main.setText('Melyik fogalomra gondoltál?');
+    textbox_response_main.refresh();
     // reset end_textinput_button_main to account for continued clicks & clear times on/off
     end_textinput_button_main.reset()
     // Run 'Begin Routine' code from code_whatconc_main
@@ -1477,6 +1479,7 @@ function main_written_responseRoutineEnd(snapshot) {
       }
     });
     psychoJS.experiment.addData('main_written_response.stopped', globalClock.getTime());
+    psychoJS.experiment.addData('textbox_response_main.text',textbox_response_main.text)
     psychoJS.experiment.addData('end_textinput_button_main.numClicks', end_textinput_button_main.numClicks);
     psychoJS.experiment.addData('end_textinput_button_main.timesOn', end_textinput_button_main.timesOn);
     psychoJS.experiment.addData('end_textinput_button_main.timesOff', end_textinput_button_main.timesOff);
