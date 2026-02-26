@@ -8,6 +8,7 @@ let expName = 'untitled';  // from the Builder filename that created this script
 let expInfo = {
     'participant': `${util.pad(Number.parseFloat(util.randint(0, 999999)).toFixed(0), 6)}`,
     'session': '001',
+    'stimPresTime': '5',
 };
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
@@ -718,7 +719,7 @@ function training_stimulus_presentationRoutineEachFrame() {
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + 3.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       // keep track of stop time/frame for later
       stimulus_presentation_train.tStop = t;  // not accounting for scr refresh
@@ -1270,7 +1271,7 @@ function main_stimulus_presentationRoutineEachFrame() {
     if (stimulus_presentation_main.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + 3.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (stimulus_presentation_main.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       // keep track of stop time/frame for later
       stimulus_presentation_main.tStop = t;  // not accounting for scr refresh
