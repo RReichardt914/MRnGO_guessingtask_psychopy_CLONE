@@ -143,6 +143,23 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="training_written_response">
+      <CodeComponent name="code_whatconc" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Both" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_whatconc" valType="code" updates="None" name="name"/>
+      </CodeComponent>
       <RoutineSettingsComponent name="training_written_response" plugin="None">
         <Param val="none" valType="str" updates="None" name="backgroundFit"/>
         <Param val="" valType="str" updates="None" name="backgroundImg"/>
@@ -237,23 +254,6 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </ButtonComponent>
-      <CodeComponent name="code_whatconc" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Both" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="code_whatconc" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <TextComponent name="text_writtenresp_train_orientation" plugin="None">
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -449,6 +449,23 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="main_written_response">
+      <CodeComponent name="code_whatconc_main" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="previousText = {}   # stores text per concept" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="previousText = {};   // stores text per concept" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Both" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="previousText[concept] = textbox_response_main.text;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="previousText[concept] = textbox_response_main.text" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_whatconc_main" valType="code" updates="None" name="name"/>
+      </CodeComponent>
       <RoutineSettingsComponent name="main_written_response" plugin="None">
         <Param val="none" valType="str" updates="None" name="backgroundFit"/>
         <Param val="" valType="str" updates="None" name="backgroundImg"/>
@@ -543,23 +560,6 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </ButtonComponent>
-      <CodeComponent name="code_whatconc_main" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="previousText = {}   # stores text per concept" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="previousText = {};   // stores text per concept" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Both" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="previousText[concept] = textbox_response_main.text;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="previousText[concept] = textbox_response_main.text" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="code_whatconc_main" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <TextComponent name="text_writtenresp_main_orientation" plugin="None">
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>

@@ -143,9 +143,9 @@ var main_stimulus_presentationClock;
 var stimulus_presentation_main;
 var yesno_response_main;
 var main_written_responseClock;
+var previousText;
 var textbox_response_main;
 var end_textinput_button_main;
-var previousText;
 var text_writtenresp_main_orientation;
 var endClock;
 var goodbye_text;
@@ -212,7 +212,7 @@ async function experimentInit() {
     editable: true,
     multiline: true,
     anchor: 'center',
-    depth: 0.0 
+    depth: -1.0 
   });
   
   end_textinput_button = new visual.ButtonStim({
@@ -232,7 +232,7 @@ async function experimentInit() {
     colorSpace: 'rgb',
     borderWidth: 0.0,
     opacity: null,
-    depth: -1,
+    depth: -2,
     letterHeight: 0.05,
     bold: true,
     italic: false,
@@ -286,6 +286,8 @@ async function experimentInit() {
   
   // Initialize components for Routine "main_written_response"
   main_written_responseClock = new util.Clock();
+  // Run 'Begin Experiment' code from code_whatconc_main
+  previousText = {};   // stores text per concept
   textbox_response_main = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_main',
@@ -309,7 +311,7 @@ async function experimentInit() {
     editable: true,
     multiline: true,
     anchor: 'center',
-    depth: 0.0 
+    depth: -1.0 
   });
   
   end_textinput_button_main = new visual.ButtonStim({
@@ -329,15 +331,13 @@ async function experimentInit() {
     colorSpace: 'rgb',
     borderWidth: 0.0,
     opacity: null,
-    depth: -1,
+    depth: -2,
     letterHeight: 0.05,
     bold: true,
     italic: false,
   });
   end_textinput_button_main.clock = new util.Clock();
   
-  // Run 'Begin Experiment' code from code_whatconc_main
-  previousText = {};   // stores text per concept
   text_writtenresp_main_orientation = new visual.TextStim({
     win: psychoJS.window,
     name: 'text_writtenresp_main_orientation',
@@ -895,15 +895,15 @@ function training_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     training_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
-    textbox_response_training.setText('Melyik fogalomra gondoltál?');
-    textbox_response_training.refresh();
-    // reset end_textinput_button to account for continued clicks & clear times on/off
-    end_textinput_button.reset()
     // Run 'Begin Routine' code from code_whatconc
     // If the previous response wasn't 'y' or 'left', skip this routine
     if (!needTextInput) {
         continueRoutine = false;
     }
+    textbox_response_training.setText('Melyik fogalomra gondoltál?');
+    textbox_response_training.refresh();
+    // reset end_textinput_button to account for continued clicks & clear times on/off
+    end_textinput_button.reset()
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
     training_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -1398,11 +1398,6 @@ function main_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     main_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
-    textbox_response_main.setText('');
-    textbox_response_main.refresh();
-    textbox_response_main.setText(defaultText);
-    // reset end_textinput_button_main to account for continued clicks & clear times on/off
-    end_textinput_button_main.reset()
     // Run 'Begin Routine' code from code_whatconc_main
     // If the previous response wasn't 'y' or 'left', skip this routine
     if (!needTextInput) {
@@ -1410,6 +1405,11 @@ function main_written_responseRoutineBegin(snapshot) {
     }
     
     defaultText = previousText[concept] || "";
+    textbox_response_main.setText('');
+    textbox_response_main.refresh();
+    textbox_response_main.setText(defaultText);
+    // reset end_textinput_button_main to account for continued clicks & clear times on/off
+    end_textinput_button_main.reset()
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
     main_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -1543,13 +1543,13 @@ function main_written_responseRoutineEnd(snapshot) {
         thisComponent.setAutoDraw(false);
       }
     }
+    // Run 'End Routine' code from code_whatconc_main
+    previousText[concept] = textbox_response_main.text;
     psychoJS.experiment.addData('main_written_response.stopped', globalClock.getTime());
     psychoJS.experiment.addData('textbox_response_main.text',textbox_response_main.text)
     psychoJS.experiment.addData('end_textinput_button_main.numClicks', end_textinput_button_main.numClicks);
     psychoJS.experiment.addData('end_textinput_button_main.timesOn', end_textinput_button_main.timesOn);
     psychoJS.experiment.addData('end_textinput_button_main.timesOff', end_textinput_button_main.timesOff);
-    // Run 'End Routine' code from code_whatconc_main
-    previousText[concept] = textbox_response_main.text;
     // the Routine "main_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
