@@ -143,6 +143,7 @@ var stimulus_presentation_main;
 var yesno_response_main;
 var main_written_responseClock;
 var textbox_response_main;
+var end_textinput_button_main;
 var endClock;
 var goodbye_text;
 var globalClock;
@@ -191,7 +192,7 @@ async function experimentInit() {
     text: '',
     placeholder: 'Melyik fogalomra gondoltál?',
     font: 'Arial',
-    pos: [0, 0], 
+    pos: [0, 1], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -276,7 +277,7 @@ async function experimentInit() {
     text: 'Any text\n\nincluding line breaks',
     placeholder: 'Type here...',
     font: 'Arial',
-    pos: [0, 0], 
+    pos: [0, 1], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -295,6 +296,30 @@ async function experimentInit() {
     anchor: 'center',
     depth: 0.0 
   });
+  
+  end_textinput_button_main = new visual.ButtonStim({
+    win: psychoJS.window,
+    name: 'end_textinput_button_main',
+    text: 'Kész!',
+    font: 'Arvo',
+    pos: [0, 0],
+    size: [0.5, 0.5],
+    padding: null,
+    anchor: 'center',
+    ori: 0.0,
+    units: psychoJS.window.units,
+    color: 'white',
+    fillColor: 'darkgrey',
+    borderColor: null,
+    colorSpace: 'rgb',
+    borderWidth: 0.0,
+    opacity: null,
+    depth: -1,
+    letterHeight: 0.05,
+    bold: true,
+    italic: false,
+  });
+  end_textinput_button_main.clock = new util.Clock();
   
   // Initialize components for Routine "end"
   endClock = new util.Clock();
@@ -1318,11 +1343,19 @@ function main_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     main_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
+    // reset end_textinput_button_main to account for continued clicks & clear times on/off
+    end_textinput_button_main.reset()
+    // Run 'Begin Routine' code from code_whatconc_main
+    // If the previous response wasn't 'y' or 'left', skip this routine
+    if (!needTextInput) {
+        continueRoutine = false;
+    }
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
     main_written_responseMaxDuration = null
     // keep track of which components have finished
     main_written_responseComponents = [];
     main_written_responseComponents.push(textbox_response_main);
+    main_written_responseComponents.push(end_textinput_button_main);
     
     for (const thisComponent of main_written_responseComponents)
       if ('status' in thisComponent)
@@ -1354,16 +1387,50 @@ function main_written_responseRoutineEachFrame() {
     if (textbox_response_main.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + 0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (textbox_response_main.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      textbox_response_main.tStop = t;  // not accounting for scr refresh
-      textbox_response_main.frameNStop = frameN;  // exact frame index
-      // update status
-      textbox_response_main.status = PsychoJS.Status.FINISHED;
-      textbox_response_main.setAutoDraw(false);
+    
+    // *end_textinput_button_main* updates
+    if (t >= 0 && end_textinput_button_main.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      end_textinput_button_main.tStart = t;  // (not accounting for frame time here)
+      end_textinput_button_main.frameNStart = frameN;  // exact frame index
+      
+      end_textinput_button_main.setAutoDraw(true);
     }
     
+    
+    // if end_textinput_button_main is active this frame...
+    if (end_textinput_button_main.status === PsychoJS.Status.STARTED) {
+    }
+    
+    if (end_textinput_button_main.status === PsychoJS.Status.STARTED) {
+      // check whether end_textinput_button_main has been pressed
+      if (end_textinput_button_main.isClicked) {
+        if (!end_textinput_button_main.wasClicked) {
+          // store time of first click
+          end_textinput_button_main.timesOn.push(end_textinput_button_main.clock.getTime());
+          // store time clicked until
+          end_textinput_button_main.timesOff.push(end_textinput_button_main.clock.getTime());
+        } else {
+          // update time clicked until;
+          end_textinput_button_main.timesOff[end_textinput_button_main.timesOff.length - 1] = end_textinput_button_main.clock.getTime();
+        }
+        if (!end_textinput_button_main.wasClicked) {
+          // end routine when end_textinput_button_main is clicked
+          continueRoutine = false;
+          
+        }
+        // if end_textinput_button_main is still clicked next frame, it is not a new click
+        end_textinput_button_main.wasClicked = true;
+      } else {
+        // if end_textinput_button_main is clicked next frame, it is a new click
+        end_textinput_button_main.wasClicked = false;
+      }
+    } else {
+      // keep clock at 0 if end_textinput_button_main hasn't started / has finished
+      end_textinput_button_main.clock.reset();
+      // if end_textinput_button_main is clicked next frame, it is a new click
+      end_textinput_button_main.wasClicked = false;
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1401,6 +1468,9 @@ function main_written_responseRoutineEnd(snapshot) {
       }
     }
     psychoJS.experiment.addData('main_written_response.stopped', globalClock.getTime());
+    psychoJS.experiment.addData('end_textinput_button_main.numClicks', end_textinput_button_main.numClicks);
+    psychoJS.experiment.addData('end_textinput_button_main.timesOn', end_textinput_button_main.timesOn);
+    psychoJS.experiment.addData('end_textinput_button_main.timesOff', end_textinput_button_main.timesOff);
     // the Routine "main_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
