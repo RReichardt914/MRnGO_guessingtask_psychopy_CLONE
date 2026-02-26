@@ -84,7 +84,7 @@ psychoJS.start({
     {'name': 'stimuli/stim001.png', 'path': 'stimuli/stim001.png'},
     {'name': 'stimuli/stim002.png', 'path': 'stimuli/stim002.png'},
     {'name': 'stimuli/stim003.png', 'path': 'stimuli/stim003.png'},
-    {'name': 'sequences/main.csv', 'path': 'sequences/main.csv'},
+    {'name': 'sequences/main_modified.csv', 'path': 'sequences/main_modified.csv'},
     {'name': 'stimuli/stim004.png', 'path': 'stimuli/stim004.png'},
     {'name': 'stimuli/stim005.png', 'path': 'stimuli/stim005.png'},
     {'name': 'stimuli/stim006.png', 'path': 'stimuli/stim006.png'},
@@ -135,6 +135,7 @@ var stop_training;
 var training_written_responseClock;
 var textbox_response_training;
 var end_textinput_button;
+var text_writtenresp_train_orientation;
 var start_mainClock;
 var main_instructions;
 var main_instruction_keyresp;
@@ -144,6 +145,8 @@ var yesno_response_main;
 var main_written_responseClock;
 var textbox_response_main;
 var end_textinput_button_main;
+var previousText;
+var text_writtenresp_main_orientation;
 var endClock;
 var goodbye_text;
 var globalClock;
@@ -192,7 +195,7 @@ async function experimentInit() {
     text: 'Melyik fogalomra gondoltál?',
     placeholder: undefined,
     font: 'Arial',
-    pos: [0, 0.2], 
+    pos: [0, 0], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -217,7 +220,7 @@ async function experimentInit() {
     name: 'end_textinput_button',
     text: 'Kész!',
     font: 'Arvo',
-    pos: [0, 0],
+    pos: [0, (- 0.2)],
     size: [0.5, 0.5],
     padding: null,
     anchor: 'center',
@@ -235,6 +238,18 @@ async function experimentInit() {
     italic: false,
   });
   end_textinput_button.clock = new util.Clock();
+  
+  text_writtenresp_train_orientation = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'text_writtenresp_train_orientation',
+    text: 'Melyik fogalomra gondoltál?',
+    font: 'Arial',
+    units: undefined, 
+    pos: [0, 0.2], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    languageStyle: 'LTR',
+    color: new util.Color('white'),  opacity: undefined,
+    depth: -3.0 
+  });
   
   // Initialize components for Routine "start_main"
   start_mainClock = new util.Clock();
@@ -274,10 +289,10 @@ async function experimentInit() {
   textbox_response_main = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_main',
-    text: 'Melyik fogalomra gondoltál?',
+    text: '',
     placeholder: 'Type here...',
     font: 'Arial',
-    pos: [0, 0.2], 
+    pos: [0, 0], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -302,7 +317,7 @@ async function experimentInit() {
     name: 'end_textinput_button_main',
     text: 'Kész!',
     font: 'Arvo',
-    pos: [0, 0],
+    pos: [0, (- 0.2)],
     size: [0.5, 0.5],
     padding: null,
     anchor: 'center',
@@ -320,6 +335,20 @@ async function experimentInit() {
     italic: false,
   });
   end_textinput_button_main.clock = new util.Clock();
+  
+  // Run 'Begin Experiment' code from code_whatconc_main
+  previousText = {};   // stores text per concept
+  text_writtenresp_main_orientation = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'text_writtenresp_main_orientation',
+    text: 'Melyik fogalomra gondoltál?',
+    font: 'Arial',
+    units: undefined, 
+    pos: [0, 0.2], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    languageStyle: 'LTR',
+    color: new util.Color('white'),  opacity: undefined,
+    depth: -3.0 
+  });
   
   // Initialize components for Routine "end"
   endClock = new util.Clock();
@@ -503,7 +532,7 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     training_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: 5, method: TrialHandler.Method.SEQUENTIAL,
+      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
       trialList: 'sequences/training.csv',
       seed: undefined, name: 'training_loop'
@@ -569,9 +598,9 @@ function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     main_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: 5, method: TrialHandler.Method.SEQUENTIAL,
+      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'sequences/main.csv',
+      trialList: 'sequences/main_modified.csv',
       seed: undefined, name: 'main_loop'
     });
     psychoJS.experiment.addLoop(main_loop); // add the loop to the experiment
@@ -881,6 +910,7 @@ function training_written_responseRoutineBegin(snapshot) {
     training_written_responseComponents = [];
     training_written_responseComponents.push(textbox_response_training);
     training_written_responseComponents.push(end_textinput_button);
+    training_written_responseComponents.push(text_writtenresp_train_orientation);
     
     for (const thisComponent of training_written_responseComponents)
       if ('status' in thisComponent)
@@ -956,6 +986,21 @@ function training_written_responseRoutineEachFrame() {
       // if end_textinput_button is clicked next frame, it is a new click
       end_textinput_button.wasClicked = false;
     }
+    
+    // *text_writtenresp_train_orientation* updates
+    if (t >= 0.0 && text_writtenresp_train_orientation.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      text_writtenresp_train_orientation.tStart = t;  // (not accounting for frame time here)
+      text_writtenresp_train_orientation.frameNStart = frameN;  // exact frame index
+      
+      text_writtenresp_train_orientation.setAutoDraw(true);
+    }
+    
+    
+    // if text_writtenresp_train_orientation is active this frame...
+    if (text_writtenresp_train_orientation.status === PsychoJS.Status.STARTED) {
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1336,6 +1381,7 @@ function main_stimulus_presentationRoutineEnd(snapshot) {
 
 
 var main_written_responseMaxDurationReached;
+var defaultText;
 var main_written_responseMaxDuration;
 var main_written_responseComponents;
 function main_written_responseRoutineBegin(snapshot) {
@@ -1352,8 +1398,9 @@ function main_written_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     main_written_responseMaxDurationReached = false;
     // update component parameters for each repeat
-    textbox_response_main.setText('Melyik fogalomra gondoltál?');
+    textbox_response_main.setText('');
     textbox_response_main.refresh();
+    textbox_response_main.setText(defaultText);
     // reset end_textinput_button_main to account for continued clicks & clear times on/off
     end_textinput_button_main.reset()
     // Run 'Begin Routine' code from code_whatconc_main
@@ -1361,12 +1408,15 @@ function main_written_responseRoutineBegin(snapshot) {
     if (!needTextInput) {
         continueRoutine = false;
     }
+    
+    defaultText = previousText[concept] || "";
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
     main_written_responseMaxDuration = null
     // keep track of which components have finished
     main_written_responseComponents = [];
     main_written_responseComponents.push(textbox_response_main);
     main_written_responseComponents.push(end_textinput_button_main);
+    main_written_responseComponents.push(text_writtenresp_main_orientation);
     
     for (const thisComponent of main_written_responseComponents)
       if ('status' in thisComponent)
@@ -1442,6 +1492,21 @@ function main_written_responseRoutineEachFrame() {
       // if end_textinput_button_main is clicked next frame, it is a new click
       end_textinput_button_main.wasClicked = false;
     }
+    
+    // *text_writtenresp_main_orientation* updates
+    if (t >= 0.0 && text_writtenresp_main_orientation.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      text_writtenresp_main_orientation.tStart = t;  // (not accounting for frame time here)
+      text_writtenresp_main_orientation.frameNStart = frameN;  // exact frame index
+      
+      text_writtenresp_main_orientation.setAutoDraw(true);
+    }
+    
+    
+    // if text_writtenresp_main_orientation is active this frame...
+    if (text_writtenresp_main_orientation.status === PsychoJS.Status.STARTED) {
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1483,6 +1548,8 @@ function main_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('end_textinput_button_main.numClicks', end_textinput_button_main.numClicks);
     psychoJS.experiment.addData('end_textinput_button_main.timesOn', end_textinput_button_main.timesOn);
     psychoJS.experiment.addData('end_textinput_button_main.timesOff', end_textinput_button_main.timesOff);
+    // Run 'End Routine' code from code_whatconc_main
+    previousText[concept] = textbox_response_main.text;
     // the Routine "main_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
