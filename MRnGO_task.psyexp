@@ -788,7 +788,7 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="norm" valType="str" updates="None" name="units"/>
+        <Param val="height" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </ImageComponent>
       <MouseComponent name="click_start_mouse" plugin="None">

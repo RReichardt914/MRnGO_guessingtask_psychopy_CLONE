@@ -179,7 +179,7 @@ async function experimentInit() {
   });
   btn_start_img = new visual.ImageStim({
     win : psychoJS.window,
-    name : 'btn_start_img', units : 'norm', 
+    name : 'btn_start_img', units : 'height', 
     image : 'assets/button_start.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
