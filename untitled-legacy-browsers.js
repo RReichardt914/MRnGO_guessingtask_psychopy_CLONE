@@ -158,13 +158,13 @@ async function experimentInit() {
   start_screenClock = new util.Clock();
   bg_start_img = new visual.ImageStim({
     win : psychoJS.window,
-    name : 'bg_start_img', units : undefined, 
+    name : 'bg_start_img', units : 'norm', 
     image : 'assets/bg_start.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
     draggable: false,
-    size : [1, 1],
+    size : [2, 2],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
