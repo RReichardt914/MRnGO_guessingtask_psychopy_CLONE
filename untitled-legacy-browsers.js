@@ -158,13 +158,13 @@ async function experimentInit() {
   start_screenClock = new util.Clock();
   bg_start_img = new visual.ImageStim({
     win : psychoJS.window,
-    name : 'bg_start_img', units : 'height', 
+    name : 'bg_start_img', units : undefined, 
     image : 'assets/bg_start.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
     draggable: false,
-    size : [2, 2],
+    size : [1, 1],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
@@ -514,8 +514,7 @@ function start_screenRoutineEachFrame() {
         if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
           // check if the mouse was inside our 'clickable' objects
           gotValidClick = false;
-          click_start_mouse.clickableObjects = eval(/* btn_start_img */
-          )
+          click_start_mouse.clickableObjects = eval(btn_start_img)
           ;// make sure the mouse's clickable objects are an array
           if (!Array.isArray(click_start_mouse.clickableObjects)) {
               click_start_mouse.clickableObjects = [click_start_mouse.clickableObjects];
@@ -537,6 +536,9 @@ function start_screenRoutineEachFrame() {
           click_start_mouse.midButton.push(_mouseButtons[1]);
           click_start_mouse.rightButton.push(_mouseButtons[2]);
           click_start_mouse.time.push(click_start_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
         }
       }
     }
