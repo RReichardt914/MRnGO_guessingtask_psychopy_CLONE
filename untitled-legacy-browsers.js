@@ -40,6 +40,9 @@ psychoJS.scheduleCondition(function() { return (psychoJS.gui.dialogComponent.but
 // flowScheduler gets run if the participants presses OK
 flowScheduler.add(updateInfo); // add timeStamp
 flowScheduler.add(experimentInit);
+flowScheduler.add(start_screenRoutineBegin());
+flowScheduler.add(start_screenRoutineEachFrame());
+flowScheduler.add(start_screenRoutineEnd());
 flowScheduler.add(welcomeRoutineBegin());
 flowScheduler.add(welcomeRoutineEachFrame());
 flowScheduler.add(welcomeRoutineEnd());
@@ -81,6 +84,8 @@ psychoJS.start({
     {'name': 'stimuli/stim004.png', 'path': 'stimuli/stim004.png'},
     {'name': 'stimuli/stim005.png', 'path': 'stimuli/stim005.png'},
     {'name': 'stimuli/stim006.png', 'path': 'stimuli/stim006.png'},
+    {'name': 'assets/bg_start.png', 'path': 'assets/bg_start.png'},
+    {'name': 'assets/button_start.png', 'path': 'assets/button_start.png'},
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
   ]
 });
@@ -118,6 +123,10 @@ async function updateInfo() {
 }
 
 
+var start_screenClock;
+var bg_start_img;
+var btn_start_img;
+var click_start_mouse;
 var welcomeClock;
 var text;
 var welcome_response;
@@ -145,6 +154,38 @@ var goodbye_text;
 var globalClock;
 var routineTimer;
 async function experimentInit() {
+  // Initialize components for Routine "start_screen"
+  start_screenClock = new util.Clock();
+  bg_start_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_start_img', units : undefined, 
+    image : 'assets/bg_start.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [0.5, 0.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  btn_start_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_start_img', units : undefined, 
+    image : 'assets/button_start.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [0.5, 0.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  click_start_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_start_mouse.mouseClock = new util.Clock();
   // Initialize components for Routine "welcome"
   welcomeClock = new util.Clock();
   text = new visual.TextStim({
@@ -369,6 +410,194 @@ var t;
 var frameN;
 var continueRoutine;
 var routineForceEnded;
+var start_screenMaxDurationReached;
+var gotValidClick;
+var start_screenMaxDuration;
+var start_screenComponents;
+function start_screenRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'start_screen' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    start_screenClock.reset();
+    routineTimer.reset();
+    start_screenMaxDurationReached = false;
+    // update component parameters for each repeat
+    // setup some python lists for storing info about the click_start_mouse
+    // current position of the mouse:
+    click_start_mouse.x = [];
+    click_start_mouse.y = [];
+    click_start_mouse.leftButton = [];
+    click_start_mouse.midButton = [];
+    click_start_mouse.rightButton = [];
+    click_start_mouse.time = [];
+    click_start_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    psychoJS.experiment.addData('start_screen.started', globalClock.getTime());
+    start_screenMaxDuration = null
+    // keep track of which components have finished
+    start_screenComponents = [];
+    start_screenComponents.push(bg_start_img);
+    start_screenComponents.push(btn_start_img);
+    start_screenComponents.push(click_start_mouse);
+    
+    start_screenComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var prevButtonState;
+var _mouseButtons;
+var _mouseXYs;
+function start_screenRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'start_screen' ---
+    // get current time
+    t = start_screenClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *bg_start_img* updates
+    if (t >= 0.0 && bg_start_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_start_img.tStart = t;  // (not accounting for frame time here)
+      bg_start_img.frameNStart = frameN;  // exact frame index
+      
+      bg_start_img.setAutoDraw(true);
+    }
+    
+    
+    // if bg_start_img is active this frame...
+    if (bg_start_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_start_img* updates
+    if (t >= 0.0 && btn_start_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_start_img.tStart = t;  // (not accounting for frame time here)
+      btn_start_img.frameNStart = frameN;  // exact frame index
+      
+      btn_start_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_start_img is active this frame...
+    if (btn_start_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // *click_start_mouse* updates
+    if (t >= 0.0 && click_start_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_start_mouse.tStart = t;  // (not accounting for frame time here)
+      click_start_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_start_mouse.status = PsychoJS.Status.STARTED;
+      click_start_mouse.mouseClock.reset();
+      prevButtonState = click_start_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_start_mouse is active this frame...
+    if (click_start_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_start_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_start_mouse.clickableObjects = eval(/* btn_start_img */
+          )
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_start_mouse.clickableObjects)) {
+              click_start_mouse.clickableObjects = [click_start_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_start_mouse.clickableObjects) {
+              if (obj.contains(click_start_mouse)) {
+                  gotValidClick = true;
+                  click_start_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_start_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_start_mouse.getPos();
+          click_start_mouse.x.push(_mouseXYs[0]);
+          click_start_mouse.y.push(_mouseXYs[1]);
+          click_start_mouse.leftButton.push(_mouseButtons[0]);
+          click_start_mouse.midButton.push(_mouseButtons[1]);
+          click_start_mouse.rightButton.push(_mouseButtons[2]);
+          click_start_mouse.time.push(click_start_mouse.mouseClock.getTime());
+        }
+      }
+    }
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    start_screenComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function start_screenRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'start_screen' ---
+    start_screenComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('start_screen.stopped', globalClock.getTime());
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_start_mouse.x', click_start_mouse.x);
+    psychoJS.experiment.addData('click_start_mouse.y', click_start_mouse.y);
+    psychoJS.experiment.addData('click_start_mouse.leftButton', click_start_mouse.leftButton);
+    psychoJS.experiment.addData('click_start_mouse.midButton', click_start_mouse.midButton);
+    psychoJS.experiment.addData('click_start_mouse.rightButton', click_start_mouse.rightButton);
+    psychoJS.experiment.addData('click_start_mouse.time', click_start_mouse.time);
+    psychoJS.experiment.addData('click_start_mouse.clicked_name', click_start_mouse.clicked_name);
+    
+    // the Routine "start_screen" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
 var welcomeMaxDurationReached;
 var _welcome_response_allKeys;
 var welcomeMaxDuration;
@@ -1544,9 +1773,9 @@ function main_written_responseRoutineEnd(snapshot) {
         thisComponent.setAutoDraw(false);
       }
     });
+    psychoJS.experiment.addData('main_written_response.stopped', globalClock.getTime());
     // Run 'End Routine' code from code_whatconc_main
     previousText[concept] = textbox_response_main.text;
-    psychoJS.experiment.addData('main_written_response.stopped', globalClock.getTime());
     psychoJS.experiment.addData('textbox_response_main.text',textbox_response_main.text)
     psychoJS.experiment.addData('end_textinput_button_main.numClicks', end_textinput_button_main.numClicks);
     psychoJS.experiment.addData('end_textinput_button_main.timesOn', end_textinput_button_main.timesOn);
