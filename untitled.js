@@ -179,13 +179,13 @@ async function experimentInit() {
   });
   btn_start_img = new visual.ImageStim({
     win : psychoJS.window,
-    name : 'btn_start_img', units : 'height', 
+    name : 'btn_start_img', units : 'pix', 
     image : 'assets/button_start.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
     draggable: false,
-    size : [0.5, 0.5],
+    size : 1.0,
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -1.0 
@@ -490,6 +490,8 @@ function start_screenRoutineEachFrame() {
     
     // *btn_start_img* updates
     if (t >= 0.0 && btn_start_img.status === PsychoJS.Status.NOT_STARTED) {
+      // update params
+      btn_start_img.setSize([0.5, 0.5], false);
       // keep track of start time/frame for later
       btn_start_img.tStart = t;  // (not accounting for frame time here)
       btn_start_img.frameNStart = frameN;  // exact frame index
@@ -500,6 +502,8 @@ function start_screenRoutineEachFrame() {
     
     // if btn_start_img is active this frame...
     if (btn_start_img.status === PsychoJS.Status.STARTED) {
+      // update params
+      btn_start_img.setSize([0.5, 0.5], false);
     }
     
     // *click_start_mouse* updates
