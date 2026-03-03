@@ -1675,8 +1675,8 @@
       <CodeComponent name="training_yesno_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = (3*(w/8), 2*h/3) &amp;#10;btn_yesno_no_img.pos = (-3*(w/8), 2*h/3) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = [3*(w/8), 2*h/3];&amp;#10;btn_yesno_no_img.pos = [-3*(w/8), 2*h/3];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = (3*(w/8), 0) &amp;#10;btn_yesno_no_img.pos = (-3*(w/8), 0) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = [3*(w/8), 0];&amp;#10;btn_yesno_no_img.pos = [-3*(w/8), 0];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
