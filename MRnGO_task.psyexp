@@ -1023,8 +1023,8 @@
       <CodeComponent name="rulesstart_screen_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="&amp;#10;w, h = win.size  # window width and height in pixels&amp;#10;btn_welcome_img.pos = (-w/3, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="let w = psychoJS.window.size[0];  // window width in px&amp;#10;let h = psychoJS.window.size[1];  // window height in px&amp;#10;&amp;#10;btn_welcome_img.pos = [-w/3, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_rulesstart_img.pos = (-w/3, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_rulesstart_img.pos = [-w/3, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>

@@ -273,10 +273,7 @@ async function experimentInit() {
   });
   click_rulesstart_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from rulesstart_screen_button_placement
-  let w = psychoJS.window.size[0];  // window width in px
-  let h = psychoJS.window.size[1];  // window height in px
-  
-  btn_welcome_img.pos = [-w/3, -h/3];  // bottom-right third center
+  btn_rulesstart_img.pos = [-w/3, -h/3];  // bottom-right third center
   // Initialize components for Routine "welcome"
   welcomeClock = new util.Clock();
   text = new visual.TextStim({
