@@ -1990,7 +1990,7 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
     _stop_training_allKeys = [];
     stop_training.keys = [];
     psychoJS.experiment.addData('training_stimulus_presentation.started', globalClock.getTime());
-    training_stimulus_presentationMaxDuration = null
+    training_stimulus_presentationMaxDuration = Number.parseFloat(expInfo["stimPresTime"])
     // keep track of which components have finished
     training_stimulus_presentationComponents = [];
     training_stimulus_presentationComponents.push(bg_trial_stimpres);
@@ -2006,7 +2006,6 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
 }
 
 
-var frameRemains;
 function training_stimulus_presentationRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'training_stimulus_presentation' ---
@@ -2014,6 +2013,11 @@ function training_stimulus_presentationRoutineEachFrame() {
     t = training_stimulus_presentationClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > training_stimulus_presentationMaxDuration) {
+        training_stimulus_presentationMaxDurationReached = true
+        continueRoutine = false
+    }
     
     // *bg_trial_stimpres* updates
     if (t >= 0.0 && bg_trial_stimpres.status === PsychoJS.Status.NOT_STARTED) {
@@ -2042,16 +2046,6 @@ function training_stimulus_presentationRoutineEachFrame() {
     
     // if stimulus_presentation_train is active this frame...
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (stimulus_presentation_train.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      stimulus_presentation_train.tStop = t;  // not accounting for scr refresh
-      stimulus_presentation_train.frameNStop = frameN;  // exact frame index
-      // update status
-      stimulus_presentation_train.status = PsychoJS.Status.FINISHED;
-      stimulus_presentation_train.setAutoDraw(false);
     }
     
     
@@ -2824,6 +2818,7 @@ function main_stimulus_presentationRoutineBegin(snapshot) {
 }
 
 
+var frameRemains;
 function main_stimulus_presentationRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'main_stimulus_presentation' ---
