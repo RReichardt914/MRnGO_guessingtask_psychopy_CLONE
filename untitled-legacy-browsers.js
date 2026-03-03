@@ -2075,7 +2075,7 @@ function training_stimulus_presentationRoutineEachFrame() {
       }
     }
     
-    // Run 'Each Frame' code from code_train
+    // Run 'Each Frame' code from code_quit_train
     // press Q to stop the training loop
     if (stop_training.keys.length > 0) {
         training_loop.finished = true;
@@ -2110,8 +2110,6 @@ function training_stimulus_presentationRoutineEachFrame() {
 }
 
 
-var _lastKey;
-var needTextInput;
 function training_stimulus_presentationRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_stimulus_presentation' ---
@@ -2132,15 +2130,6 @@ function training_stimulus_presentationRoutineEnd(snapshot) {
         }
     
     stop_training.stop();
-    // Run 'End Routine' code from code_train
-    // Get the last key pressed (handles array vs single value)
-    let _lastKey = null;
-    if (typeof yesno_response_train.keys !== 'undefined' && yesno_response_train.keys !== null) {
-      _lastKey = Array.isArray(yesno_response_train.keys) ? yesno_response_train.keys.slice(-1)[0] : yesno_response_train.keys;
-    }
-    
-    // True if last key was 'y' or 'left'
-    needTextInput = ((_lastKey === 'y') || (_lastKey === 'left'));
     // the Routine "training_stimulus_presentation" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2359,6 +2348,9 @@ function training_yesno_responseRoutineEachFrame() {
 }
 
 
+var _lastKey;
+var _yesButtonClicked;
+var needTextInput;
 function training_yesno_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_yesno_response' ---
@@ -2389,6 +2381,31 @@ function training_yesno_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_yesno_mouse.time', click_yesno_mouse.time);
     psychoJS.experiment.addData('click_yesno_mouse.clicked_name', click_yesno_mouse.clicked_name);
     
+    // Run 'End Routine' code from training_yesno_button_placement
+    // Get the last key pressed (handles list vs single value)
+    let _lastKey = null;
+    if (trial_yesno_response.keys !== undefined && trial_yesno_response.keys !== null) {
+        if (Array.isArray(trial_yesno_response.keys)) {
+            _lastKey = trial_yesno_response.keys[trial_yesno_response.keys.length - 1];
+        } else {
+            _lastKey = trial_yesno_response.keys;
+        }
+    }
+    
+    // Detect button click (mouse)
+    let _yesButtonClicked = false;
+    
+    // Check that the stimulus is done and the mouse component exists
+    if (btn_yesno_yes_img.status === PsychoJS.Status.FINISHED) {
+        if (typeof mouse !== 'undefined') {
+            if (mouse.clicked_name !== undefined && mouse.clicked_name !== null) {
+                _yesButtonClicked = mouse.clicked_name.includes('btn_yesno_yes_img');
+            }
+        }
+    }
+    
+    // Final condition: Yes = keyboard OR button
+    needTextInput = ((_lastKey === 'y') || (_lastKey === 'left') || _yesButtonClicked);
     // the Routine "training_yesno_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
