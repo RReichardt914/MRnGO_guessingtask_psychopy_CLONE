@@ -2005,7 +2005,6 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
 }
 
 
-var frameRemains;
 function training_stimulus_presentationRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'training_stimulus_presentation' ---
@@ -2033,16 +2032,6 @@ function training_stimulus_presentationRoutineEachFrame() {
     if (bg_trial_stimpres.status === PsychoJS.Status.STARTED) {
     }
     
-    frameRemains = 0.0 + stimPresTime - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (bg_trial_stimpres.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      bg_trial_stimpres.tStop = t;  // not accounting for scr refresh
-      bg_trial_stimpres.frameNStop = frameN;  // exact frame index
-      // update status
-      bg_trial_stimpres.status = PsychoJS.Status.FINISHED;
-      bg_trial_stimpres.setAutoDraw(false);
-    }
-    
     
     // *stimulus_presentation_train* updates
     if (t >= 0.0 && stimulus_presentation_train.status === PsychoJS.Status.NOT_STARTED) {
@@ -2056,16 +2045,6 @@ function training_stimulus_presentationRoutineEachFrame() {
     
     // if stimulus_presentation_train is active this frame...
     if (stimulus_presentation_train.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + Number.parseFloat(expInfo["stimPresTime"]) - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (stimulus_presentation_train.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      stimulus_presentation_train.tStop = t;  // not accounting for scr refresh
-      stimulus_presentation_train.frameNStop = frameN;  // exact frame index
-      // update status
-      stimulus_presentation_train.status = PsychoJS.Status.FINISHED;
-      stimulus_presentation_train.setAutoDraw(false);
     }
     
     
@@ -2834,6 +2813,7 @@ function main_stimulus_presentationRoutineBegin(snapshot) {
 }
 
 
+var frameRemains;
 function main_stimulus_presentationRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'main_stimulus_presentation' ---
