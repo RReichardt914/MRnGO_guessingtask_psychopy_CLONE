@@ -43,6 +43,9 @@ flowScheduler.add(experimentInit);
 flowScheduler.add(start_screenRoutineBegin());
 flowScheduler.add(start_screenRoutineEachFrame());
 flowScheduler.add(start_screenRoutineEnd());
+flowScheduler.add(welcome_screenRoutineBegin());
+flowScheduler.add(welcome_screenRoutineEachFrame());
+flowScheduler.add(welcome_screenRoutineEnd());
 flowScheduler.add(welcomeRoutineBegin());
 flowScheduler.add(welcomeRoutineEachFrame());
 flowScheduler.add(welcomeRoutineEnd());
@@ -86,6 +89,8 @@ psychoJS.start({
     {'name': 'stimuli/stim006.png', 'path': 'stimuli/stim006.png'},
     {'name': 'assets/bg_start.png', 'path': 'assets/bg_start.png'},
     {'name': 'assets/button_start.png', 'path': 'assets/button_start.png'},
+    {'name': 'assets/bg_welcome.png', 'path': 'assets/bg_welcome.png'},
+    {'name': 'assets/button_welcome.png', 'path': 'assets/button_welcome.png'},
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
   ]
 });
@@ -127,6 +132,10 @@ var start_screenClock;
 var bg_start_img;
 var btn_start_img;
 var click_start_mouse;
+var welcome_screenClock;
+var bg_welcome_img;
+var btn_welcome_img;
+var click_welcome_mouse;
 var welcomeClock;
 var text;
 var welcome_response;
@@ -186,6 +195,43 @@ async function experimentInit() {
     win: psychoJS.window,
   });
   click_start_mouse.mouseClock = new util.Clock();
+  // Initialize components for Routine "welcome_screen"
+  welcome_screenClock = new util.Clock();
+  bg_welcome_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_welcome_img', units : 'norm', 
+    image : 'assets/bg_welcome.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  btn_welcome_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_welcome_img', units : 'pix', 
+    image : 'assets/button_welcome.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [272, 74.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  click_welcome_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_welcome_mouse.mouseClock = new util.Clock();
+  // Run 'Begin Experiment' code from welcome_screen_button_placement
+  let w = psychoJS.window.size[0];  // window width in px
+  let h = psychoJS.window.size[1];  // window height in px
+  
+  btn_welcome_img.pos = [w/3, -h/3];  // bottom-right third center
   // Initialize components for Routine "welcome"
   welcomeClock = new util.Clock();
   text = new visual.TextStim({
@@ -589,6 +635,192 @@ function start_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_start_mouse.clicked_name', click_start_mouse.clicked_name);
     
     // the Routine "start_screen" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var welcome_screenMaxDurationReached;
+var welcome_screenMaxDuration;
+var welcome_screenComponents;
+function welcome_screenRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'welcome_screen' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    welcome_screenClock.reset();
+    routineTimer.reset();
+    welcome_screenMaxDurationReached = false;
+    // update component parameters for each repeat
+    // setup some python lists for storing info about the click_welcome_mouse
+    // current position of the mouse:
+    click_welcome_mouse.x = [];
+    click_welcome_mouse.y = [];
+    click_welcome_mouse.leftButton = [];
+    click_welcome_mouse.midButton = [];
+    click_welcome_mouse.rightButton = [];
+    click_welcome_mouse.time = [];
+    click_welcome_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    psychoJS.experiment.addData('welcome_screen.started', globalClock.getTime());
+    welcome_screenMaxDuration = null
+    // keep track of which components have finished
+    welcome_screenComponents = [];
+    welcome_screenComponents.push(bg_welcome_img);
+    welcome_screenComponents.push(btn_welcome_img);
+    welcome_screenComponents.push(click_welcome_mouse);
+    
+    welcome_screenComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function welcome_screenRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'welcome_screen' ---
+    // get current time
+    t = welcome_screenClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *bg_welcome_img* updates
+    if (t >= 0.0 && bg_welcome_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_welcome_img.tStart = t;  // (not accounting for frame time here)
+      bg_welcome_img.frameNStart = frameN;  // exact frame index
+      
+      bg_welcome_img.setAutoDraw(true);
+    }
+    
+    
+    // if bg_welcome_img is active this frame...
+    if (bg_welcome_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_welcome_img* updates
+    if (t >= 0.0 && btn_welcome_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_welcome_img.tStart = t;  // (not accounting for frame time here)
+      btn_welcome_img.frameNStart = frameN;  // exact frame index
+      
+      btn_welcome_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_welcome_img is active this frame...
+    if (btn_welcome_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // *click_welcome_mouse* updates
+    if (t >= 0.0 && click_welcome_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_welcome_mouse.tStart = t;  // (not accounting for frame time here)
+      click_welcome_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_welcome_mouse.status = PsychoJS.Status.STARTED;
+      click_welcome_mouse.mouseClock.reset();
+      prevButtonState = click_welcome_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_welcome_mouse is active this frame...
+    if (click_welcome_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_welcome_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_welcome_mouse.clickableObjects = eval(btn_welcome_img)
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_welcome_mouse.clickableObjects)) {
+              click_welcome_mouse.clickableObjects = [click_welcome_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_welcome_mouse.clickableObjects) {
+              if (obj.contains(click_welcome_mouse)) {
+                  gotValidClick = true;
+                  click_welcome_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_welcome_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_welcome_mouse.getPos();
+          click_welcome_mouse.x.push(_mouseXYs[0]);
+          click_welcome_mouse.y.push(_mouseXYs[1]);
+          click_welcome_mouse.leftButton.push(_mouseButtons[0]);
+          click_welcome_mouse.midButton.push(_mouseButtons[1]);
+          click_welcome_mouse.rightButton.push(_mouseButtons[2]);
+          click_welcome_mouse.time.push(click_welcome_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
+        }
+      }
+    }
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    welcome_screenComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function welcome_screenRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'welcome_screen' ---
+    welcome_screenComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('welcome_screen.stopped', globalClock.getTime());
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_welcome_mouse.x', click_welcome_mouse.x);
+    psychoJS.experiment.addData('click_welcome_mouse.y', click_welcome_mouse.y);
+    psychoJS.experiment.addData('click_welcome_mouse.leftButton', click_welcome_mouse.leftButton);
+    psychoJS.experiment.addData('click_welcome_mouse.midButton', click_welcome_mouse.midButton);
+    psychoJS.experiment.addData('click_welcome_mouse.rightButton', click_welcome_mouse.rightButton);
+    psychoJS.experiment.addData('click_welcome_mouse.time', click_welcome_mouse.time);
+    psychoJS.experiment.addData('click_welcome_mouse.clicked_name', click_welcome_mouse.clicked_name);
+    
+    // the Routine "welcome_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     // Routines running outside a loop should always advance the datafile row
