@@ -567,13 +567,13 @@ async function experimentInit() {
   training_feedbackClock = new util.Clock();
   bg_feedback_train = new visual.ImageStim({
     win : psychoJS.window,
-    name : 'bg_feedback_train', units : undefined, 
+    name : 'bg_feedback_train', units : 'norm', 
     image : 'assets/bg_feedback.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
     draggable: false,
-    size : [0.5, 0.5],
+    size : [2, 2],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
@@ -2448,6 +2448,7 @@ function training_yesno_responseRoutineEnd(snapshot) {
 
 var training_written_responseMaxDurationReached;
 var defaultText;
+var showFeedback;
 var training_written_responseMaxDuration;
 var training_written_responseComponents;
 function training_written_responseRoutineBegin(snapshot) {
@@ -2483,6 +2484,29 @@ function training_written_responseRoutineBegin(snapshot) {
     click_written_mouse.time = [];
     click_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    // Run 'Begin Routine' code from written_button_placement
+    // Assume no feedback by default
+    let showFeedback = false;
+    
+    // If your loop is not named "trials", replace `trials` below with your loop name.
+    const loop = trials;
+    
+    // If this is the last repetition of the loop: always show feedback
+    if (loop.thisN === (loop.nTotal - 1)) {
+      showFeedback = true;
+    } else {
+      // Otherwise, check if the next trial has a different concept
+      const nextRow = loop.trialList[loop.thisN + 1];
+      // nextRow is a plain object with your condition columns as keys
+      if (nextRow && nextRow['concept'] !== undefined) {
+        if (nextRow['concept'] !== concept) {
+          showFeedback = true;
+        }
+      } else {
+        // Defensive fallback: if we cannot read the next concept, treat as boundary
+        showFeedback = true;
+      }
+    }
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
     training_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -2661,6 +2685,7 @@ function training_written_responseRoutineEnd(snapshot) {
 
 
 var training_feedbackMaxDurationReached;
+var maxDurationReached;
 var training_feedbackMaxDuration;
 var training_feedbackComponents;
 function training_feedbackRoutineBegin(snapshot) {
@@ -2688,6 +2713,9 @@ function training_feedbackRoutineBegin(snapshot) {
     click_feedback_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('training_feedback.started', globalClock.getTime());
+    // skip this Routine if its 'Skip if' condition is True
+    continueRoutine = continueRoutine && !((! showFeedback));
+    maxDurationReached = false
     training_feedbackMaxDuration = 3
     // keep track of which components have finished
     training_feedbackComponents = [];

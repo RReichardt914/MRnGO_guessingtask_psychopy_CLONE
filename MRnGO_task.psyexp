@@ -301,8 +301,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="btn_written_img.pos = (0, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="btn_written_img.pos = [0, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="// Assume no feedback by default&amp;#10;let showFeedback = false;&amp;#10;&amp;#10;// If your loop is not named &quot;trials&quot;, replace `trials` below with your loop name.&amp;#10;const loop = trials;&amp;#10;&amp;#10;// If this is the last repetition of the loop: always show feedback&amp;#10;if (loop.thisN === (loop.nTotal - 1)) {&amp;#10;  showFeedback = true;&amp;#10;} else {&amp;#10;  // Otherwise, check if the next trial has a different concept&amp;#10;  const nextRow = loop.trialList[loop.thisN + 1];&amp;#10;  // nextRow is a plain object with your condition columns as keys&amp;#10;  if (nextRow &amp;&amp; nextRow['concept'] !== undefined) {&amp;#10;    if (nextRow['concept'] !== concept) {&amp;#10;      showFeedback = true;&amp;#10;    }&amp;#10;  } else {&amp;#10;    // Defensive fallback: if we cannot read the next concept, treat as boundary&amp;#10;    showFeedback = true;&amp;#10;  }&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# Assume no feedback by default&amp;#10;showFeedback = False&amp;#10;&amp;#10;# If this is the last repetition of the loop:&amp;#10;if trials.thisN == trials.nTotal - 1:&amp;#10;    # Always show feedback on very last trial&amp;#10;    showFeedback = True&amp;#10;else:&amp;#10;    # Otherwise check if the next trial has a different concept&amp;#10;    nextConcept = trials.trialList[trials.thisN + 1]['concept']&amp;#10;    if nextConcept != concept:&amp;#10;        showFeedback = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1705,7 +1705,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="training_feedback" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="not showFeedback" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="3" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
@@ -1728,7 +1728,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(0.5, 0.5)" valType="list" updates="constant" name="size"/>
+        <Param val="(2, 2)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -1736,7 +1736,7 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="norm" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </ImageComponent>
       <ImageComponent name="btn_feedback_img" plugin="None">
