@@ -487,8 +487,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_yesno_button_placement
-  btn_yesno_yes_img.pos = [3*(w/8), 0];
-  btn_yesno_no_img.pos = [-3*(w/8), 0];
+  btn_yesno_yes_img.pos = [w/4, h/3];
+  btn_yesno_no_img.pos = [-w/4, h/3];
   // Initialize components for Routine "training_written_response"
   training_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
