@@ -606,7 +606,7 @@ async function experimentInit() {
     text: '',
     font: 'Arial',
     units: 'norm', 
-    pos: [(- 0.5), 0.4], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    pos: [(- 0.5), 0.3], draggable: false, height: 0.1,  wrapWidth: undefined, ori: 0.0,
     languageStyle: 'LTR',
     color: new util.Color((-1.0000, -1.0000, 0.0902)),  opacity: undefined,
     depth: -4.0 
