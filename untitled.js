@@ -495,8 +495,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_yesno_button_placement
-  btn_yesno_yes_img.pos = [w/4, h/3];
-  btn_yesno_no_img.pos = [-w/4, h/3];
+  btn_yesno_yes_img.pos = [w/4, -h/3];
+  btn_yesno_no_img.pos = [-w/4, -h/3];
   // Initialize components for Routine "training_written_response"
   training_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
@@ -2390,20 +2390,24 @@ function training_yesno_responseRoutineEnd(snapshot) {
         }
     }
     
-    // Detect button click (mouse)
+    // Detect button click
     let _yesButtonClicked = false;
     
-    // Check that the stimulus is done and the mouse component exists
-    if (btn_yesno_yes_img.status === PsychoJS.Status.FINISHED) {
-        if (typeof mouse !== 'undefined') {
-            if (mouse.clicked_name !== undefined && mouse.clicked_name !== null) {
-                _yesButtonClicked = mouse.clicked_name.includes('btn_yesno_yes_img');
+    // Check mouse clicks every frame
+    if (typeof mouse !== 'undefined') {
+        if (mouse.clicked_name !== undefined && mouse.clicked_name !== null) {
+            if (mouse.clicked_name.includes('btn_yesno_yes_img')) {
+                _yesButtonClicked = true;
             }
         }
     }
     
     // Final condition: Yes = keyboard OR button
-    needTextInput = ((_lastKey === 'y') || (_lastKey === 'left') || _yesButtonClicked);
+    needTextInput = (
+        _lastKey === 'y' ||
+        _lastKey === 'right' ||
+        _yesButtonClicked
+    );
     // the Routine "training_yesno_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
