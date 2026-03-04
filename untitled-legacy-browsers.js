@@ -13,6 +13,8 @@ let expInfo = {
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
 // Start code blocks for 'Before Experiment'
+// Run 'Before Experiment' code from written_button_placement
+var showFeedback = false;
 // init psychoJS:
 const psychoJS = new PsychoJS({
   debug: true
@@ -2450,7 +2452,6 @@ function training_yesno_responseRoutineEnd(snapshot) {
 
 var training_written_responseMaxDurationReached;
 var defaultText;
-var showFeedback;
 var training_written_responseMaxDuration;
 var training_written_responseComponents;
 function training_written_responseRoutineBegin(snapshot) {
@@ -2487,29 +2488,6 @@ function training_written_responseRoutineBegin(snapshot) {
     click_written_mouse.time = [];
     click_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
-    // Run 'Begin Routine' code from written_button_placement
-    // Assume no feedback by default
-    let showFeedback = false;
-    
-    // If your loop is not named "trials", replace `trials` below with your loop name.
-    const loop = training_loop;
-    
-    // If this is the last repetition of the loop: always show feedback
-    if (loop.thisN === (loop.nTotal - 1)) {
-      showFeedback = true;
-    } else {
-      // Otherwise, check if the next trial has a different concept
-      const nextRow = loop.trialList[loop.thisN + 1];
-      // nextRow is a plain object with your condition columns as keys
-      if (nextRow && nextRow['concept'] !== undefined) {
-        if (nextRow['concept'] !== concept) {
-          showFeedback = true;
-        }
-      } else {
-        // Defensive fallback: if we cannot read the next concept, treat as boundary
-        showFeedback = true;
-      }
-    }
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
     training_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -2655,6 +2633,7 @@ function training_written_responseRoutineEachFrame() {
 }
 
 
+var showFeedback;
 function training_written_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_written_response' ---
@@ -2676,6 +2655,29 @@ function training_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_written_mouse.time', click_written_mouse.time);
     psychoJS.experiment.addData('click_written_mouse.clicked_name', click_written_mouse.clicked_name);
     
+    // Run 'End Routine' code from written_button_placement
+    // Default
+    showFeedback = false;
+    
+    // Use your loop's actual name here:
+    const loop = training_loop;
+    
+    // If this is the very last trial of the loop → show feedback
+    if (loop.thisN === (loop.nTotal - 1)) {
+      showFeedback = true;
+    } else {
+      // Try to read the next row's concept
+      const nextRow = loop.trialList[loop.thisN + 1];
+    
+      if (nextRow && nextRow['concept'] !== undefined) {
+        if (nextRow['concept'] !== concept) {
+          showFeedback = true;
+        }
+      } else {
+        // Safety: if next row isn't readable, treat as a boundary
+        showFeedback = true;
+      }
+    }
     // the Routine "training_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2718,7 +2720,7 @@ function training_feedbackRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('training_feedback.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !(showFeedback);
+    continueRoutine = continueRoutine && !((! showFeedback));
     maxDurationReached = false
     training_feedbackMaxDuration = 3
     // keep track of which components have finished
