@@ -598,9 +598,9 @@ async function experimentInit() {
     text: '',
     font: 'Arial',
     units: 'norm', 
-    pos: [(- 0.5), 0.5], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    pos: [(- 0.5), 0.4], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
     languageStyle: 'LTR',
-    color: new util.Color('white'),  opacity: undefined,
+    color: new util.Color((-1.0000, -1.0000, -1.0000)),  opacity: undefined,
     depth: -4.0 
   });
   
