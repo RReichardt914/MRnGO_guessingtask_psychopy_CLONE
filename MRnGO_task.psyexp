@@ -191,8 +191,8 @@
       <CodeComponent name="code_whatconc" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="# Global store for previously entered text per concept&amp;#10;previousText = {}        # dict: concept -&gt; text&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="// Global store for previously entered text per concept&amp;#10;var previousText = {};   // maps concept -&gt; text" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="previousText = {}    &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="var previousText = {}; " valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
