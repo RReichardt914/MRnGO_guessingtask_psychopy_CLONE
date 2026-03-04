@@ -3606,7 +3606,7 @@ function main_yesno_responseRoutineEnd(snapshot) {
     // Check mouse clicks every frame
     if (typeof main_yesno_mouse !== 'undefined') {
         if (main_yesno_mouse.clicked_name !== undefined && main_yesno_mouse.clicked_name !== null) {
-            if (main_yesno_mouse.clicked_name.includes('btn_yesno_yes_img')) {
+            if (main_yesno_mouse.clicked_name.includes('btn_yesno_yes_main')) {
                 _yesButtonClicked = true;
             }
         }
