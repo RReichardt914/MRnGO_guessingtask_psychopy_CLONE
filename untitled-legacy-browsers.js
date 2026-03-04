@@ -529,6 +529,9 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
   });
+  // Run 'Begin Experiment' code from code_whatconc
+  // Global store for previously entered text per concept
+  var previousText = {};   // maps concept -> text
   textbox_response_training = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_training',
