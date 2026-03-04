@@ -2491,7 +2491,7 @@ function training_written_responseRoutineBegin(snapshot) {
     let showFeedback = false;
     
     // If your loop is not named "trials", replace `trials` below with your loop name.
-    const loop = trials;
+    const loop = training_loop;
     
     // If this is the last repetition of the loop: always show feedback
     if (loop.thisN === (loop.nTotal - 1)) {
