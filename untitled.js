@@ -2487,25 +2487,25 @@ function training_written_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     // Run 'Begin Routine' code from written_button_placement
     // Assume no feedback by default
-    let showFeedback = true;
+    let showFeedback = false;
     
     // If your loop is not named "trials", replace `trials` below with your loop name.
     const loop = training_loop;
     
     // If this is the last repetition of the loop: always show feedback
     if (loop.thisN === (loop.nTotal - 1)) {
-      showFeedback = false;
+      showFeedback = true;
     } else {
       // Otherwise, check if the next trial has a different concept
       const nextRow = loop.trialList[loop.thisN + 1];
       // nextRow is a plain object with your condition columns as keys
       if (nextRow && nextRow['concept'] !== undefined) {
         if (nextRow['concept'] !== concept) {
-          showFeedback = false;
+          showFeedback = true;
         }
       } else {
         // Defensive fallback: if we cannot read the next concept, treat as boundary
-        showFeedback = false;
+        showFeedback = true;
       }
     }
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
