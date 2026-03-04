@@ -2394,9 +2394,9 @@ function training_yesno_responseRoutineEnd(snapshot) {
     let _yesButtonClicked = false;
     
     // Check mouse clicks every frame
-    if (typeof mouse !== 'undefined') {
-        if (mouse.clicked_name !== undefined && mouse.clicked_name !== null) {
-            if (mouse.clicked_name.includes('btn_yesno_yes_img')) {
+    if (typeof click_yesno_mouse !== 'undefined') {
+        if (click_yesno_mouse.clicked_name !== undefined && click_yesno_mouse.clicked_name !== null) {
+            if (click_yesno_mouse.clicked_name.includes('btn_yesno_yes_img')) {
                 _yesButtonClicked = true;
             }
         }
