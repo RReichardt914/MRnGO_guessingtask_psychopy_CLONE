@@ -524,7 +524,7 @@ async function experimentInit() {
     text: '',
     placeholder: undefined,
     font: 'Arial',
-    pos: [0, (- 0.2)], 
+    pos: [0, (- 0.15)], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -2474,6 +2474,7 @@ function training_written_responseRoutineBegin(snapshot) {
     defaultText = previousText[concept] || "";
     textbox_response_training.setText('');
     textbox_response_training.refresh();
+    textbox_response_training.setText(defaultText);
     // setup some python lists for storing info about the click_written_mouse
     // current position of the mouse:
     click_written_mouse.x = [];
@@ -2486,25 +2487,25 @@ function training_written_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     // Run 'Begin Routine' code from written_button_placement
     // Assume no feedback by default
-    let showFeedback = false;
+    let showFeedback = true;
     
     // If your loop is not named "trials", replace `trials` below with your loop name.
     const loop = training_loop;
     
     // If this is the last repetition of the loop: always show feedback
     if (loop.thisN === (loop.nTotal - 1)) {
-      showFeedback = true;
+      showFeedback = false;
     } else {
       // Otherwise, check if the next trial has a different concept
       const nextRow = loop.trialList[loop.thisN + 1];
       // nextRow is a plain object with your condition columns as keys
       if (nextRow && nextRow['concept'] !== undefined) {
         if (nextRow['concept'] !== concept) {
-          showFeedback = true;
+          showFeedback = false;
         }
       } else {
         // Defensive fallback: if we cannot read the next concept, treat as boundary
-        showFeedback = true;
+        showFeedback = false;
       }
     }
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
@@ -2714,7 +2715,7 @@ function training_feedbackRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('training_feedback.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !((! showFeedback));
+    continueRoutine = continueRoutine && !(showFeedback);
     maxDurationReached = false
     training_feedbackMaxDuration = 3
     // keep track of which components have finished
