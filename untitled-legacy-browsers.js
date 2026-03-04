@@ -126,9 +126,6 @@ psychoJS.start({
 
 psychoJS.experimentLogger.setLevel(core.Logger.ServerLevel.INFO);
 
-
-var currentLoop;
-var frameDur;
 async function updateInfo() {
   currentLoop = psychoJS.experiment;  // right now there are no loops
   expInfo['date'] = util.MonotonicClock.getDateStr();  // add a simple timestamp
@@ -156,78 +153,6 @@ async function updateInfo() {
   return Scheduler.Event.NEXT;
 }
 
-
-var start_screenClock;
-var bg_start_img;
-var btn_start_img;
-var click_start_mouse;
-var welcome_screenClock;
-var bg_welcome_img;
-var btn_welcome_img;
-var click_welcome_mouse;
-var rules_start_screenClock;
-var bg_rulesstart_img;
-var btn_rulesstart_img;
-var click_rulesstart_mouse;
-var rules_01_screenClock;
-var bg_rules01_img;
-var btn_rules01_img;
-var click_rules01_mouse;
-var rules_02_screenClock;
-var bg_rules02_img;
-var btn_rules02_img;
-var click_rules02_mouse;
-var trial_start_screenClock;
-var bg_trialstart_img;
-var btn_trialstart_img;
-var click_trialstart_mouse;
-var training_stimulus_presentationClock;
-var bg_trial_stimpres;
-var stimulus_presentation_train;
-var stop_training;
-var training_yesno_responseClock;
-var bg_trial_yesno;
-var btn_yesno_yes_img;
-var btn_yesno_no_img;
-var trial_yesno_response;
-var click_yesno_mouse;
-var training_written_responseClock;
-var bg_trial_written;
-var textbox_response_training;
-var click_written_mouse;
-var btn_written_img;
-var training_feedbackClock;
-var bg_feedback_train;
-var btn_feedback_img;
-var click_feedback_mouse;
-var feedback_concept;
-var main_start_screenClock;
-var bg_mainstart_img;
-var btn_mainstart_img;
-var click_mainstart_mouse;
-var main_stimulus_presentationClock;
-var bg_main_stimpres;
-var stimulus_presentation_main;
-var main_yesno_responseClock;
-var bg_main_yesno;
-var btn_yesno_yes_main;
-var btn_yesno_no_main;
-var main_yesno_key_response;
-var main_yesno_mouse;
-var main_written_responseClock;
-var bg_main_written;
-var textbox_response_main;
-var main_written_mouse;
-var btn_written_main;
-var main_feedbackClock;
-var bg_feedback_main;
-var btn_feedback_main;
-var main_feedback_mouse;
-var feedback_concept_main;
-var endClock;
-var bg_goodbye_img;
-var globalClock;
-var routineTimer;
 async function experimentInit() {
   // Initialize components for Routine "start_screen"
   start_screenClock = new util.Clock();
@@ -530,7 +455,7 @@ async function experimentInit() {
     texRes : 128.0, interpolate : true, depth : 0.0 
   });
   // Run 'Begin Experiment' code from code_whatconc
-  var previousText = {}; 
+  var window.previousText = {}; 
   textbox_response_training = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_training',
@@ -862,15 +787,6 @@ async function experimentInit() {
   return Scheduler.Event.NEXT;
 }
 
-
-var t;
-var frameN;
-var continueRoutine;
-var routineForceEnded;
-var start_screenMaxDurationReached;
-var gotValidClick;
-var start_screenMaxDuration;
-var start_screenComponents;
 function start_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -911,10 +827,6 @@ function start_screenRoutineBegin(snapshot) {
   }
 }
 
-
-var prevButtonState;
-var _mouseButtons;
-var _mouseXYs;
 function start_screenRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'start_screen' ---
@@ -1026,7 +938,6 @@ function start_screenRoutineEachFrame() {
   };
 }
 
-
 function start_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'start_screen' ---
@@ -1056,10 +967,6 @@ function start_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var welcome_screenMaxDurationReached;
-var welcome_screenMaxDuration;
-var welcome_screenComponents;
 function welcome_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1099,7 +1006,6 @@ function welcome_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function welcome_screenRoutineEachFrame() {
   return async function () {
@@ -1212,7 +1118,6 @@ function welcome_screenRoutineEachFrame() {
   };
 }
 
-
 function welcome_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'welcome_screen' ---
@@ -1242,10 +1147,6 @@ function welcome_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var rules_start_screenMaxDurationReached;
-var rules_start_screenMaxDuration;
-var rules_start_screenComponents;
 function rules_start_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1285,7 +1186,6 @@ function rules_start_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function rules_start_screenRoutineEachFrame() {
   return async function () {
@@ -1398,7 +1298,6 @@ function rules_start_screenRoutineEachFrame() {
   };
 }
 
-
 function rules_start_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'rules_start_screen' ---
@@ -1428,10 +1327,6 @@ function rules_start_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var rules_01_screenMaxDurationReached;
-var rules_01_screenMaxDuration;
-var rules_01_screenComponents;
 function rules_01_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1471,7 +1366,6 @@ function rules_01_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function rules_01_screenRoutineEachFrame() {
   return async function () {
@@ -1584,7 +1478,6 @@ function rules_01_screenRoutineEachFrame() {
   };
 }
 
-
 function rules_01_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'rules_01_screen' ---
@@ -1614,10 +1507,6 @@ function rules_01_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var rules_02_screenMaxDurationReached;
-var rules_02_screenMaxDuration;
-var rules_02_screenComponents;
 function rules_02_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1657,7 +1546,6 @@ function rules_02_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function rules_02_screenRoutineEachFrame() {
   return async function () {
@@ -1770,7 +1658,6 @@ function rules_02_screenRoutineEachFrame() {
   };
 }
 
-
 function rules_02_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'rules_02_screen' ---
@@ -1800,10 +1687,6 @@ function rules_02_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var trial_start_screenMaxDurationReached;
-var trial_start_screenMaxDuration;
-var trial_start_screenComponents;
 function trial_start_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1843,7 +1726,6 @@ function trial_start_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function trial_start_screenRoutineEachFrame() {
   return async function () {
@@ -1956,7 +1838,6 @@ function trial_start_screenRoutineEachFrame() {
   };
 }
 
-
 function trial_start_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'trial_start_screen' ---
@@ -1986,8 +1867,6 @@ function trial_start_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var training_loop;
 function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
   return async function() {
     TrialHandler.fromSnapshot(snapshot); // update internal variables (.thisN etc) of the loop
@@ -2027,7 +1906,6 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
   }
 }
 
-
 async function training_loopLoopEnd() {
   // terminate loop
   psychoJS.experiment.removeLoop(training_loop);
@@ -2038,7 +1916,6 @@ async function training_loopLoopEnd() {
     currentLoop = psychoJS.experiment;  // so we use addData from the experiment
   return Scheduler.Event.NEXT;
 }
-
 
 function training_loopLoopEndIteration(scheduler, snapshot) {
   // ------Prepare for next entry------
@@ -2059,8 +1936,6 @@ function training_loopLoopEndIteration(scheduler, snapshot) {
   };
 }
 
-
-var main_loop;
 function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
   return async function() {
     TrialHandler.fromSnapshot(snapshot); // update internal variables (.thisN etc) of the loop
@@ -2100,7 +1975,6 @@ function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
   }
 }
 
-
 async function main_loopLoopEnd() {
   // terminate loop
   psychoJS.experiment.removeLoop(main_loop);
@@ -2111,7 +1985,6 @@ async function main_loopLoopEnd() {
     currentLoop = psychoJS.experiment;  // so we use addData from the experiment
   return Scheduler.Event.NEXT;
 }
-
 
 function main_loopLoopEndIteration(scheduler, snapshot) {
   // ------Prepare for next entry------
@@ -2132,11 +2005,6 @@ function main_loopLoopEndIteration(scheduler, snapshot) {
   };
 }
 
-
-var training_stimulus_presentationMaxDurationReached;
-var _stop_training_allKeys;
-var training_stimulus_presentationMaxDuration;
-var training_stimulus_presentationComponents;
 function training_stimulus_presentationRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -2171,7 +2039,6 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function training_stimulus_presentationRoutineEachFrame() {
   return async function () {
@@ -2276,7 +2143,6 @@ function training_stimulus_presentationRoutineEachFrame() {
   };
 }
 
-
 function training_stimulus_presentationRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_stimulus_presentation' ---
@@ -2308,11 +2174,6 @@ function training_stimulus_presentationRoutineEnd(snapshot) {
   }
 }
 
-
-var training_yesno_responseMaxDurationReached;
-var _trial_yesno_response_allKeys;
-var training_yesno_responseMaxDuration;
-var training_yesno_responseComponents;
 function training_yesno_responseRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -2357,7 +2218,6 @@ function training_yesno_responseRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function training_yesno_responseRoutineEachFrame() {
   return async function () {
@@ -2514,10 +2374,6 @@ function training_yesno_responseRoutineEachFrame() {
   };
 }
 
-
-var _lastKey;
-var _yesButtonClicked;
-var needTextInput;
 function training_yesno_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_yesno_response' ---
@@ -2588,11 +2444,6 @@ function training_yesno_responseRoutineEnd(snapshot) {
   }
 }
 
-
-var training_written_responseMaxDurationReached;
-var defaultText;
-var training_written_responseMaxDuration;
-var training_written_responseComponents;
 function training_written_responseRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -2643,7 +2494,6 @@ function training_written_responseRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function training_written_responseRoutineEachFrame() {
   return async function () {
@@ -2771,8 +2621,6 @@ function training_written_responseRoutineEachFrame() {
   };
 }
 
-
-var showFeedback;
 function training_written_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_written_response' ---
@@ -2828,11 +2676,6 @@ function training_written_responseRoutineEnd(snapshot) {
   }
 }
 
-
-var training_feedbackMaxDurationReached;
-var maxDurationReached;
-var training_feedbackMaxDuration;
-var training_feedbackComponents;
 function training_feedbackRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -2877,7 +2720,6 @@ function training_feedbackRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function training_feedbackRoutineEachFrame() {
   return async function () {
@@ -3010,7 +2852,6 @@ function training_feedbackRoutineEachFrame() {
   };
 }
 
-
 function training_feedbackRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'training_feedback' ---
@@ -3040,10 +2881,6 @@ function training_feedbackRoutineEnd(snapshot) {
   }
 }
 
-
-var main_start_screenMaxDurationReached;
-var main_start_screenMaxDuration;
-var main_start_screenComponents;
 function main_start_screenRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -3083,7 +2920,6 @@ function main_start_screenRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function main_start_screenRoutineEachFrame() {
   return async function () {
@@ -3196,7 +3032,6 @@ function main_start_screenRoutineEachFrame() {
   };
 }
 
-
 function main_start_screenRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_start_screen' ---
@@ -3226,10 +3061,6 @@ function main_start_screenRoutineEnd(snapshot) {
   }
 }
 
-
-var main_stimulus_presentationMaxDurationReached;
-var main_stimulus_presentationMaxDuration;
-var main_stimulus_presentationComponents;
 function main_stimulus_presentationRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -3259,7 +3090,6 @@ function main_stimulus_presentationRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function main_stimulus_presentationRoutineEachFrame() {
   return async function () {
@@ -3330,7 +3160,6 @@ function main_stimulus_presentationRoutineEachFrame() {
   };
 }
 
-
 function main_stimulus_presentationRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_stimulus_presentation' ---
@@ -3351,11 +3180,6 @@ function main_stimulus_presentationRoutineEnd(snapshot) {
   }
 }
 
-
-var main_yesno_responseMaxDurationReached;
-var _main_yesno_key_response_allKeys;
-var main_yesno_responseMaxDuration;
-var main_yesno_responseComponents;
 function main_yesno_responseRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -3400,7 +3224,6 @@ function main_yesno_responseRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function main_yesno_responseRoutineEachFrame() {
   return async function () {
@@ -3557,7 +3380,6 @@ function main_yesno_responseRoutineEachFrame() {
   };
 }
 
-
 function main_yesno_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_yesno_response' ---
@@ -3628,10 +3450,6 @@ function main_yesno_responseRoutineEnd(snapshot) {
   }
 }
 
-
-var main_written_responseMaxDurationReached;
-var main_written_responseMaxDuration;
-var main_written_responseComponents;
 function main_written_responseRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -3682,7 +3500,6 @@ function main_written_responseRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function main_written_responseRoutineEachFrame() {
   return async function () {
@@ -3810,7 +3627,6 @@ function main_written_responseRoutineEachFrame() {
   };
 }
 
-
 function main_written_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_written_response' ---
@@ -3866,10 +3682,6 @@ function main_written_responseRoutineEnd(snapshot) {
   }
 }
 
-
-var main_feedbackMaxDurationReached;
-var main_feedbackMaxDuration;
-var main_feedbackComponents;
 function main_feedbackRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -3914,7 +3726,6 @@ function main_feedbackRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function main_feedbackRoutineEachFrame() {
   return async function () {
@@ -4047,7 +3858,6 @@ function main_feedbackRoutineEachFrame() {
   };
 }
 
-
 function main_feedbackRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_feedback' ---
@@ -4077,10 +3887,6 @@ function main_feedbackRoutineEnd(snapshot) {
   }
 }
 
-
-var endMaxDurationReached;
-var endMaxDuration;
-var endComponents;
 function endRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -4108,7 +3914,6 @@ function endRoutineBegin(snapshot) {
     return Scheduler.Event.NEXT;
   }
 }
-
 
 function endRoutineEachFrame() {
   return async function () {
@@ -4164,7 +3969,6 @@ function endRoutineEachFrame() {
   };
 }
 
-
 function endRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'end' ---
@@ -4185,14 +3989,12 @@ function endRoutineEnd(snapshot) {
   }
 }
 
-
 function importConditions(currentLoop) {
   return async function () {
     psychoJS.importAttributes(currentLoop.getCurrentTrial());
     return Scheduler.Event.NEXT;
     };
 }
-
 
 async function quitPsychoJS(message, isCompleted) {
   // Check for and save orphaned data
