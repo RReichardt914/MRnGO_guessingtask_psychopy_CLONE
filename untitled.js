@@ -203,6 +203,7 @@ var training_feedbackClock;
 var bg_feedback_train;
 var btn_feedback_img;
 var click_feedback_mouse;
+var feedback_concept;
 var main_start_screenClock;
 var bg_mainstart_img;
 var btn_mainstart_img;
@@ -526,7 +527,7 @@ async function experimentInit() {
     text: '',
     placeholder: undefined,
     font: 'Arial',
-    pos: [0, (- 0.15)], 
+    pos: [0, (- 0.12)], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
@@ -599,6 +600,18 @@ async function experimentInit() {
   click_feedback_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from feedback_screen_button_placement
   btn_feedback_img.pos = [0, -h/3];  // bottom-right third center
+  feedback_concept = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'feedback_concept',
+    text: '',
+    font: 'Arial',
+    units: 'norm', 
+    pos: [1, 1], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    languageStyle: 'LTR',
+    color: new util.Color('white'),  opacity: undefined,
+    depth: -4.0 
+  });
+  
   // Initialize components for Routine "main_start_screen"
   main_start_screenClock = new util.Clock();
   bg_mainstart_img = new visual.ImageStim({
@@ -2715,6 +2728,7 @@ function training_feedbackRoutineBegin(snapshot) {
     click_feedback_mouse.time = [];
     click_feedback_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    feedback_concept.setText(concept);
     psychoJS.experiment.addData('training_feedback.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((! showFeedback));
@@ -2725,6 +2739,7 @@ function training_feedbackRoutineBegin(snapshot) {
     training_feedbackComponents.push(bg_feedback_train);
     training_feedbackComponents.push(btn_feedback_img);
     training_feedbackComponents.push(click_feedback_mouse);
+    training_feedbackComponents.push(feedback_concept);
     
     for (const thisComponent of training_feedbackComponents)
       if ('status' in thisComponent)
@@ -2823,6 +2838,21 @@ function training_feedbackRoutineEachFrame() {
         }
       }
     }
+    
+    // *feedback_concept* updates
+    if (t >= 0.0 && feedback_concept.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      feedback_concept.tStart = t;  // (not accounting for frame time here)
+      feedback_concept.frameNStart = frameN;  // exact frame index
+      
+      feedback_concept.setAutoDraw(true);
+    }
+    
+    
+    // if feedback_concept is active this frame...
+    if (feedback_concept.status === PsychoJS.Status.STARTED) {
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
