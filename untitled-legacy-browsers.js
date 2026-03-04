@@ -185,8 +185,8 @@ var click_yesno_mouse;
 var training_written_responseClock;
 var bg_trial_written;
 var textbox_response_training;
-var end_textinput_button;
-var text_writtenresp_train_orientation;
+var click_written_mouse;
+var btn_written_img;
 var main_start_screenClock;
 var bg_mainstart_img;
 var btn_mainstart_img;
@@ -507,7 +507,7 @@ async function experimentInit() {
   textbox_response_training = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_training',
-    text: 'Melyik fogalomra gondoltál?',
+    text: '',
     placeholder: undefined,
     font: 'Arial',
     pos: [0, 0], 
@@ -530,42 +530,25 @@ async function experimentInit() {
     depth: -2.0 
   });
   
-  end_textinput_button = new visual.ButtonStim({
+  click_written_mouse = new core.Mouse({
     win: psychoJS.window,
-    name: 'end_textinput_button',
-    text: 'Kész!',
-    font: 'Arvo',
-    pos: [0, (- 0.2)],
-    size: [0.5, 0.5],
-    padding: null,
-    anchor: 'center',
-    ori: 0.0,
-    units: psychoJS.window.units,
-    color: 'white',
-    fillColor: 'darkgrey',
-    borderColor: null,
-    colorSpace: 'rgb',
-    borderWidth: 0.0,
-    opacity: null,
-    depth: -3,
-    letterHeight: 0.05,
-    bold: true,
-    italic: false,
   });
-  end_textinput_button.clock = new util.Clock();
-  
-  text_writtenresp_train_orientation = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'text_writtenresp_train_orientation',
-    text: 'Melyik fogalomra gondoltál?',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0.2], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
-    languageStyle: 'LTR',
-    color: new util.Color('white'),  opacity: undefined,
-    depth: -4.0 
+  click_written_mouse.mouseClock = new util.Clock();
+  btn_written_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_written_img', units : 'pix', 
+    image : 'assets/button_jatsszunk.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [272, 74.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -4.0 
   });
-  
+  // Run 'Begin Experiment' code from written_button_placement
+  btn_written_img.pos = [0, h/3];  // bottom-right third center
   // Initialize components for Routine "main_start_screen"
   main_start_screenClock = new util.Clock();
   bg_mainstart_img = new visual.ImageStim({
@@ -2444,18 +2427,26 @@ function training_written_responseRoutineBegin(snapshot) {
     if (!needTextInput) {
         continueRoutine = false;
     }
-    textbox_response_training.setText('Melyik fogalomra gondoltál?');
+    textbox_response_training.setText('');
     textbox_response_training.refresh();
-    // reset end_textinput_button to account for continued clicks & clear times on/off
-    end_textinput_button.reset()
+    // setup some python lists for storing info about the click_written_mouse
+    // current position of the mouse:
+    click_written_mouse.x = [];
+    click_written_mouse.y = [];
+    click_written_mouse.leftButton = [];
+    click_written_mouse.midButton = [];
+    click_written_mouse.rightButton = [];
+    click_written_mouse.time = [];
+    click_written_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('training_written_response.started', globalClock.getTime());
     training_written_responseMaxDuration = null
     // keep track of which components have finished
     training_written_responseComponents = [];
     training_written_responseComponents.push(bg_trial_written);
     training_written_responseComponents.push(textbox_response_training);
-    training_written_responseComponents.push(end_textinput_button);
-    training_written_responseComponents.push(text_writtenresp_train_orientation);
+    training_written_responseComponents.push(click_written_mouse);
+    training_written_responseComponents.push(btn_written_img);
     
     training_written_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -2503,63 +2494,66 @@ function training_written_responseRoutineEachFrame() {
     if (textbox_response_training.status === PsychoJS.Status.STARTED) {
     }
     
-    
-    // *end_textinput_button* updates
-    if (t >= 0 && end_textinput_button.status === PsychoJS.Status.NOT_STARTED) {
+    // *click_written_mouse* updates
+    if (t >= 0.0 && click_written_mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      end_textinput_button.tStart = t;  // (not accounting for frame time here)
-      end_textinput_button.frameNStart = frameN;  // exact frame index
+      click_written_mouse.tStart = t;  // (not accounting for frame time here)
+      click_written_mouse.frameNStart = frameN;  // exact frame index
       
-      end_textinput_button.setAutoDraw(true);
+      click_written_mouse.status = PsychoJS.Status.STARTED;
+      click_written_mouse.mouseClock.reset();
+      prevButtonState = click_written_mouse.getPressed();  // if button is down already this ISN'T a new click
     }
     
-    
-    // if end_textinput_button is active this frame...
-    if (end_textinput_button.status === PsychoJS.Status.STARTED) {
-    }
-    
-    if (end_textinput_button.status === PsychoJS.Status.STARTED) {
-      // check whether end_textinput_button has been pressed
-      if (end_textinput_button.isClicked) {
-        if (!end_textinput_button.wasClicked) {
-          // store time of first click
-          end_textinput_button.timesOn.push(end_textinput_button.clock.getTime());
-          // store time clicked until
-          end_textinput_button.timesOff.push(end_textinput_button.clock.getTime());
-        } else {
-          // update time clicked until;
-          end_textinput_button.timesOff[end_textinput_button.timesOff.length - 1] = end_textinput_button.clock.getTime();
+    // if click_written_mouse is active this frame...
+    if (click_written_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_written_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_written_mouse.clickableObjects = eval(btn_rules02_img)
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_written_mouse.clickableObjects)) {
+              click_written_mouse.clickableObjects = [click_written_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_written_mouse.clickableObjects) {
+              if (obj.contains(click_written_mouse)) {
+                  gotValidClick = true;
+                  click_written_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_written_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_written_mouse.getPos();
+          click_written_mouse.x.push(_mouseXYs[0]);
+          click_written_mouse.y.push(_mouseXYs[1]);
+          click_written_mouse.leftButton.push(_mouseButtons[0]);
+          click_written_mouse.midButton.push(_mouseButtons[1]);
+          click_written_mouse.rightButton.push(_mouseButtons[2]);
+          click_written_mouse.time.push(click_written_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
         }
-        if (!end_textinput_button.wasClicked) {
-          // end routine when end_textinput_button is clicked
-          continueRoutine = false;
-          
-        }
-        // if end_textinput_button is still clicked next frame, it is not a new click
-        end_textinput_button.wasClicked = true;
-      } else {
-        // if end_textinput_button is clicked next frame, it is a new click
-        end_textinput_button.wasClicked = false;
       }
-    } else {
-      // keep clock at 0 if end_textinput_button hasn't started / has finished
-      end_textinput_button.clock.reset();
-      // if end_textinput_button is clicked next frame, it is a new click
-      end_textinput_button.wasClicked = false;
     }
     
-    // *text_writtenresp_train_orientation* updates
-    if (t >= 0.0 && text_writtenresp_train_orientation.status === PsychoJS.Status.NOT_STARTED) {
+    // *btn_written_img* updates
+    if (t >= 0.0 && btn_written_img.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      text_writtenresp_train_orientation.tStart = t;  // (not accounting for frame time here)
-      text_writtenresp_train_orientation.frameNStart = frameN;  // exact frame index
+      btn_written_img.tStart = t;  // (not accounting for frame time here)
+      btn_written_img.frameNStart = frameN;  // exact frame index
       
-      text_writtenresp_train_orientation.setAutoDraw(true);
+      btn_written_img.setAutoDraw(true);
     }
     
     
-    // if text_writtenresp_train_orientation is active this frame...
-    if (text_writtenresp_train_orientation.status === PsychoJS.Status.STARTED) {
+    // if btn_written_img is active this frame...
+    if (btn_written_img.status === PsychoJS.Status.STARTED) {
     }
     
     // check for quit (typically the Esc key)
@@ -2600,9 +2594,15 @@ function training_written_responseRoutineEnd(snapshot) {
     });
     psychoJS.experiment.addData('training_written_response.stopped', globalClock.getTime());
     psychoJS.experiment.addData('textbox_response_training.text',textbox_response_training.text)
-    psychoJS.experiment.addData('end_textinput_button.numClicks', end_textinput_button.numClicks);
-    psychoJS.experiment.addData('end_textinput_button.timesOn', end_textinput_button.timesOn);
-    psychoJS.experiment.addData('end_textinput_button.timesOff', end_textinput_button.timesOff);
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_written_mouse.x', click_written_mouse.x);
+    psychoJS.experiment.addData('click_written_mouse.y', click_written_mouse.y);
+    psychoJS.experiment.addData('click_written_mouse.leftButton', click_written_mouse.leftButton);
+    psychoJS.experiment.addData('click_written_mouse.midButton', click_written_mouse.midButton);
+    psychoJS.experiment.addData('click_written_mouse.rightButton', click_written_mouse.rightButton);
+    psychoJS.experiment.addData('click_written_mouse.time', click_written_mouse.time);
+    psychoJS.experiment.addData('click_written_mouse.clicked_name', click_written_mouse.clicked_name);
+    
     // the Routine "training_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
