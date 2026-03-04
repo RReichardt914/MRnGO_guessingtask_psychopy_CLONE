@@ -518,14 +518,14 @@ async function experimentInit() {
     text: '',
     placeholder: undefined,
     font: 'Arial',
-    pos: [0, 0], 
+    pos: [0, 0.2], 
     draggable: false,
     letterHeight: 0.05,
     lineSpacing: 1.0,
     size: [0.5, 0.1],  units: undefined, 
     ori: 0.0,
     color: (-1.0000, -1.0000, 0.0902), colorSpace: 'rgb',
-    fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
+    fillColor: undefined, borderColor: (0.0000, 0.0000, 0.0000),
     languageStyle: 'LTR',
     bold: false, italic: false,
     opacity: undefined,
@@ -2510,7 +2510,7 @@ function training_written_responseRoutineEachFrame() {
         if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
           // check if the mouse was inside our 'clickable' objects
           gotValidClick = false;
-          click_written_mouse.clickableObjects = eval(btn_rules02_img)
+          click_written_mouse.clickableObjects = eval(btn_written_img)
           ;// make sure the mouse's clickable objects are an array
           if (!Array.isArray(click_written_mouse.clickableObjects)) {
               click_written_mouse.clickableObjects = [click_written_mouse.clickableObjects];

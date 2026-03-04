@@ -210,7 +210,7 @@
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="True" valType="bool" updates="constant" name="autoLog"/>
         <Param val="False" valType="bool" updates="constant" name="bold"/>
-        <Param val="$(0.8824, 0.9451, 1.0000)" valType="color" updates="constant" name="borderColor"/>
+        <Param val="$(0.0000, 0.0000, 0.0000)" valType="color" updates="constant" name="borderColor"/>
         <Param val="2" valType="num" updates="constant" name="borderWidth"/>
         <Param val="$(-1.0000, -1.0000, 0.0902)" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -233,7 +233,7 @@
         <Param val="visible" valType="str" updates="constant" name="overflow"/>
         <Param val="0" valType="num" updates="constant" name="padding"/>
         <Param val="" valType="str" updates="constant" name="placeholder"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, 0.2)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="(0.5, 0.1)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="list" updates="constant" name="speechPoint"/>
@@ -248,7 +248,7 @@
         <Param val="" valType="code" updates="None" name="validator"/>
       </TextboxComponent>
       <MouseComponent name="click_written_mouse" plugin="None">
-        <Param val="btn_rules02_img" valType="list" updates="constant" name="clickable"/>
+        <Param val="btn_written_img" valType="list" updates="constant" name="clickable"/>
         <Param val="" valType="list" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
