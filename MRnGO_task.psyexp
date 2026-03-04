@@ -212,7 +212,7 @@
         <Param val="False" valType="bool" updates="constant" name="bold"/>
         <Param val="$(0.8824, 0.9451, 1.0000)" valType="color" updates="constant" name="borderColor"/>
         <Param val="2" valType="num" updates="constant" name="borderWidth"/>
-        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="$(-1.0000, -1.0000, 0.0902)" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
@@ -299,8 +299,8 @@
       <CodeComponent name="written_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_written_img.pos = (0, h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_written_img.pos = [0, h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_written_img.pos = (0, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_written_img.pos = [0, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>

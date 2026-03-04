@@ -516,7 +516,7 @@ async function experimentInit() {
     lineSpacing: 1.0,
     size: [0.5, 0.1],  units: undefined, 
     ori: 0.0,
-    color: 'white', colorSpace: 'rgb',
+    color: (-1.0000, -1.0000, 0.0902), colorSpace: 'rgb',
     fillColor: undefined, borderColor: (0.8824, 0.9451, 1.0000),
     languageStyle: 'LTR',
     bold: false, italic: false,
@@ -548,7 +548,7 @@ async function experimentInit() {
     texRes : 128.0, interpolate : true, depth : -4.0 
   });
   // Run 'Begin Experiment' code from written_button_placement
-  btn_written_img.pos = [0, h/3];  // bottom-right third center
+  btn_written_img.pos = [0, -h/3];  // bottom-right third center
   // Initialize components for Routine "main_start_screen"
   main_start_screenClock = new util.Clock();
   bg_mainstart_img = new visual.ImageStim({
