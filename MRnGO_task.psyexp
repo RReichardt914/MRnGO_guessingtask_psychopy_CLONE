@@ -1806,7 +1806,7 @@
         <Param val="feedback_screen_button_placement" valType="code" updates="None" name="name"/>
       </CodeComponent>
       <TextComponent name="feedback_concept" plugin="None">
-        <Param val="$(-1.0000, -1.0000, -1.0000)" valType="color" updates="constant" name="color"/>
+        <Param val="$(-1.0000, -1.0000, 0.0902)" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
