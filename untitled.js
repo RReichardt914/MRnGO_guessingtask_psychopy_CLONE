@@ -2330,7 +2330,7 @@ function train_stimulus_presentationRoutineBegin(snapshot) {
     routineTimer.reset();
     train_stimulus_presentationMaxDurationReached = false;
     // update component parameters for each repeat
-    stimulus_presentation_train.setImage(stimulus);
+    stimulus_presentation_train.setImage(feature_file);
     stop_training.keys = undefined;
     stop_training.rt = undefined;
     _stop_training_allKeys = [];
