@@ -180,6 +180,7 @@ var bg_trialstart_img;
 var btn_trialstart_img;
 var click_trialstart_mouse;
 var csv_selectorClock;
+var concPathTrain;
 var train_stimulus_presentationClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
@@ -437,8 +438,10 @@ async function experimentInit() {
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
+  let concPathTrain; 
+  
   // Define your variable
-  let concPathTrain = 'sequences/a05/a05_listE.csv';
+  concPathTrain = 'sequences/a05/a05_listE.csv';
   
   // Make it available globally (Builder-friendly)
   expInfo['concPathTrain'] = concPathTrain;
