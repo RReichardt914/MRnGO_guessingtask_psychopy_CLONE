@@ -2233,11 +2233,11 @@ function csv_selectorRoutineBegin(snapshot) {
     const filename = `${condDir}_list${listFile}.csv`;
     
     // Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)
-    const concPath = ["sequences", condDir, filename].join("/");
+    const concPathTrain = ["sequences", condDir, filename].join("/");
     
     // Log to console and save into the data file
-    console.log(`concPath = ${concPath}`);
-    psychoJS.experiment.addData('concPath', concPath);
+    console.log(`concPath = ${concPathTrain}`);
+    psychoJS.experiment.addData('concPath', concPathTrain);
     
     
     
