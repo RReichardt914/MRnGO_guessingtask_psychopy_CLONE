@@ -1472,8 +1472,8 @@
         <Param val="training_yesno_button_placement" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
-    <Routine name="training_feedback">
-      <RoutineSettingsComponent name="training_feedback" plugin="None">
+    <Routine name="train_feedback">
+      <RoutineSettingsComponent name="train_feedback" plugin="None">
         <Param val="none" valType="str" updates="None" name="backgroundFit"/>
         <Param val="" valType="str" updates="None" name="backgroundImg"/>
         <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
@@ -1482,7 +1482,7 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
-        <Param val="training_feedback" valType="code" updates="None" name="name"/>
+        <Param val="train_feedback" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="not showFeedback" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
@@ -2231,7 +2231,7 @@
     <Routine name="train_yesno_response"/>
     <Routine name="train_written_response"/>
     <LoopTerminator name="training_loop"/>
-    <Routine name="training_feedback"/>
+    <Routine name="train_feedback"/>
     <LoopTerminator name="train_outer_loop"/>
     <Routine name="main_start_screen"/>
     <LoopInitiator loopType="TrialHandler" name="main_loop">
