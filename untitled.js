@@ -446,7 +446,7 @@ async function experimentInit() {
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
   // Define your variable
-  let concPathTrain = "concept_lists/demo.csv";
+  let concPathTrain = 'sequences/a05/a05_listE.csv';
   
   // Make it available globally (Builder-friendly)
   expInfo['concPathTrain'] = concPathTrain;
