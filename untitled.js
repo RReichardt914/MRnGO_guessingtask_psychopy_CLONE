@@ -1,4 +1,4 @@
-﻿/***************** 
+/***************** 
  * Untitled *
  *****************/
 
@@ -188,6 +188,7 @@ var bg_trialstart_img;
 var btn_trialstart_img;
 var click_trialstart_mouse;
 var csv_selectorClock;
+var train_stimulus_presentationClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
 var stop_training;
