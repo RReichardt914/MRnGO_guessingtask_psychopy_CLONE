@@ -2222,7 +2222,7 @@
     <Routine name="rules_02_screen"/>
     <Routine name="trial_start_screen"/>
     <LoopInitiator loopType="TrialHandler" name="train_outer_loop">
-      <Param name="Selected rows" updates="None" val="0" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('concept_trial', np.int64(1)), ('version', 'E'), ('conceptno', 'f15'), ('concept', 'citrom')]), OrderedDict([('concept_trial', np.int64(2)), ('version', 'A'), ('conceptno', 'b10'), ('concept', 'kéz')]), OrderedDict([('concept_trial', np.int64(3)), ('version', 'C'), ('conceptno', 'pl24'), ('concept', 'bab')]), OrderedDict([('concept_trial', np.int64(4)), ('version', 'A'), ('conceptno', 'a05'), ('concept', 'kacsa')]), OrderedDict([('concept_trial', np.int64(5)), ('version', 'D'), ('conceptno', 'v13'), ('concept', 'autó')]), OrderedDict([('concept_trial', np.int64(6)), ('version', 'B'), ('conceptno', 'c13'), ('concept', 'cipő')]), OrderedDict([('concept_trial', np.int64(7)), ('version', 'E'), ('conceptno', 'l12'), ('concept', 'nappali')]), OrderedDict([('concept_trial', np.int64(8)), ('version', 'C'), ('conceptno', 'l23'), ('concept', 'erdő')]), OrderedDict([('concept_trial', np.int64(9)), ('version', 'B'), ('conceptno', 'f12'), ('concept', 'alma')]), OrderedDict([('concept_trial', np.int64(10)), ('version', 'D'), ('conceptno', 't17'), ('concept', 'asztal')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="concept_lists/demo.csv" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
