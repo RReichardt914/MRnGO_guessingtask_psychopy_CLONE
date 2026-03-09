@@ -1198,8 +1198,8 @@
         <Param val="trialstart_screen_button_placement" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
-    <Routine name="train_over_main_start_screen">
-      <RoutineSettingsComponent name="train_over_main_start_screen" plugin="None">
+    <Routine name="main_start_screen">
+      <RoutineSettingsComponent name="main_start_screen" plugin="None">
         <Param val="none" valType="str" updates="None" name="backgroundFit"/>
         <Param val="" valType="str" updates="None" name="backgroundImg"/>
         <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
@@ -1208,7 +1208,7 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
-        <Param val="train_over_main_start_screen" valType="code" updates="None" name="name"/>
+        <Param val="main_start_screen" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
@@ -2233,7 +2233,7 @@
     <LoopTerminator name="training_loop"/>
     <Routine name="train_feedback"/>
     <LoopTerminator name="train_outer_loop"/>
-    <Routine name="train_over_main_start_screen"/>
+    <Routine name="main_start_screen"/>
     <LoopInitiator loopType="TrialHandler" name="main_loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('stimulus', 'stimuli/stim004.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim005.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim006.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim004.png'), ('concept', 'BBB')]), OrderedDict([('stimulus', 'stimuli/stim005.png'), ('concept', 'BBB')]), OrderedDict([('stimulus', 'stimuli/stim006.png'), ('concept', 'BBB')])]" valType="str"/>
