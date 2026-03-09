@@ -447,7 +447,19 @@ async function experimentInit() {
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
+  // Ensure strings and trim whitespace
+  const condDir  = String(conceptno).trim();  // e.g., "a05"
+  const listFile = String(version).trim();    // e.g., "E"
   
+  // Build the filename: "a05_listE.csv"
+  const filename = `${condDir}_list${listFile}.csv`;
+  
+  // Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)
+  const concPathTrain = ["sequences", condDir, filename].join("/");
+  
+  // Log to console and save into the data file
+  console.log(`concPath = ${concPathTrain}`);
+  psychoJS.experiment.addData('concPathTrain', concPathTrain);
   
   // Initialize components for Routine "training_stimulus_presentation"
   training_stimulus_presentationClock = new util.Clock();
@@ -2224,26 +2236,6 @@ function csv_selectorRoutineBegin(snapshot) {
     routineTimer.reset();
     csv_selectorMaxDurationReached = false;
     // update component parameters for each repeat
-    // Run 'Begin Routine' code from pathway_construction_training
-    // Ensure strings and trim whitespace
-    const condDir  = String(conceptno).trim();  // e.g., "a05"
-    const listFile = String(version).trim();    // e.g., "E"
-    
-    // Build the filename: "a05_listE.csv"
-    const filename = `${condDir}_list${listFile}.csv`;
-    
-    // Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)
-    const concPathTrain = ["sequences", condDir, filename].join("/");
-    
-    // Log to console and save into the data file
-    console.log(`concPath = ${concPathTrain}`);
-    psychoJS.experiment.addData('concPathTrain', concPathTrain);
-    
-    
-    
-    
-    
-    
     psychoJS.experiment.addData('csv_selector.started', globalClock.getTime());
     csv_selectorMaxDuration = null
     // keep track of which components have finished
