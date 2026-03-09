@@ -464,6 +464,7 @@ psychoJS.start({
     {'name': 'sequences/v04/v04_listC.csv', 'path': 'sequences/v04/v04_listC.csv'},
     {'name': 'sequences/v04/v04_listD.csv', 'path': 'sequences/v04/v04_listD.csv'},
     {'name': 'sequences/v04/v04_listE.csv', 'path': 'sequences/v04/v04_listE.csv'},
+    {'name': 'concept_lists/demo.csv', 'path': 'concept_lists/demo.csv'},
   ]
 });
 
