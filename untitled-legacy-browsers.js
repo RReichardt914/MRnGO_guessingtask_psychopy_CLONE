@@ -2241,7 +2241,7 @@ function csv_selectorRoutineBegin(snapshot) {
     const concPathTrain = ["sequences", condDir, filename].join("/");
     
     // Log to console and save into the data file
-    console.log(`concPath = ${concPathTrain}`);
+    console.log(`concPathTrain = ${concPathTrain}`);
     psychoJS.experiment.addData('concPathTrain', concPathTrain);
     
     psychoJS.experiment.addData('csv_selector.started', globalClock.getTime());
