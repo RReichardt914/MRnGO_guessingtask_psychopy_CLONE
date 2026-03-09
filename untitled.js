@@ -446,8 +446,6 @@ async function experimentInit() {
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
-  let concPathTrain; 
-  
   // Define your variable
   concPathTrain = 'sequences/a05/a05_listE.csv';
   
