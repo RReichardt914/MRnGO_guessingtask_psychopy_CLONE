@@ -193,6 +193,7 @@ var csv_selectorClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
 var stop_training;
+var xxxxxxxxxxxximage;
 var training_yesno_responseClock;
 var bg_trial_yesno;
 var btn_yesno_yes_img;
@@ -481,6 +482,19 @@ async function experimentInit() {
   });
   stop_training = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
+  xxxxxxxxxxxximage = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'xxxxxxxxxxxximage', units : undefined, 
+    image : undefined, mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [0.5, 0.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -4.0 
+  });
   // Initialize components for Routine "training_yesno_response"
   training_yesno_responseClock = new util.Clock();
   bg_trial_yesno = new visual.ImageStim({
@@ -2025,6 +2039,9 @@ function train_outer_loopLoopBegin(train_outer_loopLoopScheduler, snapshot) {
       train_outer_loopLoopScheduler.add(training_loopLoopBegin(training_loopLoopScheduler, snapshot));
       train_outer_loopLoopScheduler.add(training_loopLoopScheduler);
       train_outer_loopLoopScheduler.add(training_loopLoopEnd);
+      train_outer_loopLoopScheduler.add(training_feedbackRoutineBegin(snapshot));
+      train_outer_loopLoopScheduler.add(training_feedbackRoutineEachFrame());
+      train_outer_loopLoopScheduler.add(training_feedbackRoutineEnd(snapshot));
       train_outer_loopLoopScheduler.add(train_outer_loopLoopEndIteration(train_outer_loopLoopScheduler, snapshot));
     }
     
@@ -2062,9 +2079,6 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
       training_loopLoopScheduler.add(training_written_responseRoutineBegin(snapshot));
       training_loopLoopScheduler.add(training_written_responseRoutineEachFrame());
       training_loopLoopScheduler.add(training_written_responseRoutineEnd(snapshot));
-      training_loopLoopScheduler.add(training_feedbackRoutineBegin(snapshot));
-      training_loopLoopScheduler.add(training_feedbackRoutineEachFrame());
-      training_loopLoopScheduler.add(training_feedbackRoutineEnd(snapshot));
       training_loopLoopScheduler.add(training_loopLoopEndIteration(training_loopLoopScheduler, snapshot));
     }
     
@@ -2340,6 +2354,7 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
     training_stimulus_presentationComponents.push(bg_trial_stimpres);
     training_stimulus_presentationComponents.push(stimulus_presentation_train);
     training_stimulus_presentationComponents.push(stop_training);
+    training_stimulus_presentationComponents.push(xxxxxxxxxxxximage);
     
     for (const thisComponent of training_stimulus_presentationComponents)
       if ('status' in thisComponent)
@@ -2349,6 +2364,7 @@ function training_stimulus_presentationRoutineBegin(snapshot) {
 }
 
 
+var frameRemains;
 function training_stimulus_presentationRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'training_stimulus_presentation' ---
@@ -2423,6 +2439,31 @@ function training_stimulus_presentationRoutineEachFrame() {
     if (stop_training.keys.length > 0) {
         training_loop.finished = true;
         continueRoutine = false;
+    }
+    
+    
+    // *xxxxxxxxxxxximage* updates
+    if (t >= 0.0 && xxxxxxxxxxxximage.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      xxxxxxxxxxxximage.tStart = t;  // (not accounting for frame time here)
+      xxxxxxxxxxxximage.frameNStart = frameN;  // exact frame index
+      
+      xxxxxxxxxxxximage.setAutoDraw(true);
+    }
+    
+    
+    // if xxxxxxxxxxxximage is active this frame...
+    if (xxxxxxxxxxxximage.status === PsychoJS.Status.STARTED) {
+    }
+    
+    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (xxxxxxxxxxxximage.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      // keep track of stop time/frame for later
+      xxxxxxxxxxxximage.tStop = t;  // not accounting for scr refresh
+      xxxxxxxxxxxximage.frameNStop = frameN;  // exact frame index
+      // update status
+      xxxxxxxxxxxximage.status = PsychoJS.Status.FINISHED;
+      xxxxxxxxxxxximage.setAutoDraw(false);
     }
     
     // check for quit (typically the Esc key)
