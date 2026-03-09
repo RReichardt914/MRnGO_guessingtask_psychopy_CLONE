@@ -447,6 +447,21 @@ async function experimentInit() {
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
+  // Read outer CSV
+  let rows = importConditions('concept_lists/demo.csv');
+  
+  // Same row selection as in Python
+  let row = rows[0];
+  
+  // Extract values
+  let conceptno = row['conceptno'];
+  let version   = row['version'];
+  
+  // Expose to experiment
+  expInfo['conceptno'] = conceptno;
+  expInfo['version']   = version;
+  expInfo['inner_path'] = inner_path;
+  
   // Ensure strings and trim whitespace
   const condDir  = String(conceptno).trim();  // e.g., "a05"
   const listFile = String(version).trim();    // e.g., "E"
