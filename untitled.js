@@ -1881,7 +1881,7 @@ function train_outer_loopLoopBegin(train_outer_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     train_outer_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: undefined, method: TrialHandler.Method.SEQUENTIAL,
+      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
       trialList: 'concept_lists/demo.csv',
       seed: undefined, name: 'train_outer_loop'
