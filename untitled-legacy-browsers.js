@@ -180,6 +180,7 @@ var bg_trialstart_img;
 var btn_trialstart_img;
 var click_trialstart_mouse;
 var csv_selectorClock;
+var train_stimulus_presentationClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
 var stop_training;
@@ -440,7 +441,7 @@ async function experimentInit() {
   let concPathTrain = "concept_lists/demo.csv";
   
   // Make it available globally (Builder-friendly)
-  expInfo['concPathTrain'] =
+  expInfo['concPathTrain'] = concPathTrain;
   // Initialize components for Routine "train_stimulus_presentation"
   train_stimulus_presentationClock = new util.Clock();
   bg_trial_stimpres = new visual.ImageStim({

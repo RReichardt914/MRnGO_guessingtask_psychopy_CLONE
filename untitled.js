@@ -1,4 +1,4 @@
-/***************** 
+﻿/***************** 
  * Untitled *
  *****************/
 
@@ -449,7 +449,7 @@ async function experimentInit() {
   let concPathTrain = "concept_lists/demo.csv";
   
   // Make it available globally (Builder-friendly)
-  expInfo['concPathTrain'] =
+  expInfo['concPathTrain'] = concPathTrain;
   // Initialize components for Routine "train_stimulus_presentation"
   train_stimulus_presentationClock = new util.Clock();
   bg_trial_stimpres = new visual.ImageStim({
