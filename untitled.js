@@ -2343,9 +2343,9 @@ function train_outer_loopLoopBegin(train_outer_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     train_outer_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+      nReps: undefined, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'concept_lists/demo.csv',
+      trialList: TrialHandler.importConditions(psychoJS.serverManager, 'concept_lists/demo.csv', '0'),
       seed: undefined, name: 'train_outer_loop'
     });
     psychoJS.experiment.addLoop(train_outer_loop); // add the loop to the experiment
