@@ -2238,7 +2238,7 @@ function csv_selectorRoutineBegin(snapshot) {
     
     // Log to console and save into the data file
     console.log(`concPath = ${concPathTrain}`);
-    psychoJS.experiment.addData('concPath', concPathTrain);
+    psychoJS.experiment.addData('concPathTrain', concPathTrain);
     
     
     
