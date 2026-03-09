@@ -2040,7 +2040,7 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     training_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+      nReps: undefined, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
       trialList: concPathTrain,
       seed: undefined, name: 'training_loop'
