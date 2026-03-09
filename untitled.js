@@ -188,6 +188,27 @@ var bg_trialstart_img;
 var btn_trialstart_img;
 var click_trialstart_mouse;
 var csv_selectorClock;
+var bg_trial_stimpres;
+var stimulus_presentation_train;
+var stop_training;
+var train_yesno_responseClock;
+var bg_trial_yesno;
+var btn_yesno_yes_img;
+var btn_yesno_no_img;
+var trial_yesno_response;
+var click_yesno_mouse;
+var train_written_responseClock;
+var bg_trial_written;
+var previousText;
+var textbox_response_training;
+var click_written_mouse;
+var btn_written_img;
+var train_feedbackClock;
+var bg_feedback_train;
+var btn_feedback_img;
+var click_feedback_mouse;
+var feedback_concept;
+var main_start_screenClock;
 var bg_mainstart_img;
 var btn_mainstart_img;
 var click_mainstart_mouse;
@@ -428,6 +449,194 @@ async function experimentInit() {
   
   // Make it available globally (Builder-friendly)
   expInfo['concPathTrain'] =
+  // Initialize components for Routine "train_stimulus_presentation"
+  train_stimulus_presentationClock = new util.Clock();
+  bg_trial_stimpres = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_stimpres', units : 'norm', 
+    image : 'assets/bg_stimpres.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  stimulus_presentation_train = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'stimulus_presentation_train', units : undefined, 
+    image : 'default.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [0.5, 0.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  stop_training = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
+  
+  // Initialize components for Routine "train_yesno_response"
+  train_yesno_responseClock = new util.Clock();
+  bg_trial_yesno = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_yesno', units : 'norm', 
+    image : 'assets/bg_yesno.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  btn_yesno_yes_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_yesno_yes_img', units : 'pix', 
+    image : 'assets/button_igen.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [268.5, 87],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  btn_yesno_no_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_yesno_no_img', units : 'pix', 
+    image : 'assets/button_nem.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [268.5, 87],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -2.0 
+  });
+  trial_yesno_response = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
+  
+  click_yesno_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_yesno_mouse.mouseClock = new util.Clock();
+  // Run 'Begin Experiment' code from training_yesno_button_placement
+  btn_yesno_yes_img.pos = [w/4, -h/3];
+  btn_yesno_no_img.pos = [-w/4, -h/3];
+  // Initialize components for Routine "train_written_response"
+  train_written_responseClock = new util.Clock();
+  bg_trial_written = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_written', units : 'norm', 
+    image : 'assets/bg_written.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  // Run 'Begin Experiment' code from code_whatconc
+  previousText = {}; 
+  textbox_response_training = new visual.TextBox({
+    win: psychoJS.window,
+    name: 'textbox_response_training',
+    text: '',
+    placeholder: undefined,
+    font: 'Arial',
+    pos: [0, (- 0.12)], 
+    draggable: false,
+    letterHeight: 0.05,
+    lineSpacing: 1.0,
+    size: [1, 0.1],  units: undefined, 
+    ori: 0.0,
+    color: (-1.0000, -1.0000, 0.0902), colorSpace: 'rgb',
+    fillColor: undefined, borderColor: undefined,
+    languageStyle: 'LTR',
+    bold: false, italic: false,
+    opacity: undefined,
+    padding: 0.0,
+    alignment: 'center',
+    overflow: 'visible',
+    editable: true,
+    multiline: true,
+    anchor: 'center',
+    depth: -2.0 
+  });
+  
+  click_written_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_written_mouse.mouseClock = new util.Clock();
+  btn_written_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_written_img', units : 'pix', 
+    image : 'assets/button_jatsszunk.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [272, 74.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -4.0 
+  });
+  // Run 'Begin Experiment' code from written_button_placement
+  btn_written_img.pos = [0, -h/3];  // bottom-right third center
+  // Initialize components for Routine "train_feedback"
+  train_feedbackClock = new util.Clock();
+  bg_feedback_train = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_feedback_train', units : 'norm', 
+    image : 'assets/bg_feedback.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  btn_feedback_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_feedback_img', units : 'pix', 
+    image : 'assets/button_jatsszunk.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [272, 74.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  click_feedback_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_feedback_mouse.mouseClock = new util.Clock();
+  // Run 'Begin Experiment' code from feedback_screen_button_placement
+  btn_feedback_img.pos = [0, -h/3];  // bottom-right third center
+  feedback_concept = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'feedback_concept',
+    text: '',
+    font: 'Arial',
+    units: 'norm', 
+    pos: [(- 0.3), 0.3], draggable: false, height: 0.1,  wrapWidth: undefined, ori: 0.0,
+    languageStyle: 'LTR',
+    color: new util.Color((-1.0000, -1.0000, 0.0902)),  opacity: undefined,
+    depth: -4.0 
+  });
+  
   // Initialize components for Routine "main_start_screen"
   main_start_screenClock = new util.Clock();
   bg_mainstart_img = new visual.ImageStim({
@@ -2099,6 +2308,886 @@ function csv_selectorRoutineEnd(snapshot) {
 }
 
 
+var train_stimulus_presentationMaxDurationReached;
+var _stop_training_allKeys;
+var train_stimulus_presentationMaxDuration;
+var train_stimulus_presentationComponents;
+function train_stimulus_presentationRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_stimulus_presentation' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_stimulus_presentationClock.reset();
+    routineTimer.reset();
+    train_stimulus_presentationMaxDurationReached = false;
+    // update component parameters for each repeat
+    stimulus_presentation_train.setImage(stimulus);
+    stop_training.keys = undefined;
+    stop_training.rt = undefined;
+    _stop_training_allKeys = [];
+    stop_training.keys = [];
+    psychoJS.experiment.addData('train_stimulus_presentation.started', globalClock.getTime());
+    train_stimulus_presentationMaxDuration = Number.parseFloat(expInfo["stimPresTime"])
+    // keep track of which components have finished
+    train_stimulus_presentationComponents = [];
+    train_stimulus_presentationComponents.push(bg_trial_stimpres);
+    train_stimulus_presentationComponents.push(stimulus_presentation_train);
+    train_stimulus_presentationComponents.push(stop_training);
+    
+    for (const thisComponent of train_stimulus_presentationComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function train_stimulus_presentationRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_stimulus_presentation' ---
+    // get current time
+    t = train_stimulus_presentationClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > train_stimulus_presentationMaxDuration) {
+        train_stimulus_presentationMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *bg_trial_stimpres* updates
+    if (t >= 0.0 && bg_trial_stimpres.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_stimpres.tStart = t;  // (not accounting for frame time here)
+      bg_trial_stimpres.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_stimpres.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_stimpres is active this frame...
+    if (bg_trial_stimpres.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *stimulus_presentation_train* updates
+    if (t >= 0.0 && stimulus_presentation_train.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      stimulus_presentation_train.tStart = t;  // (not accounting for frame time here)
+      stimulus_presentation_train.frameNStart = frameN;  // exact frame index
+      
+      stimulus_presentation_train.setAutoDraw(true);
+    }
+    
+    
+    // if stimulus_presentation_train is active this frame...
+    if (stimulus_presentation_train.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *stop_training* updates
+    if (t >= 0.0 && stop_training.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      stop_training.tStart = t;  // (not accounting for frame time here)
+      stop_training.frameNStart = frameN;  // exact frame index
+      
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { stop_training.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { stop_training.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { stop_training.clearEvents(); });
+    }
+    
+    // if stop_training is active this frame...
+    if (stop_training.status === PsychoJS.Status.STARTED) {
+      let theseKeys = stop_training.getKeys({
+        keyList: typeof 'q' === 'string' ? ['q'] : 'q', 
+        waitRelease: false
+      });
+      _stop_training_allKeys = _stop_training_allKeys.concat(theseKeys);
+      if (_stop_training_allKeys.length > 0) {
+        stop_training.keys = _stop_training_allKeys[_stop_training_allKeys.length - 1].name;  // just the last key pressed
+        stop_training.rt = _stop_training_allKeys[_stop_training_allKeys.length - 1].rt;
+        stop_training.duration = _stop_training_allKeys[_stop_training_allKeys.length - 1].duration;
+      }
+    }
+    
+    // Run 'Each Frame' code from code_quit_train
+    // press Q to stop the training loop
+    if (stop_training.keys.length > 0) {
+        training_loop.finished = true;
+        continueRoutine = false;
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of train_stimulus_presentationComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function train_stimulus_presentationRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_stimulus_presentation' ---
+    for (const thisComponent of train_stimulus_presentationComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('train_stimulus_presentation.stopped', globalClock.getTime());
+    // update the trial handler
+    if (currentLoop instanceof MultiStairHandler) {
+      currentLoop.addResponse(stop_training.corr, level);
+    }
+    psychoJS.experiment.addData('stop_training.keys', stop_training.keys);
+    if (typeof stop_training.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('stop_training.rt', stop_training.rt);
+        psychoJS.experiment.addData('stop_training.duration', stop_training.duration);
+        }
+    
+    stop_training.stop();
+    // the Routine "train_stimulus_presentation" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var train_yesno_responseMaxDurationReached;
+var _trial_yesno_response_allKeys;
+var train_yesno_responseMaxDuration;
+var train_yesno_responseComponents;
+function train_yesno_responseRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_yesno_response' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_yesno_responseClock.reset();
+    routineTimer.reset();
+    train_yesno_responseMaxDurationReached = false;
+    // update component parameters for each repeat
+    trial_yesno_response.keys = undefined;
+    trial_yesno_response.rt = undefined;
+    _trial_yesno_response_allKeys = [];
+    // setup some python lists for storing info about the click_yesno_mouse
+    // current position of the mouse:
+    click_yesno_mouse.x = [];
+    click_yesno_mouse.y = [];
+    click_yesno_mouse.leftButton = [];
+    click_yesno_mouse.midButton = [];
+    click_yesno_mouse.rightButton = [];
+    click_yesno_mouse.time = [];
+    click_yesno_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    psychoJS.experiment.addData('train_yesno_response.started', globalClock.getTime());
+    train_yesno_responseMaxDuration = null
+    // keep track of which components have finished
+    train_yesno_responseComponents = [];
+    train_yesno_responseComponents.push(bg_trial_yesno);
+    train_yesno_responseComponents.push(btn_yesno_yes_img);
+    train_yesno_responseComponents.push(btn_yesno_no_img);
+    train_yesno_responseComponents.push(trial_yesno_response);
+    train_yesno_responseComponents.push(click_yesno_mouse);
+    
+    for (const thisComponent of train_yesno_responseComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function train_yesno_responseRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_yesno_response' ---
+    // get current time
+    t = train_yesno_responseClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *bg_trial_yesno* updates
+    if (t >= 0.0 && bg_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_yesno.tStart = t;  // (not accounting for frame time here)
+      bg_trial_yesno.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_yesno.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_yesno is active this frame...
+    if (bg_trial_yesno.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_yesno_yes_img* updates
+    if (t >= 0.0 && btn_yesno_yes_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_yesno_yes_img.tStart = t;  // (not accounting for frame time here)
+      btn_yesno_yes_img.frameNStart = frameN;  // exact frame index
+      
+      btn_yesno_yes_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_yesno_yes_img is active this frame...
+    if (btn_yesno_yes_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_yesno_no_img* updates
+    if (t >= 0.0 && btn_yesno_no_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_yesno_no_img.tStart = t;  // (not accounting for frame time here)
+      btn_yesno_no_img.frameNStart = frameN;  // exact frame index
+      
+      btn_yesno_no_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_yesno_no_img is active this frame...
+    if (btn_yesno_no_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *trial_yesno_response* updates
+    if (t >= 0.0 && trial_yesno_response.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      trial_yesno_response.tStart = t;  // (not accounting for frame time here)
+      trial_yesno_response.frameNStart = frameN;  // exact frame index
+      
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { trial_yesno_response.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { trial_yesno_response.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { trial_yesno_response.clearEvents(); });
+    }
+    
+    // if trial_yesno_response is active this frame...
+    if (trial_yesno_response.status === PsychoJS.Status.STARTED) {
+      let theseKeys = trial_yesno_response.getKeys({
+        keyList: typeof ['left','right'] === 'string' ? [['left','right']] : ['left','right'], 
+        waitRelease: false
+      });
+      _trial_yesno_response_allKeys = _trial_yesno_response_allKeys.concat(theseKeys);
+      if (_trial_yesno_response_allKeys.length > 0) {
+        trial_yesno_response.keys = _trial_yesno_response_allKeys[_trial_yesno_response_allKeys.length - 1].name;  // just the last key pressed
+        trial_yesno_response.rt = _trial_yesno_response_allKeys[_trial_yesno_response_allKeys.length - 1].rt;
+        trial_yesno_response.duration = _trial_yesno_response_allKeys[_trial_yesno_response_allKeys.length - 1].duration;
+        // a response ends the routine
+        continueRoutine = false;
+      }
+    }
+    
+    // *click_yesno_mouse* updates
+    if (t >= 0.0 && click_yesno_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_yesno_mouse.tStart = t;  // (not accounting for frame time here)
+      click_yesno_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_yesno_mouse.status = PsychoJS.Status.STARTED;
+      click_yesno_mouse.mouseClock.reset();
+      prevButtonState = click_yesno_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_yesno_mouse is active this frame...
+    if (click_yesno_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_yesno_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_yesno_mouse.clickableObjects = eval([btn_yesno_yes_img, btn_yesno_no_img])
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_yesno_mouse.clickableObjects)) {
+              click_yesno_mouse.clickableObjects = [click_yesno_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_yesno_mouse.clickableObjects) {
+              if (obj.contains(click_yesno_mouse)) {
+                  gotValidClick = true;
+                  click_yesno_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_yesno_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_yesno_mouse.getPos();
+          click_yesno_mouse.x.push(_mouseXYs[0]);
+          click_yesno_mouse.y.push(_mouseXYs[1]);
+          click_yesno_mouse.leftButton.push(_mouseButtons[0]);
+          click_yesno_mouse.midButton.push(_mouseButtons[1]);
+          click_yesno_mouse.rightButton.push(_mouseButtons[2]);
+          click_yesno_mouse.time.push(click_yesno_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
+        }
+      }
+    }
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of train_yesno_responseComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+var _lastKey;
+var _yesButtonClicked;
+var needTextInput;
+function train_yesno_responseRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_yesno_response' ---
+    for (const thisComponent of train_yesno_responseComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('train_yesno_response.stopped', globalClock.getTime());
+    // update the trial handler
+    if (currentLoop instanceof MultiStairHandler) {
+      currentLoop.addResponse(trial_yesno_response.corr, level);
+    }
+    psychoJS.experiment.addData('trial_yesno_response.keys', trial_yesno_response.keys);
+    if (typeof trial_yesno_response.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('trial_yesno_response.rt', trial_yesno_response.rt);
+        psychoJS.experiment.addData('trial_yesno_response.duration', trial_yesno_response.duration);
+        routineTimer.reset();
+        }
+    
+    trial_yesno_response.stop();
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_yesno_mouse.x', click_yesno_mouse.x);
+    psychoJS.experiment.addData('click_yesno_mouse.y', click_yesno_mouse.y);
+    psychoJS.experiment.addData('click_yesno_mouse.leftButton', click_yesno_mouse.leftButton);
+    psychoJS.experiment.addData('click_yesno_mouse.midButton', click_yesno_mouse.midButton);
+    psychoJS.experiment.addData('click_yesno_mouse.rightButton', click_yesno_mouse.rightButton);
+    psychoJS.experiment.addData('click_yesno_mouse.time', click_yesno_mouse.time);
+    psychoJS.experiment.addData('click_yesno_mouse.clicked_name', click_yesno_mouse.clicked_name);
+    
+    // Run 'End Routine' code from training_yesno_button_placement
+    // Get the last key pressed (handles list vs single value)
+    let _lastKey = null;
+    if (trial_yesno_response.keys !== undefined && trial_yesno_response.keys !== null) {
+        if (Array.isArray(trial_yesno_response.keys)) {
+            _lastKey = trial_yesno_response.keys[trial_yesno_response.keys.length - 1];
+        } else {
+            _lastKey = trial_yesno_response.keys;
+        }
+    }
+    
+    // Detect button click
+    let _yesButtonClicked = false;
+    
+    // Check mouse clicks every frame
+    if (typeof click_yesno_mouse !== 'undefined') {
+        if (click_yesno_mouse.clicked_name !== undefined && click_yesno_mouse.clicked_name !== null) {
+            if (click_yesno_mouse.clicked_name.includes('btn_yesno_yes_img')) {
+                _yesButtonClicked = true;
+            }
+        }
+    }
+    
+    // Final condition: Yes = keyboard OR button
+    needTextInput = (
+        _lastKey === 'y' ||
+        _lastKey === 'right' ||
+        _yesButtonClicked
+    );
+    // the Routine "train_yesno_response" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var train_written_responseMaxDurationReached;
+var defaultText;
+var train_written_responseMaxDuration;
+var train_written_responseComponents;
+function train_written_responseRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_written_response' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_written_responseClock.reset();
+    routineTimer.reset();
+    train_written_responseMaxDurationReached = false;
+    // update component parameters for each repeat
+    // Run 'Begin Routine' code from code_whatconc
+    // If the previous response wasn't 'y' or 'left', skip this routine
+    if (!needTextInput) {
+        continueRoutine = false;
+    }
+    
+    defaultText = previousText[concept] || "";
+    textbox_response_training.setText('');
+    textbox_response_training.refresh();
+    textbox_response_training.setText(defaultText);
+    // setup some python lists for storing info about the click_written_mouse
+    // current position of the mouse:
+    click_written_mouse.x = [];
+    click_written_mouse.y = [];
+    click_written_mouse.leftButton = [];
+    click_written_mouse.midButton = [];
+    click_written_mouse.rightButton = [];
+    click_written_mouse.time = [];
+    click_written_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    psychoJS.experiment.addData('train_written_response.started', globalClock.getTime());
+    train_written_responseMaxDuration = null
+    // keep track of which components have finished
+    train_written_responseComponents = [];
+    train_written_responseComponents.push(bg_trial_written);
+    train_written_responseComponents.push(textbox_response_training);
+    train_written_responseComponents.push(click_written_mouse);
+    train_written_responseComponents.push(btn_written_img);
+    
+    for (const thisComponent of train_written_responseComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function train_written_responseRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_written_response' ---
+    // get current time
+    t = train_written_responseClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *bg_trial_written* updates
+    if (t >= 0.0 && bg_trial_written.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_written.tStart = t;  // (not accounting for frame time here)
+      bg_trial_written.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_written.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_written is active this frame...
+    if (bg_trial_written.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *textbox_response_training* updates
+    if (t >= 0.0 && textbox_response_training.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      textbox_response_training.tStart = t;  // (not accounting for frame time here)
+      textbox_response_training.frameNStart = frameN;  // exact frame index
+      
+      textbox_response_training.setAutoDraw(true);
+    }
+    
+    
+    // if textbox_response_training is active this frame...
+    if (textbox_response_training.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // *click_written_mouse* updates
+    if (t >= 0.0 && click_written_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_written_mouse.tStart = t;  // (not accounting for frame time here)
+      click_written_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_written_mouse.status = PsychoJS.Status.STARTED;
+      click_written_mouse.mouseClock.reset();
+      prevButtonState = click_written_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_written_mouse is active this frame...
+    if (click_written_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_written_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_written_mouse.clickableObjects = eval(btn_written_img)
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_written_mouse.clickableObjects)) {
+              click_written_mouse.clickableObjects = [click_written_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_written_mouse.clickableObjects) {
+              if (obj.contains(click_written_mouse)) {
+                  gotValidClick = true;
+                  click_written_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_written_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_written_mouse.getPos();
+          click_written_mouse.x.push(_mouseXYs[0]);
+          click_written_mouse.y.push(_mouseXYs[1]);
+          click_written_mouse.leftButton.push(_mouseButtons[0]);
+          click_written_mouse.midButton.push(_mouseButtons[1]);
+          click_written_mouse.rightButton.push(_mouseButtons[2]);
+          click_written_mouse.time.push(click_written_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
+        }
+      }
+    }
+    
+    // *btn_written_img* updates
+    if (t >= 0.0 && btn_written_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_written_img.tStart = t;  // (not accounting for frame time here)
+      btn_written_img.frameNStart = frameN;  // exact frame index
+      
+      btn_written_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_written_img is active this frame...
+    if (btn_written_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of train_written_responseComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function train_written_responseRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_written_response' ---
+    for (const thisComponent of train_written_responseComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('train_written_response.stopped', globalClock.getTime());
+    // Run 'End Routine' code from code_whatconc
+    previousText[concept] = textbox_response_training.text;
+    psychoJS.experiment.addData('textbox_response_training.text',textbox_response_training.text)
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_written_mouse.x', click_written_mouse.x);
+    psychoJS.experiment.addData('click_written_mouse.y', click_written_mouse.y);
+    psychoJS.experiment.addData('click_written_mouse.leftButton', click_written_mouse.leftButton);
+    psychoJS.experiment.addData('click_written_mouse.midButton', click_written_mouse.midButton);
+    psychoJS.experiment.addData('click_written_mouse.rightButton', click_written_mouse.rightButton);
+    psychoJS.experiment.addData('click_written_mouse.time', click_written_mouse.time);
+    psychoJS.experiment.addData('click_written_mouse.clicked_name', click_written_mouse.clicked_name);
+    
+    // the Routine "train_written_response" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var train_feedbackMaxDurationReached;
+var maxDurationReached;
+var train_feedbackMaxDuration;
+var train_feedbackComponents;
+function train_feedbackRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_feedback' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_feedbackClock.reset();
+    routineTimer.reset();
+    train_feedbackMaxDurationReached = false;
+    // update component parameters for each repeat
+    // setup some python lists for storing info about the click_feedback_mouse
+    // current position of the mouse:
+    click_feedback_mouse.x = [];
+    click_feedback_mouse.y = [];
+    click_feedback_mouse.leftButton = [];
+    click_feedback_mouse.midButton = [];
+    click_feedback_mouse.rightButton = [];
+    click_feedback_mouse.time = [];
+    click_feedback_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    feedback_concept.setText(concept);
+    psychoJS.experiment.addData('train_feedback.started', globalClock.getTime());
+    // skip this Routine if its 'Skip if' condition is True
+    continueRoutine = continueRoutine && !((! showFeedback));
+    maxDurationReached = false
+    train_feedbackMaxDuration = 3
+    // keep track of which components have finished
+    train_feedbackComponents = [];
+    train_feedbackComponents.push(bg_feedback_train);
+    train_feedbackComponents.push(btn_feedback_img);
+    train_feedbackComponents.push(click_feedback_mouse);
+    train_feedbackComponents.push(feedback_concept);
+    
+    for (const thisComponent of train_feedbackComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function train_feedbackRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_feedback' ---
+    // get current time
+    t = train_feedbackClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > train_feedbackMaxDuration) {
+        train_feedbackMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *bg_feedback_train* updates
+    if (t >= 0.0 && bg_feedback_train.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_feedback_train.tStart = t;  // (not accounting for frame time here)
+      bg_feedback_train.frameNStart = frameN;  // exact frame index
+      
+      bg_feedback_train.setAutoDraw(true);
+    }
+    
+    
+    // if bg_feedback_train is active this frame...
+    if (bg_feedback_train.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_feedback_img* updates
+    if (t >= 0.0 && btn_feedback_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_feedback_img.tStart = t;  // (not accounting for frame time here)
+      btn_feedback_img.frameNStart = frameN;  // exact frame index
+      
+      btn_feedback_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_feedback_img is active this frame...
+    if (btn_feedback_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // *click_feedback_mouse* updates
+    if (t >= 0.0 && click_feedback_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_feedback_mouse.tStart = t;  // (not accounting for frame time here)
+      click_feedback_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_feedback_mouse.status = PsychoJS.Status.STARTED;
+      click_feedback_mouse.mouseClock.reset();
+      prevButtonState = click_feedback_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_feedback_mouse is active this frame...
+    if (click_feedback_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_feedback_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_feedback_mouse.clickableObjects = eval(btn_feedback_img)
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_feedback_mouse.clickableObjects)) {
+              click_feedback_mouse.clickableObjects = [click_feedback_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_feedback_mouse.clickableObjects) {
+              if (obj.contains(click_feedback_mouse)) {
+                  gotValidClick = true;
+                  click_feedback_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_feedback_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_feedback_mouse.getPos();
+          click_feedback_mouse.x.push(_mouseXYs[0]);
+          click_feedback_mouse.y.push(_mouseXYs[1]);
+          click_feedback_mouse.leftButton.push(_mouseButtons[0]);
+          click_feedback_mouse.midButton.push(_mouseButtons[1]);
+          click_feedback_mouse.rightButton.push(_mouseButtons[2]);
+          click_feedback_mouse.time.push(click_feedback_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
+        }
+      }
+    }
+    
+    // *feedback_concept* updates
+    if (t >= 0.0 && feedback_concept.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      feedback_concept.tStart = t;  // (not accounting for frame time here)
+      feedback_concept.frameNStart = frameN;  // exact frame index
+      
+      feedback_concept.setAutoDraw(true);
+    }
+    
+    
+    // if feedback_concept is active this frame...
+    if (feedback_concept.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of train_feedbackComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function train_feedbackRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_feedback' ---
+    for (const thisComponent of train_feedbackComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('train_feedback.stopped', globalClock.getTime());
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_feedback_mouse.x', click_feedback_mouse.x);
+    psychoJS.experiment.addData('click_feedback_mouse.y', click_feedback_mouse.y);
+    psychoJS.experiment.addData('click_feedback_mouse.leftButton', click_feedback_mouse.leftButton);
+    psychoJS.experiment.addData('click_feedback_mouse.midButton', click_feedback_mouse.midButton);
+    psychoJS.experiment.addData('click_feedback_mouse.rightButton', click_feedback_mouse.rightButton);
+    psychoJS.experiment.addData('click_feedback_mouse.time', click_feedback_mouse.time);
+    psychoJS.experiment.addData('click_feedback_mouse.clicked_name', click_feedback_mouse.clicked_name);
+    
+    // the Routine "train_feedback" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
 var main_start_screenMaxDurationReached;
 var main_start_screenMaxDuration;
 var main_start_screenComponents;
@@ -2613,9 +3702,6 @@ function main_yesno_responseRoutineEachFrame() {
 }
 
 
-var _lastKey;
-var _yesButtonClicked;
-var needTextInput;
 function main_yesno_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_yesno_response' ---
@@ -2688,7 +3774,6 @@ function main_yesno_responseRoutineEnd(snapshot) {
 
 
 var main_written_responseMaxDurationReached;
-var defaultText;
 var main_written_responseMaxDuration;
 var main_written_responseComponents;
 function main_written_responseRoutineBegin(snapshot) {
@@ -2927,7 +4012,6 @@ function main_written_responseRoutineEnd(snapshot) {
 
 
 var main_feedbackMaxDurationReached;
-var maxDurationReached;
 var main_feedbackMaxDuration;
 var main_feedbackComponents;
 function main_feedbackRoutineBegin(snapshot) {

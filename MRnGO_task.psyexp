@@ -297,8 +297,8 @@
         <Param val="" valType="code" updates="None" name="validator"/>
       </ImageComponent>
       <CodeComponent name="written_button_placement" plugin="None">
-        <Param val="showFeedback = False" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="var showFeedback = false;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="btn_written_img.pos = (0, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="btn_written_img.pos = [0, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -308,8 +308,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="// Default&amp;#10;showFeedback = false;&amp;#10;&amp;#10;// Use your loop's actual name here:&amp;#10;const loop = training_loop;&amp;#10;&amp;#10;// If this is the very last trial of the loop → show feedback&amp;#10;if (loop.thisN === (loop.nTotal - 1)) {&amp;#10;  showFeedback = true;&amp;#10;} else {&amp;#10;  // Try to read the next row's concept&amp;#10;  const nextRow = loop.trialList[loop.thisN + 1];&amp;#10;&amp;#10;  if (nextRow &amp;&amp; nextRow['concept'] !== undefined) {&amp;#10;    if (nextRow['concept'] !== concept) {&amp;#10;      showFeedback = true;&amp;#10;    }&amp;#10;  } else {&amp;#10;    // Safety: if next row isn't readable, treat as a boundary&amp;#10;    showFeedback = true;&amp;#10;  }&amp;#10;}" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="# Default&amp;#10;showFeedback = False&amp;#10;&amp;#10;loop = training_loop&amp;#10;&amp;#10;# If this is the last trial&amp;#10;if loop.thisN == (loop.nTotal - 1):&amp;#10;    showFeedback = True&amp;#10;else:&amp;#10;    nextRow = loop.trialList[loop.thisN + 1]&amp;#10;    if nextRow is not None and 'concept' in nextRow:&amp;#10;        if nextRow['concept'] != concept:&amp;#10;            showFeedback = True&amp;#10;    else:&amp;#10;        showFeedback = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="written_button_placement" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -632,6 +632,23 @@
         <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="mouse onset" valType="str" updates="constant" name="timeRelativeTo"/>
       </MouseComponent>
+      <CodeComponent name="old_feedback_script" plugin="None">
+        <Param val="showFeedback = False&amp;#10;&amp;#10;# az end routine part ment a feedback routine előőtti rutinba" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="var showFeedback = false;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Both" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="// Default&amp;#10;showFeedback = false;&amp;#10;&amp;#10;// Use your loop's actual name here:&amp;#10;const loop = training_loop;&amp;#10;&amp;#10;// If this is the very last trial of the loop → show feedback&amp;#10;if (loop.thisN === (loop.nTotal - 1)) {&amp;#10;  showFeedback = true;&amp;#10;} else {&amp;#10;  // Try to read the next row's concept&amp;#10;  const nextRow = loop.trialList[loop.thisN + 1];&amp;#10;&amp;#10;  if (nextRow &amp;&amp; nextRow['concept'] !== undefined) {&amp;#10;    if (nextRow['concept'] !== concept) {&amp;#10;      showFeedback = true;&amp;#10;    }&amp;#10;  } else {&amp;#10;    // Safety: if next row isn't readable, treat as a boundary&amp;#10;    showFeedback = true;&amp;#10;  }&amp;#10;}" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# Default&amp;#10;showFeedback = False&amp;#10;&amp;#10;loop = training_loop&amp;#10;&amp;#10;# If this is the last trial&amp;#10;if loop.thisN == (loop.nTotal - 1):&amp;#10;    showFeedback = True&amp;#10;else:&amp;#10;    nextRow = loop.trialList[loop.thisN + 1]&amp;#10;    if nextRow is not None and 'concept' in nextRow:&amp;#10;        if nextRow['concept'] != concept:&amp;#10;            showFeedback = True&amp;#10;    else:&amp;#10;        showFeedback = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
+        <Param val="old_feedback_script" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
     <Routine name="welcome_screen">
       <RoutineSettingsComponent name="welcome_screen" plugin="None">
