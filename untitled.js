@@ -61,6 +61,9 @@ flowScheduler.add(library_checkRoutineEnd());
 flowScheduler.add(library_entryRoutineBegin());
 flowScheduler.add(library_entryRoutineEachFrame());
 flowScheduler.add(library_entryRoutineEnd());
+flowScheduler.add(library_seenRoutineBegin());
+flowScheduler.add(library_seenRoutineEachFrame());
+flowScheduler.add(library_seenRoutineEnd());
 flowScheduler.add(rules_start_screenRoutineBegin());
 flowScheduler.add(rules_start_screenRoutineEachFrame());
 flowScheduler.add(rules_start_screenRoutineEnd());
@@ -124,6 +127,7 @@ psychoJS.start({
     {'name': 'assets/button_jatsszunk.png', 'path': 'assets/button_jatsszunk.png'},
     {'name': 'assets/bg_libfirst1.png', 'path': 'assets/bg_libfirst1.png'},
     {'name': 'assets/bg_libfirst2.png', 'path': 'assets/bg_libfirst2.png'},
+    {'name': 'assets/bg_libsecond.png', 'path': 'assets/bg_libsecond.png'},
     {'name': 'assets/bg_rules-start.png', 'path': 'assets/bg_rules-start.png'},
     {'name': 'assets/bg_rules-01.png', 'path': 'assets/bg_rules-01.png'},
     {'name': 'assets/bg_rules-02.png', 'path': 'assets/bg_rules-02.png'},
@@ -528,6 +532,10 @@ var library_entryClock;
 var bg_library2_img;
 var btn_libfirst2_img;
 var click_libfirst2_mouse;
+var library_seenClock;
+var bg_library3_img;
+var btn_libsecond_img;
+var click_libsecond_mouse;
 var rules_start_screenClock;
 var bg_rulesstart_img;
 var btn_rulesstart_img;
@@ -738,6 +746,40 @@ async function experimentInit() {
   click_libfirst2_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libfirst2_screen_button_placement
   btn_libfirst2_img.pos = [w/3, -h/3];  // bottom-right third center
+  // Initialize components for Routine "library_seen"
+  library_seenClock = new util.Clock();
+  bg_library3_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_library3_img', units : 'norm', 
+    image : 'assets/bg_libsecond.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
+  btn_libsecond_img = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'btn_libsecond_img', units : 'pix', 
+    image : 'assets/button_jatsszunk.png', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : undefined, 
+    draggable: false,
+    size : [272, 74.5],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : -1.0 
+  });
+  click_libsecond_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  click_libsecond_mouse.mouseClock = new util.Clock();
+  // Run 'Begin Experiment' code from libsecond_screen_button_placement
+  btn_libsecond_img.pos = [w/3, -h/3];  // bottom-right third center
   // Initialize components for Routine "rules_start_screen"
   rules_start_screenClock = new util.Clock();
   bg_rulesstart_img = new visual.ImageStim({
@@ -1547,6 +1589,7 @@ function start_screenRoutineEnd(snapshot) {
 
 
 var welcome_screenMaxDurationReached;
+var maxDurationReached;
 var welcome_screenMaxDuration;
 var welcome_screenComponents;
 function welcome_screenRoutineBegin(snapshot) {
@@ -1574,6 +1617,9 @@ function welcome_screenRoutineBegin(snapshot) {
     click_welcome_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('welcome_screen.started', globalClock.getTime());
+    // skip this Routine if its 'Skip if' condition is True
+    continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 2));
+    maxDurationReached = false
     welcome_screenMaxDuration = null
     // keep track of which components have finished
     welcome_screenComponents = [];
@@ -1732,7 +1778,6 @@ function welcome_screenRoutineEnd(snapshot) {
 
 
 var library_checkMaxDurationReached;
-var maxDurationReached;
 var library_checkMaxDuration;
 var library_checkComponents;
 function library_checkRoutineBegin(snapshot) {
@@ -2097,6 +2142,194 @@ function library_entryRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_libfirst2_mouse.clicked_name', click_libfirst2_mouse.clicked_name);
     
     // the Routine "library_entry" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var library_seenMaxDurationReached;
+var library_seenMaxDuration;
+var library_seenComponents;
+function library_seenRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'library_seen' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    library_seenClock.reset();
+    routineTimer.reset();
+    library_seenMaxDurationReached = false;
+    // update component parameters for each repeat
+    // setup some python lists for storing info about the click_libsecond_mouse
+    // current position of the mouse:
+    click_libsecond_mouse.x = [];
+    click_libsecond_mouse.y = [];
+    click_libsecond_mouse.leftButton = [];
+    click_libsecond_mouse.midButton = [];
+    click_libsecond_mouse.rightButton = [];
+    click_libsecond_mouse.time = [];
+    click_libsecond_mouse.clicked_name = [];
+    gotValidClick = false; // until a click is received
+    psychoJS.experiment.addData('library_seen.started', globalClock.getTime());
+    // skip this Routine if its 'Skip if' condition is True
+    continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 1));
+    maxDurationReached = false
+    library_seenMaxDuration = null
+    // keep track of which components have finished
+    library_seenComponents = [];
+    library_seenComponents.push(bg_library3_img);
+    library_seenComponents.push(btn_libsecond_img);
+    library_seenComponents.push(click_libsecond_mouse);
+    
+    for (const thisComponent of library_seenComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function library_seenRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'library_seen' ---
+    // get current time
+    t = library_seenClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *bg_library3_img* updates
+    if (t >= 0.0 && bg_library3_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_library3_img.tStart = t;  // (not accounting for frame time here)
+      bg_library3_img.frameNStart = frameN;  // exact frame index
+      
+      bg_library3_img.setAutoDraw(true);
+    }
+    
+    
+    // if bg_library3_img is active this frame...
+    if (bg_library3_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    
+    // *btn_libsecond_img* updates
+    if (t >= 0.0 && btn_libsecond_img.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      btn_libsecond_img.tStart = t;  // (not accounting for frame time here)
+      btn_libsecond_img.frameNStart = frameN;  // exact frame index
+      
+      btn_libsecond_img.setAutoDraw(true);
+    }
+    
+    
+    // if btn_libsecond_img is active this frame...
+    if (btn_libsecond_img.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // *click_libsecond_mouse* updates
+    if (t >= 0.0 && click_libsecond_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_libsecond_mouse.tStart = t;  // (not accounting for frame time here)
+      click_libsecond_mouse.frameNStart = frameN;  // exact frame index
+      
+      click_libsecond_mouse.status = PsychoJS.Status.STARTED;
+      click_libsecond_mouse.mouseClock.reset();
+      prevButtonState = click_libsecond_mouse.getPressed();  // if button is down already this ISN'T a new click
+    }
+    
+    // if click_libsecond_mouse is active this frame...
+    if (click_libsecond_mouse.status === PsychoJS.Status.STARTED) {
+      _mouseButtons = click_libsecond_mouse.getPressed();
+      if (!_mouseButtons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = _mouseButtons;
+        if (_mouseButtons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // check if the mouse was inside our 'clickable' objects
+          gotValidClick = false;
+          click_libsecond_mouse.clickableObjects = eval(btn_libsecond_img)
+          ;// make sure the mouse's clickable objects are an array
+          if (!Array.isArray(click_libsecond_mouse.clickableObjects)) {
+              click_libsecond_mouse.clickableObjects = [click_libsecond_mouse.clickableObjects];
+          }
+          // iterate through clickable objects and check each
+          for (const obj of click_libsecond_mouse.clickableObjects) {
+              if (obj.contains(click_libsecond_mouse)) {
+                  gotValidClick = true;
+                  click_libsecond_mouse.clicked_name.push(obj.name);
+              }
+          }
+          if (!gotValidClick) {
+              click_libsecond_mouse.clicked_name.push(null);
+          }
+          _mouseXYs = click_libsecond_mouse.getPos();
+          click_libsecond_mouse.x.push(_mouseXYs[0]);
+          click_libsecond_mouse.y.push(_mouseXYs[1]);
+          click_libsecond_mouse.leftButton.push(_mouseButtons[0]);
+          click_libsecond_mouse.midButton.push(_mouseButtons[1]);
+          click_libsecond_mouse.rightButton.push(_mouseButtons[2]);
+          click_libsecond_mouse.time.push(click_libsecond_mouse.mouseClock.getTime());
+          if (gotValidClick === true) { // end routine on response
+            continueRoutine = false;
+          }
+        }
+      }
+    }
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of library_seenComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function library_seenRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'library_seen' ---
+    for (const thisComponent of library_seenComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('library_seen.stopped', globalClock.getTime());
+    // store data for psychoJS.experiment (ExperimentHandler)
+    psychoJS.experiment.addData('click_libsecond_mouse.x', click_libsecond_mouse.x);
+    psychoJS.experiment.addData('click_libsecond_mouse.y', click_libsecond_mouse.y);
+    psychoJS.experiment.addData('click_libsecond_mouse.leftButton', click_libsecond_mouse.leftButton);
+    psychoJS.experiment.addData('click_libsecond_mouse.midButton', click_libsecond_mouse.midButton);
+    psychoJS.experiment.addData('click_libsecond_mouse.rightButton', click_libsecond_mouse.rightButton);
+    psychoJS.experiment.addData('click_libsecond_mouse.time', click_libsecond_mouse.time);
+    psychoJS.experiment.addData('click_libsecond_mouse.clicked_name', click_libsecond_mouse.clicked_name);
+    
+    // the Routine "library_seen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     // Routines running outside a loop should always advance the datafile row
