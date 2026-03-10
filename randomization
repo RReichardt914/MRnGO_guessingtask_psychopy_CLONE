@@ -1,0 +1,100 @@
+import os
+import random
+import re
+import pandas as pd
+
+def get_categories_dynamically(base_dir="sequences"):
+    """Scans the sequences folder and groups concepts by their letter categories."""
+    categories = {}
+    
+    if not os.path.exists(base_dir):
+        print(f"ERROR: The '{base_dir}' folder was not found in this directory.")
+        return categories
+
+    for item in os.listdir(base_dir):
+        item_path = os.path.join(base_dir, item)
+        
+        if os.path.isdir(item_path) and not item.startswith('.'):
+            match = re.match(r"([a-zA-Z]+)", item)
+            
+            if match:
+                cat_code = match.group(1)
+                if cat_code not in categories:
+                    categories[cat_code] = []
+                categories[cat_code].append(item)
+                
+    # Sort for consistency
+    for cat in categories:
+        categories[cat].sort()
+        
+    return categories
+
+def generate_complete_design():
+    categories = get_categories_dynamically("sequences")
+    
+    if not categories:
+        return
+        
+    list_types = ["listA", "listB", "listC", "listD", "listE"]
+    cat_keys = sorted(list(categories.keys()))
+    
+    output_dir = "randomized_lists"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 15 sessions exactly cover the 150 required combinations (30 concepts * 5 lists)
+    for p in range(15):
+        session_items = []
+        
+        # Pick exactly 1 concept from each of the 10 categories
+        for c_idx, cat in enumerate(cat_keys):
+            
+ 
+            concept_idx = p % len(categories[cat])
+            concept = categories[cat][concept_idx]
+            
+
+            l_idx = (p + c_idx) % 5
+            l_type = list_types[l_idx]
+            
+            seq_file = f"sequences/{concept}/{concept}_{l_type}.csv"
+            
+            session_items.append({
+                "category": cat,
+                "concept": concept,
+                "featurelist_type": l_type,
+                "sequence_file": seq_file
+            })
+            
+     
+        # Split the 10 trials into Block 1 (5 unique lists) and Block 2 (5 unique lists)
+        by_type = {lt: [] for lt in list_types}
+        for item in session_items:
+            by_type[item["featurelist_type"]].append(item)
+            
+        block_1 = []
+        block_2 = []
+        
+        for lt in list_types:
+            random.shuffle(by_type[lt])
+            block_1.append(by_type[lt][0])
+            block_2.append(by_type[lt][1])
+            
+        random.shuffle(block_1)
+        random.shuffle(block_2)
+        
+        # If Block 1 ends with the same list Block 2 begins with, reshuffle Block 2
+        while block_1[-1]["featurelist_type"] == block_2[0]["featurelist_type"]:
+            random.shuffle(block_2)
+            
+        final_session = block_1 + block_2
+        
+        # Export to CSV
+        df = pd.DataFrame(final_session)
+        filename = f"{output_dir}/session_{p+1:02d}.csv"
+        df.to_csv(filename, index=False)
+        
+    print(f"Success! 15 perfectly balanced files have been saved to '{output_dir}'.")
+    print("All 30 concepts have been mapped to all 5 lists exactly once.")
+
+if __name__ == "__main__":
+    generate_complete_design()
