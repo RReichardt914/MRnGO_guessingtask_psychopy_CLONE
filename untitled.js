@@ -2546,6 +2546,9 @@ function main_loopLoopEndIteration(scheduler, snapshot) {
 
 
 var csv_selectorMaxDurationReached;
+var condDir;
+var listFile;
+var filename;
 var csv_selectorMaxDuration;
 var csv_selectorComponents;
 function csv_selectorRoutineBegin(snapshot) {
@@ -2564,14 +2567,14 @@ function csv_selectorRoutineBegin(snapshot) {
     // update component parameters for each repeat
     // Run 'Begin Routine' code from pathway_construction_training
     // Ensure strings and trim whitespace
-    const condDir  = String(conceptno).trim();  // e.g., "a05"
-    const listFile = String(version).trim();    // e.g., "E"
+    condDir  = String(conceptno).trim();  // e.g., "a05"
+    listFile = String(version).trim();    // e.g., "E"
     
     // Build the filename: "a05_listE.csv"
-    const filename = `${condDir}_list${listFile}.csv`;
+    filename = `${condDir}_list${listFile}.csv`;
     
     // Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)
-    const concPathTrain = ["sequences", condDir, filename].join("/");
+    concPathTrain = ["sequences", condDir, filename].join("/");
     
     // Log to console and save into the data file
     console.log(`concPathTrain = ${concPathTrain}`);
