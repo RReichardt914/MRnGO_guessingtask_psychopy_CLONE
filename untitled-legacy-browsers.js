@@ -3323,7 +3323,6 @@ function train_written_responseRoutineEnd(snapshot) {
 
 
 var train_feedbackMaxDurationReached;
-var maxDurationReached;
 var train_feedbackMaxDuration;
 var train_feedbackComponents;
 function train_feedbackRoutineBegin(snapshot) {
@@ -3352,9 +3351,6 @@ function train_feedbackRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     feedback_concept.setText(concept);
     psychoJS.experiment.addData('train_feedback.started', globalClock.getTime());
-    // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !((! showFeedback));
-    maxDurationReached = false
     train_feedbackMaxDuration = 3
     // keep track of which components have finished
     train_feedbackComponents = [];
@@ -4362,6 +4358,7 @@ function main_written_responseRoutineEnd(snapshot) {
 
 
 var main_feedbackMaxDurationReached;
+var maxDurationReached;
 var main_feedbackMaxDuration;
 var main_feedbackComponents;
 function main_feedbackRoutineBegin(snapshot) {
