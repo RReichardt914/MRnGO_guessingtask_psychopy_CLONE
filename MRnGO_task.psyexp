@@ -2260,7 +2260,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="library_check" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="taskOrder = 2" valType="code" updates="constant" name="skipIf"/>
+        <Param val="float(expInfo['taskOrder']) == 2" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
@@ -2373,7 +2373,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="library_entry" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="taskOrder = 2" valType="code" updates="constant" name="skipIf"/>
+        <Param val="float(expInfo['taskOrder']) == 2" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
@@ -2486,7 +2486,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="binoc_find" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="taskOrder = 2" valType="code" updates="constant" name="skipIf"/>
+        <Param val="float(expInfo['taskOrder']) == 2" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>

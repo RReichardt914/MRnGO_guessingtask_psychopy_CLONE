@@ -1755,7 +1755,7 @@ function library_checkRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('library_check.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !(taskOrder = 2);
+    continueRoutine = continueRoutine && !((float(expInfo['taskOrder']) == 2));
     maxDurationReached = false
     library_checkMaxDuration = null
     // keep track of which components have finished
@@ -1944,7 +1944,7 @@ function library_entryRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('library_entry.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !(taskOrder = 2);
+    continueRoutine = continueRoutine && !((float(expInfo['taskOrder']) == 2));
     maxDurationReached = false
     library_entryMaxDuration = null
     // keep track of which components have finished
@@ -5361,7 +5361,7 @@ function binoc_findRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     psychoJS.experiment.addData('binoc_find.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !(taskOrder = 2);
+    continueRoutine = continueRoutine && !((float(expInfo['taskOrder']) == 2));
     maxDurationReached = false
     binoc_findMaxDuration = null
     // keep track of which components have finished
