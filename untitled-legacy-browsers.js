@@ -695,9 +695,6 @@ async function experimentInit() {
   });
   click_libfirst1_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libfirst1_screen_button_placement
-  let w = psychoJS.window.size[0];  // window width in px
-  let h = psychoJS.window.size[1];  // window height in px
-  
   btn_libfirst1_img.pos = [w/3, h/3];  // bottom-right third center
   // Initialize components for Routine "library_entry"
   library_entryClock = new util.Clock();
@@ -732,9 +729,6 @@ async function experimentInit() {
   });
   click_libfirst2_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libfirst2_screen_button_placement
-  let w = psychoJS.window.size[0];  // window width in px
-  let h = psychoJS.window.size[1];  // window height in px
-  
   btn_libfirst2_img.pos = [w/3, -h/3];  // bottom-right third center
   // Initialize components for Routine "rules_start_screen"
   rules_start_screenClock = new util.Clock();
@@ -1342,9 +1336,6 @@ async function experimentInit() {
   });
   click_binocfind_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from binocfind_screen_button_placement
-  let w = psychoJS.window.size[0];  // window width in px
-  let h = psychoJS.window.size[1];  // window height in px
-  
   btn_binocfind_img.pos = [w/3, -h/3];  // bottom-right third center
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
