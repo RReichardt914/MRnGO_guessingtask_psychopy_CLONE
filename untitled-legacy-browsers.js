@@ -13,8 +13,6 @@ let expInfo = {
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
 // Start code blocks for 'Before Experiment'
-// Run 'Before Experiment' code from written_button_placement_main
-var showFeedback = false;
 // init psychoJS:
 const psychoJS = new PsychoJS({
   debug: true
@@ -75,10 +73,13 @@ flowScheduler.add(train_outer_loopLoopEnd);
 flowScheduler.add(main_start_screenRoutineBegin());
 flowScheduler.add(main_start_screenRoutineEachFrame());
 flowScheduler.add(main_start_screenRoutineEnd());
-const main_loopLoopScheduler = new Scheduler(psychoJS);
-flowScheduler.add(main_loopLoopBegin(main_loopLoopScheduler));
-flowScheduler.add(main_loopLoopScheduler);
-flowScheduler.add(main_loopLoopEnd);
+const main_outer_loopLoopScheduler = new Scheduler(psychoJS);
+flowScheduler.add(main_outer_loopLoopBegin(main_outer_loopLoopScheduler));
+flowScheduler.add(main_outer_loopLoopScheduler);
+flowScheduler.add(main_outer_loopLoopEnd);
+
+
+
 
 
 
@@ -98,10 +99,7 @@ psychoJS.start({
   resources: [
     // resources:
     {'name': 'concept_lists/demo.csv', 'path': 'concept_lists/demo.csv'},
-    {'name': 'sequences/main_modified.csv', 'path': 'sequences/main_modified.csv'},
-    {'name': 'stimuli/stim004.png', 'path': 'stimuli/stim004.png'},
-    {'name': 'stimuli/stim005.png', 'path': 'stimuli/stim005.png'},
-    {'name': 'stimuli/stim006.png', 'path': 'stimuli/stim006.png'},
+    {'name': 'concept_lists/demo.csv', 'path': 'concept_lists/demo.csv'},
     {'name': 'assets/bg_start.png', 'path': 'assets/bg_start.png'},
     {'name': 'assets/button_start.png', 'path': 'assets/button_start.png'},
     {'name': 'assets/bg_welcome.png', 'path': 'assets/bg_welcome.png'},
@@ -544,6 +542,8 @@ var main_start_screenClock;
 var bg_mainstart_img;
 var btn_mainstart_img;
 var click_mainstart_mouse;
+var csv_selector_mainClock;
+var concPathMain;
 var main_stimulus_presentationClock;
 var bg_main_stimpres;
 var stimulus_presentation_main;
@@ -1003,6 +1003,14 @@ async function experimentInit() {
   click_mainstart_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from mainstart_screen_button_placement
   btn_mainstart_img.pos = [-3*(w/8), 0];  // bottom-right third center
+  // Initialize components for Routine "csv_selector_main"
+  csv_selector_mainClock = new util.Clock();
+  // Run 'Begin Experiment' code from pathway_construction_main
+  // Define your variable
+  concPathMain = 'sequences/a05/a05_listE.csv';
+  
+  // Make it available globally (Builder-friendly)
+  expInfo['concPathMain'] = concPathMain;
   // Initialize components for Routine "main_stimulus_presentation"
   main_stimulus_presentationClock = new util.Clock();
   bg_main_stimpres = new visual.ImageStim({
@@ -2344,7 +2352,7 @@ function train_outer_loopLoopBegin(train_outer_loopLoopScheduler, snapshot) {
       psychoJS: psychoJS,
       nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'concept_lists/demo.csv',
+      trialList: TrialHandler.importConditions(psychoJS.serverManager, 'concept_lists/demo.csv', '0'),
       seed: undefined, name: 'train_outer_loop'
     });
     psychoJS.experiment.addLoop(train_outer_loop); // add the loop to the experiment
@@ -2473,6 +2481,45 @@ function train_outer_loopLoopEndIteration(scheduler, snapshot) {
 }
 
 
+var main_outer_loop;
+function main_outer_loopLoopBegin(main_outer_loopLoopScheduler, snapshot) {
+  return async function() {
+    TrialHandler.fromSnapshot(snapshot); // update internal variables (.thisN etc) of the loop
+    
+    // set up handler to look after randomisation of conditions etc
+    main_outer_loop = new TrialHandler({
+      psychoJS: psychoJS,
+      nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+      extraInfo: expInfo, originPath: undefined,
+      trialList: 'concept_lists/demo.csv',
+      seed: undefined, name: 'main_outer_loop'
+    });
+    psychoJS.experiment.addLoop(main_outer_loop); // add the loop to the experiment
+    currentLoop = main_outer_loop;  // we're now the current loop
+    
+    // Schedule all the trials in the trialList:
+    main_outer_loop.forEach(function() {
+      snapshot = main_outer_loop.getSnapshot();
+    
+      main_outer_loopLoopScheduler.add(importConditions(snapshot));
+      main_outer_loopLoopScheduler.add(csv_selector_mainRoutineBegin(snapshot));
+      main_outer_loopLoopScheduler.add(csv_selector_mainRoutineEachFrame());
+      main_outer_loopLoopScheduler.add(csv_selector_mainRoutineEnd(snapshot));
+      const main_loopLoopScheduler = new Scheduler(psychoJS);
+      main_outer_loopLoopScheduler.add(main_loopLoopBegin(main_loopLoopScheduler, snapshot));
+      main_outer_loopLoopScheduler.add(main_loopLoopScheduler);
+      main_outer_loopLoopScheduler.add(main_loopLoopEnd);
+      main_outer_loopLoopScheduler.add(main_feedbackRoutineBegin(snapshot));
+      main_outer_loopLoopScheduler.add(main_feedbackRoutineEachFrame());
+      main_outer_loopLoopScheduler.add(main_feedbackRoutineEnd(snapshot));
+      main_outer_loopLoopScheduler.add(main_outer_loopLoopEndIteration(main_outer_loopLoopScheduler, snapshot));
+    });
+    
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
 var main_loop;
 function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
   return async function() {
@@ -2483,7 +2530,7 @@ function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
       psychoJS: psychoJS,
       nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'sequences/main_modified.csv',
+      trialList: concPathMain,
       seed: undefined, name: 'main_loop'
     });
     psychoJS.experiment.addLoop(main_loop); // add the loop to the experiment
@@ -2503,9 +2550,6 @@ function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
       main_loopLoopScheduler.add(main_written_responseRoutineBegin(snapshot));
       main_loopLoopScheduler.add(main_written_responseRoutineEachFrame());
       main_loopLoopScheduler.add(main_written_responseRoutineEnd(snapshot));
-      main_loopLoopScheduler.add(main_feedbackRoutineBegin(snapshot));
-      main_loopLoopScheduler.add(main_feedbackRoutineEachFrame());
-      main_loopLoopScheduler.add(main_feedbackRoutineEnd(snapshot));
       main_loopLoopScheduler.add(main_loopLoopEndIteration(main_loopLoopScheduler, snapshot));
     });
     
@@ -2539,6 +2583,36 @@ function main_loopLoopEndIteration(scheduler, snapshot) {
         scheduler.stop();
       } else {
         psychoJS.experiment.nextEntry(snapshot);
+      }
+    return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+async function main_outer_loopLoopEnd() {
+  // terminate loop
+  psychoJS.experiment.removeLoop(main_outer_loop);
+  // update the current loop from the ExperimentHandler
+  if (psychoJS.experiment._unfinishedLoops.length>0)
+    currentLoop = psychoJS.experiment._unfinishedLoops.at(-1);
+  else
+    currentLoop = psychoJS.experiment;  // so we use addData from the experiment
+  return Scheduler.Event.NEXT;
+}
+
+
+function main_outer_loopLoopEndIteration(scheduler, snapshot) {
+  // ------Prepare for next entry------
+  return async function () {
+    if (typeof snapshot !== 'undefined') {
+      // ------Check if user ended loop early------
+      if (snapshot.finished) {
+        // Check for and save orphaned data
+        if (psychoJS.experiment.isEntryEmpty()) {
+          psychoJS.experiment.nextEntry(snapshot);
+        }
+        scheduler.stop();
       }
     return Scheduler.Event.NEXT;
     }
@@ -3717,6 +3791,108 @@ function main_start_screenRoutineEnd(snapshot) {
 }
 
 
+var csv_selector_mainMaxDurationReached;
+var csv_selector_mainMaxDuration;
+var csv_selector_mainComponents;
+function csv_selector_mainRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'csv_selector_main' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    csv_selector_mainClock.reset();
+    routineTimer.reset();
+    csv_selector_mainMaxDurationReached = false;
+    // update component parameters for each repeat
+    // Run 'Begin Routine' code from pathway_construction_main
+    // Ensure strings and trim whitespace
+    condDir  = String(conceptno).trim();  // e.g., "a05"
+    listFile = String(version).trim();    // e.g., "E"
+    
+    // Build the filename: "a05_listE.csv"
+    filename = `${condDir}_list${listFile}.csv`;
+    
+    // Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)
+    concPathMain = ["sequences", condDir, filename].join("/");
+    
+    // Log to console and save into the data file
+    console.log(`concPathMain = ${concPathMain}`);
+    expInfo['concPathMain'] = concPathMain;
+    
+    psychoJS.experiment.addData('csv_selector_main.started', globalClock.getTime());
+    csv_selector_mainMaxDuration = null
+    // keep track of which components have finished
+    csv_selector_mainComponents = [];
+    
+    csv_selector_mainComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function csv_selector_mainRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'csv_selector_main' ---
+    // get current time
+    t = csv_selector_mainClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    csv_selector_mainComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function csv_selector_mainRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'csv_selector_main' ---
+    csv_selector_mainComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('csv_selector_main.stopped', globalClock.getTime());
+    // the Routine "csv_selector_main" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
 var main_stimulus_presentationMaxDurationReached;
 var main_stimulus_presentationMaxDuration;
 var main_stimulus_presentationComponents;
@@ -3734,7 +3910,7 @@ function main_stimulus_presentationRoutineBegin(snapshot) {
     routineTimer.reset();
     main_stimulus_presentationMaxDurationReached = false;
     // update component parameters for each repeat
-    stimulus_presentation_main.setImage(stimulus);
+    stimulus_presentation_main.setImage(feature_file);
     psychoJS.experiment.addData('main_stimulus_presentation.started', globalClock.getTime());
     main_stimulus_presentationMaxDuration = Number.parseFloat(expInfo["stimPresTime"])
     // keep track of which components have finished
@@ -4301,7 +4477,6 @@ function main_written_responseRoutineEachFrame() {
 }
 
 
-var showFeedback;
 function main_written_responseRoutineEnd(snapshot) {
   return async function () {
     //--- Ending Routine 'main_written_response' ---
@@ -4323,29 +4498,6 @@ function main_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('main_written_mouse.time', main_written_mouse.time);
     psychoJS.experiment.addData('main_written_mouse.clicked_name', main_written_mouse.clicked_name);
     
-    // Run 'End Routine' code from written_button_placement_main
-    // Default
-    showFeedback = false;
-    
-    // Use your loop's actual name here:
-    const loop = main_loop;
-    
-    // If this is the very last trial of the loop → show feedback
-    if (loop.thisN === (loop.nTotal - 1)) {
-      showFeedback = true;
-    } else {
-      // Try to read the next row's concept
-      const nextRow = loop.trialList[loop.thisN + 1];
-    
-      if (nextRow && nextRow['concept'] !== undefined) {
-        if (nextRow['concept'] !== concept) {
-          showFeedback = true;
-        }
-      } else {
-        // Safety: if next row isn't readable, treat as a boundary
-        showFeedback = true;
-      }
-    }
     // the Routine "main_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -4359,7 +4511,6 @@ function main_written_responseRoutineEnd(snapshot) {
 
 
 var main_feedbackMaxDurationReached;
-var maxDurationReached;
 var main_feedbackMaxDuration;
 var main_feedbackComponents;
 function main_feedbackRoutineBegin(snapshot) {
@@ -4388,9 +4539,6 @@ function main_feedbackRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     feedback_concept_main.setText(concept);
     psychoJS.experiment.addData('main_feedback.started', globalClock.getTime());
-    // skip this Routine if its 'Skip if' condition is True
-    continueRoutine = continueRoutine && !((! showFeedback));
-    maxDurationReached = false
     main_feedbackMaxDuration = 3
     // keep track of which components have finished
     main_feedbackComponents = [];

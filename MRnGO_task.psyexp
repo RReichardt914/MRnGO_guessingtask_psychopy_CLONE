@@ -1802,7 +1802,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="main_feedback" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="not showFeedback" valType="code" updates="constant" name="skipIf"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="3" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
@@ -1986,7 +1986,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="$stimulus" valType="file" updates="set every repeat" name="image"/>
+        <Param val="$feature_file" valType="file" updates="set every repeat" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="stimulus_presentation_main" valType="code" updates="None" name="name"/>
@@ -2161,8 +2161,8 @@
         <Param val="" valType="code" updates="None" name="validator"/>
       </ImageComponent>
       <CodeComponent name="written_button_placement_main" plugin="None">
-        <Param val="showFeedback = False" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="var showFeedback = false;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="btn_written_main.pos = (0, -h/3)  # bottom-right third center&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="btn_written_main.pos = [0, -h/3];  // bottom-right third center" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -2172,8 +2172,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="// Default&amp;#10;showFeedback = false;&amp;#10;&amp;#10;// Use your loop's actual name here:&amp;#10;const loop = main_loop;&amp;#10;&amp;#10;// If this is the very last trial of the loop → show feedback&amp;#10;if (loop.thisN === (loop.nTotal - 1)) {&amp;#10;  showFeedback = true;&amp;#10;} else {&amp;#10;  // Try to read the next row's concept&amp;#10;  const nextRow = loop.trialList[loop.thisN + 1];&amp;#10;&amp;#10;  if (nextRow &amp;&amp; nextRow['concept'] !== undefined) {&amp;#10;    if (nextRow['concept'] !== concept) {&amp;#10;      showFeedback = true;&amp;#10;    }&amp;#10;  } else {&amp;#10;    // Safety: if next row isn't readable, treat as a boundary&amp;#10;    showFeedback = true;&amp;#10;  }&amp;#10;}" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="# Default&amp;#10;showFeedback = False&amp;#10;&amp;#10;loop = main_loop&amp;#10;&amp;#10;# If this is the last trial&amp;#10;if loop.thisN == (loop.nTotal - 1):&amp;#10;    showFeedback = True&amp;#10;else:&amp;#10;    nextRow = loop.trialList[loop.thisN + 1]&amp;#10;    if nextRow is not None and 'concept' in nextRow:&amp;#10;        if nextRow['concept'] != concept:&amp;#10;            showFeedback = True&amp;#10;    else:&amp;#10;        showFeedback = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="written_button_placement_main" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -2213,6 +2213,41 @@
         <Param val="pathway_construction_training" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
+    <Routine name="csv_selector_main">
+      <RoutineSettingsComponent name="csv_selector_main" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="csv_selector_main" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <CodeComponent name="pathway_construction_main" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="import os&amp;#10;&amp;#10;concPathMain = os.path.join('sequences', 'a05', 'a05_listE.csv')&amp;#10;&amp;#10;expInfo['concPathMain'] = concPathMain" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="// Define your variable&amp;#10;concPathMain = 'sequences/a05/a05_listE.csv';&amp;#10;&amp;#10;// Make it available globally (Builder-friendly)&amp;#10;expInfo['concPathMain'] = concPathMain;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="// Ensure strings and trim whitespace&amp;#10;condDir  = String(conceptno).trim();  // e.g., &quot;a05&quot;&amp;#10;listFile = String(version).trim();    // e.g., &quot;E&quot;&amp;#10;&amp;#10;// Build the filename: &quot;a05_listE.csv&quot;&amp;#10;filename = `${condDir}_list${listFile}.csv`;&amp;#10;&amp;#10;// Join URL-style path parts for PsychoJS/Pavlovia (use forward slashes)&amp;#10;concPathMain = [&quot;sequences&quot;, condDir, filename].join(&quot;/&quot;);&amp;#10;&amp;#10;// Log to console and save into the data file&amp;#10;console.log(`concPathMain = ${concPathMain}`);&amp;#10;expInfo['concPathMain'] = concPathMain;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="condDir   = str(conceptno).strip()    # e.g., &quot;conditions&quot;&amp;#10;listFile  = str(version).strip()   # e.g., &quot;blockA.csv&quot;&amp;#10;&amp;#10;filename = f&quot;{condDir}_list{listFile}.csv&quot;&amp;#10;&amp;#10;concPathMain = os.path.join(&quot;sequences&quot;, condDir, filename)&amp;#10;&amp;#10;thisExp.addData('concPathMain', concPathMain)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Both" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="pathway_construction_main" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="start_screen"/>
@@ -2222,7 +2257,7 @@
     <Routine name="rules_02_screen"/>
     <Routine name="trial_start_screen"/>
     <LoopInitiator loopType="TrialHandler" name="train_outer_loop">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="Selected rows" updates="None" val="0" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('concept_trial', np.int64(1)), ('version', 'E'), ('conceptno', 'f15'), ('concept', 'citrom')]), OrderedDict([('concept_trial', np.int64(2)), ('version', 'A'), ('conceptno', 'b10'), ('concept', 'kéz')]), OrderedDict([('concept_trial', np.int64(3)), ('version', 'C'), ('conceptno', 'pl24'), ('concept', 'bab')]), OrderedDict([('concept_trial', np.int64(4)), ('version', 'A'), ('conceptno', 'a05'), ('concept', 'kacsa')]), OrderedDict([('concept_trial', np.int64(5)), ('version', 'D'), ('conceptno', 'v13'), ('concept', 'autó')]), OrderedDict([('concept_trial', np.int64(6)), ('version', 'B'), ('conceptno', 'c13'), ('concept', 'cipő')]), OrderedDict([('concept_trial', np.int64(7)), ('version', 'E'), ('conceptno', 'l12'), ('concept', 'nappali')]), OrderedDict([('concept_trial', np.int64(8)), ('version', 'C'), ('conceptno', 'l23'), ('concept', 'erdő')]), OrderedDict([('concept_trial', np.int64(9)), ('version', 'B'), ('conceptno', 'f12'), ('concept', 'alma')]), OrderedDict([('concept_trial', np.int64(10)), ('version', 'D'), ('conceptno', 't17'), ('concept', 'asztal')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="concept_lists/demo.csv" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
@@ -2251,10 +2286,22 @@
     <Routine name="train_feedback"/>
     <LoopTerminator name="train_outer_loop"/>
     <Routine name="main_start_screen"/>
+    <LoopInitiator loopType="TrialHandler" name="main_outer_loop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('concept_trial', np.int64(1)), ('version', 'E'), ('conceptno', 'f15'), ('concept', 'citrom')]), OrderedDict([('concept_trial', np.int64(2)), ('version', 'A'), ('conceptno', 'b10'), ('concept', 'kéz')]), OrderedDict([('concept_trial', np.int64(3)), ('version', 'C'), ('conceptno', 'pl24'), ('concept', 'bab')]), OrderedDict([('concept_trial', np.int64(4)), ('version', 'A'), ('conceptno', 'a05'), ('concept', 'kacsa')]), OrderedDict([('concept_trial', np.int64(5)), ('version', 'D'), ('conceptno', 'v13'), ('concept', 'autó')]), OrderedDict([('concept_trial', np.int64(6)), ('version', 'B'), ('conceptno', 'c13'), ('concept', 'cipő')]), OrderedDict([('concept_trial', np.int64(7)), ('version', 'E'), ('conceptno', 'l12'), ('concept', 'nappali')]), OrderedDict([('concept_trial', np.int64(8)), ('version', 'C'), ('conceptno', 'l23'), ('concept', 'erdő')]), OrderedDict([('concept_trial', np.int64(9)), ('version', 'B'), ('conceptno', 'f12'), ('concept', 'alma')]), OrderedDict([('concept_trial', np.int64(10)), ('version', 'D'), ('conceptno', 't17'), ('concept', 'asztal')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="concept_lists/demo.csv" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="num"/>
+      <Param name="name" updates="None" val="main_outer_loop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="csv_selector_main"/>
     <LoopInitiator loopType="TrialHandler" name="main_loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('stimulus', 'stimuli/stim004.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim005.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim006.png'), ('concept', 'AAA')]), OrderedDict([('stimulus', 'stimuli/stim004.png'), ('concept', 'BBB')]), OrderedDict([('stimulus', 'stimuli/stim005.png'), ('concept', 'BBB')]), OrderedDict([('stimulus', 'stimuli/stim006.png'), ('concept', 'BBB')])]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="sequences/main_modified.csv" valType="file"/>
+      <Param name="conditionsFile" updates="None" val="$concPathMain" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
@@ -2265,8 +2312,9 @@
     <Routine name="main_stimulus_presentation"/>
     <Routine name="main_yesno_response"/>
     <Routine name="main_written_response"/>
-    <Routine name="main_feedback"/>
     <LoopTerminator name="main_loop"/>
+    <Routine name="main_feedback"/>
+    <LoopTerminator name="main_outer_loop"/>
     <Routine name="end"/>
   </Flow>
 </PsychoPy2experiment>
