@@ -2466,8 +2466,6 @@ function train_outer_loopLoopEndIteration(scheduler, snapshot) {
           psychoJS.experiment.nextEntry(snapshot);
         }
         scheduler.stop();
-      } else {
-        psychoJS.experiment.nextEntry(snapshot);
       }
     return Scheduler.Event.NEXT;
     }
@@ -2578,7 +2576,7 @@ function csv_selectorRoutineBegin(snapshot) {
     
     // Log to console and save into the data file
     console.log(`concPathTrain = ${concPathTrain}`);
-    psychoJS.experiment.addData('concPathTrain', concPathTrain);
+    expInfo['concPathTrain'] = concPathTrain;
     
     psychoJS.experiment.addData('csv_selector.started', globalClock.getTime());
     csv_selectorMaxDuration = null
