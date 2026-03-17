@@ -525,6 +525,7 @@ async function updateInfo() {
 
 
 var outer_csv_selectorClock;
+var listPath;
 var start_screenClock;
 var bg_start_img;
 var btn_start_img;
@@ -621,7 +622,7 @@ async function experimentInit() {
   // Initialize components for Routine "outer_csv_selector"
   outer_csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from outer_list_pathway_construction
-  let listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;
+  listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;
   
   console.log("Loading:", listPath);
   

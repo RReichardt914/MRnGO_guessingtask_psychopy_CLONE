@@ -2721,7 +2721,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="listPath = f&quot;conditions/cond{expInfo['listNum']}.csv&quot;&amp;#10;&amp;#10;print(&quot;Loading:&quot;, listPath)&amp;#10;&amp;#10;expInfo['listPath'] = listPath" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="let listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;&amp;#10;&amp;#10;console.log(&quot;Loading:&quot;, listPath);&amp;#10;&amp;#10;expInfo['listPath'] = listPath;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;&amp;#10;&amp;#10;console.log(&quot;Loading:&quot;, listPath);&amp;#10;&amp;#10;expInfo['listPath'] = listPath;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
