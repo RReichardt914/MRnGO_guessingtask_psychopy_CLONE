@@ -1207,8 +1207,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_button_placement
-  btn_yesno_yes_img.pos = [w/4, -h/6];
-  btn_yesno_no_img.pos = [-w/4, -h/6];
+  btn_yesno_yes_img.pos = [w/6, -h/6];
+  btn_yesno_no_img.pos = [-w/6, -h/6];
   
   
   // Initialize components for Routine "train_written_response"
@@ -1509,8 +1509,8 @@ async function experimentInit() {
   });
   main_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from main_yesno_button_placement
-  btn_yesno_yes_main.pos = [w/4, -h/6];
-  btn_yesno_no_main.pos = [-w/4, -h/6];
+  btn_yesno_yes_main.pos = [w/6, -h/6];
+  btn_yesno_no_main.pos = [-w/6, -h/6];
   sound_main_yesno = new sound.Sound({
       win: psychoJS.window,
       value: 'A',
