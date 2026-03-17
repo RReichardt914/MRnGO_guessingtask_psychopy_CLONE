@@ -3342,7 +3342,7 @@ function main_outer_loopLoopBegin(main_outer_loopLoopScheduler, snapshot) {
       psychoJS: psychoJS,
       nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: listPath,
+      trialList: TrialHandler.importConditions(psychoJS.serverManager, listPath, '1:10'),
       seed: undefined, name: 'main_outer_loop'
     });
     psychoJS.experiment.addLoop(main_outer_loop); // add the loop to the experiment
