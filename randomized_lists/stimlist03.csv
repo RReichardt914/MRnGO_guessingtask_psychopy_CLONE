@@ -1,0 +1,12 @@
+concept_trial,version,conceptno,concept,sequence_filepath
+0,D,ty10,könyv,sequences/ty10/ty10_listD.csv
+1,B,l23,erdő,sequences/l23/l23_listB.csv
+2,C,p35,hercegnő,sequences/p35/p35_listC.csv
+3,A,f17,eper,sequences/f17/f17_listA.csv
+4,D,pl24,bab,sequences/pl24/pl24_listD.csv
+5,E,t24,seprű,sequences/t24/t24_listE.csv
+6,D,b11,láb,sequences/b11/b11_listD.csv
+7,C,a19,ló,sequences/a19/a19_listC.csv
+8,E,c28,pulóver,sequences/c28/c28_listE.csv
+9,B,v13,autó,sequences/v13/v13_listB.csv
+10,A,ty12,kard,sequences/ty12/ty12_listA.csv
