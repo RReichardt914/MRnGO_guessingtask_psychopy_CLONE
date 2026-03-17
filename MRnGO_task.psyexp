@@ -517,7 +517,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_goodbye.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/20_Main_Goodbye.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_goodbye_img" valType="code" updates="None" name="name"/>
@@ -564,7 +564,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_start.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/1_Main_Start.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_start_img" valType="code" updates="None" name="name"/>
@@ -677,7 +677,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_welcome.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/2_Main_Introduction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_welcome_img" valType="code" updates="None" name="name"/>
@@ -790,7 +790,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_rules-start.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/5_Main_Instruction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_rulesstart_img" valType="code" updates="None" name="name"/>
@@ -903,7 +903,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_rules-01.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/6_Main_Instruction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_rules01_img" valType="code" updates="None" name="name"/>
@@ -1016,7 +1016,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_rules-02.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/7_Main_Instruction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_rules02_img" valType="code" updates="None" name="name"/>
@@ -1129,7 +1129,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_trial-start.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/8_Main_Practice.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_trialstart_img" valType="code" updates="None" name="name"/>
@@ -2275,7 +2275,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_libfirst1.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/3_Main_Introduction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_library1_img" valType="code" updates="None" name="name"/>
@@ -2388,7 +2388,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_libfirst2.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/4_Main_Introduction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_library2_img" valType="code" updates="None" name="name"/>
@@ -2501,7 +2501,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_binocfind.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/21_Main_ALT_LeadtoMIC.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_binocfind_img" valType="code" updates="None" name="name"/>
@@ -2614,7 +2614,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_libsecond.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/22_Main_ALT_Introduction.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_library3_img" valType="code" updates="None" name="name"/>
