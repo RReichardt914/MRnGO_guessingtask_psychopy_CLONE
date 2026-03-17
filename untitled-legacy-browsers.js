@@ -604,6 +604,7 @@ var btn_yesno_yes_img;
 var btn_yesno_no_img;
 var trial_yesno_response;
 var click_yesno_mouse;
+var sound_trial_yesno;
 var train_written_responseClock;
 var bg_trial_written;
 var previousText;
@@ -1174,6 +1175,14 @@ async function experimentInit() {
   btn_yesno_no_img.pos = [-w/2, -h/6];
   
   
+  sound_trial_yesno = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_trial_yesno.setVolume(1.0);
+  sound_trial_yesno.isPlaying = false;
+  sound_trial_yesno.isFinished = false;
   // Initialize components for Routine "train_written_response"
   train_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
@@ -4472,6 +4481,7 @@ function train_stimulus_presentationRoutineEnd(snapshot) {
 
 var train_yesno_responseMaxDurationReached;
 var bgImage;
+var soundYN;
 var _trial_yesno_response_allKeys;
 var train_yesno_responseMaxDuration;
 var train_yesno_responseComponents;
@@ -4495,6 +4505,12 @@ function train_yesno_responseRoutineBegin(snapshot) {
     } else {
         bgImage = "assets/images/16_Main_Test.jpg";   // empty
     }
+    
+    if (previousText[concept]) {
+        soundYN = "assets/sounds/Main_8_a.wav";   // NOT empty
+    } else {
+        soundYN = "assets/sounds/Main_8_c.wav";   // empty
+    }
     bg_trial_yesno.setImage(bgImage);
     trial_yesno_response.keys = undefined;
     trial_yesno_response.rt = undefined;
@@ -4509,6 +4525,9 @@ function train_yesno_responseRoutineBegin(snapshot) {
     click_yesno_mouse.time = [];
     click_yesno_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_trial_yesno.isFinished = false;
+    sound_trial_yesno.setValue(soundYN);
+    sound_trial_yesno.setVolume(1.0);
     psychoJS.experiment.addData('train_yesno_response.started', globalClock.getTime());
     train_yesno_responseMaxDuration = null
     // keep track of which components have finished
@@ -4518,6 +4537,7 @@ function train_yesno_responseRoutineBegin(snapshot) {
     train_yesno_responseComponents.push(btn_yesno_no_img);
     train_yesno_responseComponents.push(trial_yesno_response);
     train_yesno_responseComponents.push(click_yesno_mouse);
+    train_yesno_responseComponents.push(sound_trial_yesno);
     
     train_yesno_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -4656,6 +4676,30 @@ function train_yesno_responseRoutineEachFrame() {
         }
       }
     }
+    if (sound_trial_yesno.status === STARTED) {
+        sound_trial_yesno.isPlaying = true;
+        if (t >= (sound_trial_yesno.getDuration() + sound_trial_yesno.tStart)) {
+            sound_trial_yesno.isFinished = true;
+        }
+    }
+    // start/stop sound_trial_yesno
+    if (t >= 0.0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_trial_yesno.tStart = t;  // (not accounting for frame time here)
+      sound_trial_yesno.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_trial_yesno.play(); });  // screen flip
+      sound_trial_yesno.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_trial_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_trial_yesno.isFinished) {
+      // keep track of stop time/frame for later
+      sound_trial_yesno.tStop = t;  // not accounting for scr refresh
+      sound_trial_yesno.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_trial_yesno.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_trial_yesno.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -4746,6 +4790,7 @@ function train_yesno_responseRoutineEnd(snapshot) {
         _lastKey === 'right' ||
         _yesButtonClicked
     );
+    sound_trial_yesno.stop();  // ensure sound has stopped at end of Routine
     // the Routine "train_yesno_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
