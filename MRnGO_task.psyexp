@@ -1355,7 +1355,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_yesno.png" valType="file" updates="constant" name="image"/>
+        <Param val="$bgImage" valType="file" updates="set every repeat" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_trial_yesno" valType="code" updates="None" name="name"/>
@@ -1474,8 +1474,8 @@
       <CodeComponent name="training_yesno_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = (w/4, -h/3) &amp;#10;btn_yesno_no_img.pos = (-w/4, -h/3) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = [w/4, -h/3];&amp;#10;btn_yesno_no_img.pos = [-w/4, -h/3];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = (w/4, -h/3) &amp;#10;btn_yesno_no_img.pos = (-w/4, -h/3) &amp;#10;&amp;#10;if previousText[concept]:&amp;#10;    bgImage = &quot;17_Main_Test.jpg&quot;   # NOT empty&amp;#10;else:&amp;#10;    bgImage = &quot;16_Main_Test.jpg&quot;   # empty" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = [w/4, -h/3];&amp;#10;btn_yesno_no_img.pos = [-w/4, -h/3];&amp;#10;&amp;#10;if (previousText[concept]) {&amp;#10;    bgImage = &quot;17_Main_Test.jpg&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    bgImage = &quot;16_Main_Test.jpg&quot;;   // empty&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>

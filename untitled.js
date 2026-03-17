@@ -140,12 +140,12 @@ psychoJS.start({
     {'name': 'assets/images/8_Main_Practice.jpg', 'path': 'assets/images/8_Main_Practice.jpg'},
     {'name': 'assets/images/9_Main_Practice.jpg', 'path': 'assets/images/9_Main_Practice.jpg'},
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
-    {'name': 'assets/bg_yesno.png', 'path': 'assets/bg_yesno.png'},
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/bg_written.png', 'path': 'assets/bg_written.png'},
     {'name': 'assets/bg_feedback.png', 'path': 'assets/bg_feedback.png'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
+    {'name': 'assets/bg_yesno.png', 'path': 'assets/bg_yesno.png'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
     {'name': 'sequences/v13/v13_listA.csv', 'path': 'sequences/v13/v13_listA.csv'},
@@ -591,6 +591,7 @@ var btn_yesno_yes_img;
 var btn_yesno_no_img;
 var trial_yesno_response;
 var click_yesno_mouse;
+var bgImage;
 var train_written_responseClock;
 var bg_trial_written;
 var previousText;
@@ -1047,7 +1048,7 @@ async function experimentInit() {
   bg_trial_yesno = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_trial_yesno', units : 'norm', 
-    image : 'assets/bg_yesno.png', mask : undefined,
+    image : 'default.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1092,6 +1093,12 @@ async function experimentInit() {
   // Run 'Begin Experiment' code from training_yesno_button_placement
   btn_yesno_yes_img.pos = [w/4, -h/3];
   btn_yesno_no_img.pos = [-w/4, -h/3];
+  
+  if (previousText[concept]) {
+      bgImage = "17_Main_Test.jpg";   // NOT empty
+  } else {
+      bgImage = "16_Main_Test.jpg";   // empty
+  }
   // Initialize components for Routine "train_written_response"
   train_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
@@ -4132,6 +4139,7 @@ function train_yesno_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     train_yesno_responseMaxDurationReached = false;
     // update component parameters for each repeat
+    bg_trial_yesno.setImage(bgImage);
     trial_yesno_response.keys = undefined;
     trial_yesno_response.rt = undefined;
     _trial_yesno_response_allKeys = [];
