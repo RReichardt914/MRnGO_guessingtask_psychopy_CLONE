@@ -673,6 +673,7 @@ var bg_feedback_main;
 var btn_feedback_main;
 var main_feedback_mouse;
 var feedback_concept_main;
+var sound_main_feedback;
 var endClock;
 var bg_goodbye_img;
 var sound_1;
@@ -1328,7 +1329,7 @@ async function experimentInit() {
   sound_training_feedback = new sound.Sound({
       win: psychoJS.window,
       value: 'A',
-      secs: (- 1),
+      secs: 2,
       });
   sound_training_feedback.setVolume(1.0);
   sound_training_feedback.isPlaying = false;
@@ -1631,6 +1632,14 @@ async function experimentInit() {
     depth: -4.0 
   });
   
+  sound_main_feedback = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_main_feedback.setVolume(1.0);
+  sound_main_feedback.isPlaying = false;
+  sound_main_feedback.isFinished = false;
   // Initialize components for Routine "end"
   endClock = new util.Clock();
   bg_goodbye_img = new visual.ImageStim({
@@ -5140,6 +5149,7 @@ function train_feedbackRoutineBegin(snapshot) {
     feedback_concept.setText(concept);
     sound_training_feedback.isFinished = false;
     sound_training_feedback.setValue('assets/sounds/Main_8_d.wav');
+    sound_training_feedback.secs=2;
     sound_training_feedback.setVolume(1.0);
     psychoJS.experiment.addData('train_feedback.started', globalClock.getTime());
     train_feedbackMaxDuration = 3
@@ -5271,7 +5281,7 @@ function train_feedbackRoutineEachFrame() {
         }
     }
     // start/stop sound_training_feedback
-    if (t >= 0.0 && sound_training_feedback.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.1 && sound_training_feedback.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_training_feedback.tStart = t;  // (not accounting for frame time here)
       sound_training_feedback.frameNStart = frameN;  // exact frame index
@@ -5279,7 +5289,8 @@ function train_feedbackRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_training_feedback.play(); });  // screen flip
       sound_training_feedback.status = PsychoJS.Status.STARTED;
     }
-    if (sound_training_feedback.status === PsychoJS.Status.STARTED && Boolean(false) || sound_training_feedback.isFinished) {
+    frameRemains = 0.1 + 2 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_training_feedback.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_training_feedback.isFinished) {
       // keep track of stop time/frame for later
       sound_training_feedback.tStop = t;  // not accounting for scr refresh
       sound_training_feedback.frameNStop = frameN;  // exact frame index
@@ -6080,6 +6091,7 @@ function main_yesno_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     sound_main_yesno.isFinished = false;
     sound_main_yesno.setValue(soundYN);
+    sound_main_yesno.secs=3;
     sound_main_yesno.setVolume(1.0);
     psychoJS.experiment.addData('main_yesno_response.started', globalClock.getTime());
     main_yesno_responseMaxDuration = null
@@ -6236,7 +6248,7 @@ function main_yesno_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_main_yesno
-    if (t >= 0.0 && sound_main_yesno.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.1 && sound_main_yesno.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_main_yesno.tStart = t;  // (not accounting for frame time here)
       sound_main_yesno.frameNStart = frameN;  // exact frame index
@@ -6244,7 +6256,8 @@ function main_yesno_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_main_yesno.play(); });  // screen flip
       sound_main_yesno.status = PsychoJS.Status.STARTED;
     }
-    if (sound_main_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_main_yesno.isFinished) {
+    frameRemains = 0.1 + 3 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_main_yesno.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_main_yesno.isFinished) {
       // keep track of stop time/frame for later
       sound_main_yesno.tStop = t;  // not accounting for scr refresh
       sound_main_yesno.frameNStop = frameN;  // exact frame index
@@ -6392,6 +6405,7 @@ function main_written_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     sound_main_written.isFinished = false;
     sound_main_written.setValue('assets/sounds/Main_10_d.wav');
+    sound_main_written.secs=3;
     sound_main_written.setVolume(1.0);
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
     main_written_responseMaxDuration = null
@@ -6518,7 +6532,7 @@ function main_written_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_main_written
-    if (t >= 0.0 && sound_main_written.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.1 && sound_main_written.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_main_written.tStart = t;  // (not accounting for frame time here)
       sound_main_written.frameNStart = frameN;  // exact frame index
@@ -6526,7 +6540,8 @@ function main_written_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_main_written.play(); });  // screen flip
       sound_main_written.status = PsychoJS.Status.STARTED;
     }
-    if (sound_main_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_main_written.isFinished) {
+    frameRemains = 0.1 + 3 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_main_written.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_main_written.isFinished) {
       // keep track of stop time/frame for later
       sound_main_written.tStop = t;  // not accounting for scr refresh
       sound_main_written.frameNStop = frameN;  // exact frame index
@@ -6625,14 +6640,19 @@ function main_feedbackRoutineBegin(snapshot) {
     main_feedback_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     feedback_concept_main.setText(concept);
+    sound_main_feedback.isFinished = false;
+    sound_main_feedback.setValue('assets/sounds/Main_10_d.wav');
+    sound_main_feedback.secs=3;
+    sound_main_feedback.setVolume(1.0);
     psychoJS.experiment.addData('main_feedback.started', globalClock.getTime());
-    main_feedbackMaxDuration = 3
+    main_feedbackMaxDuration = 10
     // keep track of which components have finished
     main_feedbackComponents = [];
     main_feedbackComponents.push(bg_feedback_main);
     main_feedbackComponents.push(btn_feedback_main);
     main_feedbackComponents.push(main_feedback_mouse);
     main_feedbackComponents.push(feedback_concept_main);
+    main_feedbackComponents.push(sound_main_feedback);
     
     main_feedbackComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -6747,6 +6767,31 @@ function main_feedbackRoutineEachFrame() {
     if (feedback_concept_main.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_main_feedback.status === STARTED) {
+        sound_main_feedback.isPlaying = true;
+        if (t >= (sound_main_feedback.getDuration() + sound_main_feedback.tStart)) {
+            sound_main_feedback.isFinished = true;
+        }
+    }
+    // start/stop sound_main_feedback
+    if (t >= 0.1 && sound_main_feedback.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_main_feedback.tStart = t;  // (not accounting for frame time here)
+      sound_main_feedback.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_main_feedback.play(); });  // screen flip
+      sound_main_feedback.status = PsychoJS.Status.STARTED;
+    }
+    frameRemains = 0.1 + 3 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_main_feedback.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_main_feedback.isFinished) {
+      // keep track of stop time/frame for later
+      sound_main_feedback.tStop = t;  // not accounting for scr refresh
+      sound_main_feedback.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_main_feedback.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_main_feedback.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6793,6 +6838,7 @@ function main_feedbackRoutineEnd(snapshot) {
     psychoJS.experiment.addData('main_feedback_mouse.time', main_feedback_mouse.time);
     psychoJS.experiment.addData('main_feedback_mouse.clicked_name', main_feedback_mouse.clicked_name);
     
+    sound_main_feedback.stop();  // ensure sound has stopped at end of Routine
     // the Routine "main_feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
