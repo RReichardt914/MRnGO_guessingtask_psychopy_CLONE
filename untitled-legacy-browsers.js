@@ -85,6 +85,7 @@ flowScheduler.add(train_outer_loopLoopEnd);
 
 
 
+
 flowScheduler.add(main_start_screenRoutineBegin());
 flowScheduler.add(main_start_screenRoutineEachFrame());
 flowScheduler.add(main_start_screenRoutineEnd());
@@ -92,6 +93,8 @@ const main_outer_loopLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(main_outer_loopLoopBegin(main_outer_loopLoopScheduler));
 flowScheduler.add(main_outer_loopLoopScheduler);
 flowScheduler.add(main_outer_loopLoopEnd);
+
+
 
 
 
@@ -127,14 +130,14 @@ psychoJS.start({
     {'name': 'assets/images/6_Main_Instruction.jpg', 'path': 'assets/images/6_Main_Instruction.jpg'},
     {'name': 'assets/images/7_Main_Instruction.jpg', 'path': 'assets/images/7_Main_Instruction.jpg'},
     {'name': 'assets/images/8_Main_Practice.jpg', 'path': 'assets/images/8_Main_Practice.jpg'},
-    {'name': 'assets/bg_stimpres.png', 'path': 'assets/bg_stimpres.png'},
+    {'name': 'assets/images/9_Main_Practice.jpg', 'path': 'assets/images/9_Main_Practice.jpg'},
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
     {'name': 'assets/bg_yesno.png', 'path': 'assets/bg_yesno.png'},
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/bg_written.png', 'path': 'assets/bg_written.png'},
     {'name': 'assets/bg_feedback.png', 'path': 'assets/bg_feedback.png'},
-    {'name': 'assets/bg_main-start.png', 'path': 'assets/bg_main-start.png'},
+    {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
     {'name': 'sequences/v13/v13_listA.csv', 'path': 'sequences/v13/v13_listA.csv'},
@@ -567,6 +570,8 @@ var csv_selectorClock;
 var concPathTrain;
 var train_fixationClock;
 var polygon;
+var train_maskClock;
+var bg_trial_mask;
 var train_stimulus_presentationClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
@@ -594,6 +599,10 @@ var btn_mainstart_img;
 var click_mainstart_mouse;
 var csv_selector_mainClock;
 var concPathMain;
+var main_fixationClock;
+var polygon_main;
+var main_maskClock;
+var bg_trial_mask_2;
 var main_stimulus_presentationClock;
 var bg_main_stimpres;
 var stimulus_presentation_main;
@@ -947,9 +956,9 @@ async function experimentInit() {
   expInfo['concPathTrain'] = concPathTrain;
   // Initialize components for Routine "train_fixation"
   train_fixationClock = new util.Clock();
-  polygon = new visual.Polygon({
+  polygon = new visual.ShapeStim ({
     win: psychoJS.window, name: 'polygon', 
-    edges: 100, size:[0.5, 0.5],
+    vertices: 'cross', size:[0.5, 0.5],
     ori: 0.0, 
     pos: [0, 0], 
     draggable: false, 
@@ -965,12 +974,27 @@ async function experimentInit() {
   
   // Run 'Begin Experiment' code from jitter
   expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
+  // Initialize components for Routine "train_mask"
+  train_maskClock = new util.Clock();
+  bg_trial_mask = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_mask', units : 'norm', 
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
   // Initialize components for Routine "train_stimulus_presentation"
   train_stimulus_presentationClock = new util.Clock();
   bg_trial_stimpres = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_trial_stimpres', units : 'norm', 
-    image : 'assets/bg_stimpres.png', mask : undefined,
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1158,7 +1182,7 @@ async function experimentInit() {
   bg_mainstart_img = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_mainstart_img', units : 'norm', 
-    image : 'assets/bg_main-start.png', mask : undefined,
+    image : 'assets/images/14_Main_Test.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1195,12 +1219,47 @@ async function experimentInit() {
   
   // Make it available globally (Builder-friendly)
   expInfo['concPathMain'] = concPathMain;
+  // Initialize components for Routine "main_fixation"
+  main_fixationClock = new util.Clock();
+  polygon_main = new visual.ShapeStim ({
+    win: psychoJS.window, name: 'polygon_main', 
+    vertices: 'cross', size:[0.5, 0.5],
+    ori: 0.0, 
+    pos: [0, 0], 
+    draggable: false, 
+    anchor: 'center', 
+    lineWidth: 1.0, 
+    lineColor: new util.Color('white'), 
+    fillColor: new util.Color('white'), 
+    colorSpace: 'rgb', 
+    opacity: undefined, 
+    depth: 0, 
+    interpolate: true, 
+  });
+  
+  // Run 'Begin Experiment' code from jitter_main
+  expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
+  // Initialize components for Routine "main_mask"
+  main_maskClock = new util.Clock();
+  bg_trial_mask_2 = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_mask_2', units : 'norm', 
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
   // Initialize components for Routine "main_stimulus_presentation"
   main_stimulus_presentationClock = new util.Clock();
   bg_main_stimpres = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_main_stimpres', units : 'norm', 
-    image : 'assets/bg_stimpres.png', mask : undefined,
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -3283,6 +3342,9 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
       training_loopLoopScheduler.add(train_fixationRoutineBegin(snapshot));
       training_loopLoopScheduler.add(train_fixationRoutineEachFrame());
       training_loopLoopScheduler.add(train_fixationRoutineEnd(snapshot));
+      training_loopLoopScheduler.add(train_maskRoutineBegin(snapshot));
+      training_loopLoopScheduler.add(train_maskRoutineEachFrame());
+      training_loopLoopScheduler.add(train_maskRoutineEnd(snapshot));
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineBegin(snapshot));
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineEachFrame());
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineEnd(snapshot));
@@ -3422,6 +3484,12 @@ function main_loopLoopBegin(main_loopLoopScheduler, snapshot) {
       snapshot = main_loop.getSnapshot();
     
       main_loopLoopScheduler.add(importConditions(snapshot));
+      main_loopLoopScheduler.add(main_fixationRoutineBegin(snapshot));
+      main_loopLoopScheduler.add(main_fixationRoutineEachFrame());
+      main_loopLoopScheduler.add(main_fixationRoutineEnd(snapshot));
+      main_loopLoopScheduler.add(main_maskRoutineBegin(snapshot));
+      main_loopLoopScheduler.add(main_maskRoutineEachFrame());
+      main_loopLoopScheduler.add(main_maskRoutineEnd(snapshot));
       main_loopLoopScheduler.add(main_stimulus_presentationRoutineBegin(snapshot));
       main_loopLoopScheduler.add(main_stimulus_presentationRoutineEachFrame());
       main_loopLoopScheduler.add(main_stimulus_presentationRoutineEnd(snapshot));
@@ -3717,6 +3785,114 @@ function train_fixationRoutineEnd(snapshot) {
     });
     psychoJS.experiment.addData('train_fixation.stopped', globalClock.getTime());
     // the Routine "train_fixation" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var train_maskMaxDurationReached;
+var train_maskMaxDuration;
+var train_maskComponents;
+function train_maskRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_mask' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_maskClock.reset();
+    routineTimer.reset();
+    train_maskMaxDurationReached = false;
+    // update component parameters for each repeat
+    psychoJS.experiment.addData('train_mask.started', globalClock.getTime());
+    train_maskMaxDuration = 1
+    // keep track of which components have finished
+    train_maskComponents = [];
+    train_maskComponents.push(bg_trial_mask);
+    
+    train_maskComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function train_maskRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_mask' ---
+    // get current time
+    t = train_maskClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > train_maskMaxDuration) {
+        train_maskMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *bg_trial_mask* updates
+    if (t >= 0.0 && bg_trial_mask.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_mask.tStart = t;  // (not accounting for frame time here)
+      bg_trial_mask.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_mask.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_mask is active this frame...
+    if (bg_trial_mask.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    train_maskComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function train_maskRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_mask' ---
+    train_maskComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('train_mask.stopped', globalClock.getTime());
+    // the Routine "train_mask" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     // Routines running outside a loop should always advance the datafile row
@@ -4885,6 +5061,235 @@ function csv_selector_mainRoutineEnd(snapshot) {
     });
     psychoJS.experiment.addData('csv_selector_main.stopped', globalClock.getTime());
     // the Routine "csv_selector_main" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var main_fixationMaxDurationReached;
+var main_fixationMaxDuration;
+var main_fixationComponents;
+function main_fixationRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'main_fixation' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    main_fixationClock.reset();
+    routineTimer.reset();
+    main_fixationMaxDurationReached = false;
+    // update component parameters for each repeat
+    // Run 'Begin Routine' code from jitter_main
+    // duration between 0.8 and 1.2 seconds
+    expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
+    psychoJS.experiment.addData('main_fixation.started', globalClock.getTime());
+    main_fixationMaxDuration = expInfo["fixDuration"]
+    // keep track of which components have finished
+    main_fixationComponents = [];
+    main_fixationComponents.push(polygon_main);
+    
+    main_fixationComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function main_fixationRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'main_fixation' ---
+    // get current time
+    t = main_fixationClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > main_fixationMaxDuration) {
+        main_fixationMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *polygon_main* updates
+    if (t >= 0.0 && polygon_main.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      polygon_main.tStart = t;  // (not accounting for frame time here)
+      polygon_main.frameNStart = frameN;  // exact frame index
+      
+      polygon_main.setAutoDraw(true);
+    }
+    
+    
+    // if polygon_main is active this frame...
+    if (polygon_main.status === PsychoJS.Status.STARTED) {
+    }
+    
+    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (polygon_main.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      // keep track of stop time/frame for later
+      polygon_main.tStop = t;  // not accounting for scr refresh
+      polygon_main.frameNStop = frameN;  // exact frame index
+      // update status
+      polygon_main.status = PsychoJS.Status.FINISHED;
+      polygon_main.setAutoDraw(false);
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    main_fixationComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function main_fixationRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'main_fixation' ---
+    main_fixationComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('main_fixation.stopped', globalClock.getTime());
+    // the Routine "main_fixation" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var main_maskMaxDurationReached;
+var main_maskMaxDuration;
+var main_maskComponents;
+function main_maskRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'main_mask' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    main_maskClock.reset();
+    routineTimer.reset();
+    main_maskMaxDurationReached = false;
+    // update component parameters for each repeat
+    psychoJS.experiment.addData('main_mask.started', globalClock.getTime());
+    main_maskMaxDuration = 1
+    // keep track of which components have finished
+    main_maskComponents = [];
+    main_maskComponents.push(bg_trial_mask_2);
+    
+    main_maskComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function main_maskRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'main_mask' ---
+    // get current time
+    t = main_maskClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > main_maskMaxDuration) {
+        main_maskMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *bg_trial_mask_2* updates
+    if (t >= 0.0 && bg_trial_mask_2.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_mask_2.tStart = t;  // (not accounting for frame time here)
+      bg_trial_mask_2.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_mask_2.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_mask_2 is active this frame...
+    if (bg_trial_mask_2.status === PsychoJS.Status.STARTED) {
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    main_maskComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function main_maskRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'main_mask' ---
+    main_maskComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    psychoJS.experiment.addData('main_mask.stopped', globalClock.getTime());
+    // the Routine "main_mask" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     // Routines running outside a loop should always advance the datafile row
