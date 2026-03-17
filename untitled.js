@@ -133,19 +133,29 @@ psychoJS.start({
     {'name': 'assets/button_jatsszunk.png', 'path': 'assets/button_jatsszunk.png'},
     {'name': 'assets/sounds/Main_1.wav', 'path': 'assets/sounds/Main_1.wav'},
     {'name': 'assets/images/3_Main_Introduction.jpg', 'path': 'assets/images/3_Main_Introduction.jpg'},
+    {'name': 'assets/sounds/Main_2.wav', 'path': 'assets/sounds/Main_2.wav'},
     {'name': 'assets/images/4_Main_Introduction.jpg', 'path': 'assets/images/4_Main_Introduction.jpg'},
+    {'name': 'assets/sounds/Main_3.wav', 'path': 'assets/sounds/Main_3.wav'},
     {'name': 'assets/images/22_Main_ALT_Introduction.jpg', 'path': 'assets/images/22_Main_ALT_Introduction.jpg'},
+    {'name': 'assets/sounds/Main_2_ALT.wav', 'path': 'assets/sounds/Main_2_ALT.wav'},
     {'name': 'assets/images/5_Main_Instruction.jpg', 'path': 'assets/images/5_Main_Instruction.jpg'},
+    {'name': 'assets/sounds/Main_4.wav', 'path': 'assets/sounds/Main_4.wav'},
     {'name': 'assets/images/6_Main_Instruction.jpg', 'path': 'assets/images/6_Main_Instruction.jpg'},
+    {'name': 'assets/sounds/Main_5.wav', 'path': 'assets/sounds/Main_5.wav'},
     {'name': 'assets/images/7_Main_Instruction.jpg', 'path': 'assets/images/7_Main_Instruction.jpg'},
+    {'name': 'assets/sounds/Main_6.wav', 'path': 'assets/sounds/Main_6.wav'},
     {'name': 'assets/images/8_Main_Practice.jpg', 'path': 'assets/images/8_Main_Practice.jpg'},
+    {'name': 'assets/sounds/Main_7.wav', 'path': 'assets/sounds/Main_7.wav'},
     {'name': 'assets/images/9_Main_Practice.jpg', 'path': 'assets/images/9_Main_Practice.jpg'},
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/images/18_Main_Test.jpg', 'path': 'assets/images/18_Main_Test.jpg'},
+    {'name': 'assets/sounds/Main_8_b.wav', 'path': 'assets/sounds/Main_8_b.wav'},
     {'name': 'assets/images/13_Main_Practice_Reveal.jpg', 'path': 'assets/images/13_Main_Practice_Reveal.jpg'},
+    {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
+    {'name': 'assets/sounds/Main_9.wav', 'path': 'assets/sounds/Main_9.wav'},
     {'name': 'assets/images/19_Main_Test_Reveal.jpg', 'path': 'assets/images/19_Main_Test_Reveal.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
@@ -554,30 +564,37 @@ var library_checkClock;
 var bg_library1_img;
 var btn_libfirst1_img;
 var click_libfirst1_mouse;
+var sound_library1;
 var library_entryClock;
 var bg_library2_img;
 var btn_libfirst2_img;
 var click_libfirst2_mouse;
+var sound_library2;
 var library_seenClock;
 var bg_library3_img;
 var btn_libsecond_img;
 var click_libsecond_mouse;
+var sound_library3;
 var rules_start_screenClock;
 var bg_rulesstart_img;
 var btn_rulesstart_img;
 var click_rulesstart_mouse;
+var sound_rulesstart;
 var rules_01_screenClock;
 var bg_rules01_img;
 var btn_rules01_img;
 var click_rules01_mouse;
+var sound_rules1;
 var rules_02_screenClock;
 var bg_rules02_img;
 var btn_rules02_img;
 var click_rules02_mouse;
+var sound_rules2;
 var trial_start_screenClock;
 var bg_trialstart_img;
 var btn_trialstart_img;
 var click_trialstart_mouse;
+var sound_trialstart;
 var csv_selectorClock;
 var concPathTrain;
 var train_fixationClock;
@@ -601,15 +618,18 @@ var previousText;
 var textbox_response_training;
 var click_written_mouse;
 var btn_written_img;
+var sound_train_written;
 var train_feedbackClock;
 var bg_feedback_train;
 var btn_feedback_img;
 var click_feedback_mouse;
 var feedback_concept;
+var sound_training_feedback;
 var main_start_screenClock;
 var bg_mainstart_img;
 var btn_mainstart_img;
 var click_mainstart_mouse;
+var sound_mainstart;
 var csv_selector_mainClock;
 var concPathMain;
 var main_fixationClock;
@@ -764,6 +784,14 @@ async function experimentInit() {
   click_libfirst1_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libfirst1_screen_button_placement
   btn_libfirst1_img.pos = [w/3, h/3];  // bottom-right third center
+  sound_library1 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_library1.setVolume(1.0);
+  sound_library1.isPlaying = false;
+  sound_library1.isFinished = false;
   // Initialize components for Routine "library_entry"
   library_entryClock = new util.Clock();
   bg_library2_img = new visual.ImageStim({
@@ -798,6 +826,14 @@ async function experimentInit() {
   click_libfirst2_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libfirst2_screen_button_placement
   btn_libfirst2_img.pos = [w/3, -h/3];  // bottom-right third center
+  sound_library2 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_library2.setVolume(1.0);
+  sound_library2.isPlaying = false;
+  sound_library2.isFinished = false;
   // Initialize components for Routine "library_seen"
   library_seenClock = new util.Clock();
   bg_library3_img = new visual.ImageStim({
@@ -832,6 +868,14 @@ async function experimentInit() {
   click_libsecond_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from libsecond_screen_button_placement
   btn_libsecond_img.pos = [w/3, -h/3];  // bottom-right third center
+  sound_library3 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_library3.setVolume(1.0);
+  sound_library3.isPlaying = false;
+  sound_library3.isFinished = false;
   // Initialize components for Routine "rules_start_screen"
   rules_start_screenClock = new util.Clock();
   bg_rulesstart_img = new visual.ImageStim({
@@ -866,6 +910,14 @@ async function experimentInit() {
   click_rulesstart_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from rulesstart_screen_button_placement
   btn_rulesstart_img.pos = [-w/3, -h/3];  // bottom-right third center
+  sound_rulesstart = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_rulesstart.setVolume(1.0);
+  sound_rulesstart.isPlaying = false;
+  sound_rulesstart.isFinished = false;
   // Initialize components for Routine "rules_01_screen"
   rules_01_screenClock = new util.Clock();
   bg_rules01_img = new visual.ImageStim({
@@ -900,6 +952,14 @@ async function experimentInit() {
   click_rules01_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from rules01_screen_button_placement
   btn_rules01_img.pos = [-w/3, -h/3];  // bottom-right third center
+  sound_rules1 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_rules1.setVolume(1.0);
+  sound_rules1.isPlaying = false;
+  sound_rules1.isFinished = false;
   // Initialize components for Routine "rules_02_screen"
   rules_02_screenClock = new util.Clock();
   bg_rules02_img = new visual.ImageStim({
@@ -934,6 +994,14 @@ async function experimentInit() {
   click_rules02_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from rules02_screen_button_placement
   btn_rules02_img.pos = [w/3, h/3];  // bottom-right third center
+  sound_rules2 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_rules2.setVolume(1.0);
+  sound_rules2.isPlaying = false;
+  sound_rules2.isFinished = false;
   // Initialize components for Routine "trial_start_screen"
   trial_start_screenClock = new util.Clock();
   bg_trialstart_img = new visual.ImageStim({
@@ -968,6 +1036,14 @@ async function experimentInit() {
   click_trialstart_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from trialstart_screen_button_placement
   btn_trialstart_img.pos = [3*(w/8), 0];  // bottom-right third center
+  sound_trialstart = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_trialstart.setVolume(1.0);
+  sound_trialstart.isPlaying = false;
+  sound_trialstart.isFinished = false;
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
@@ -1168,6 +1244,14 @@ async function experimentInit() {
   });
   // Run 'Begin Experiment' code from written_button_placement
   btn_written_img.pos = [0, -h/3];  // bottom-right third center
+  sound_train_written = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_train_written.setVolume(1.0);
+  sound_train_written.isPlaying = false;
+  sound_train_written.isFinished = false;
   // Initialize components for Routine "train_feedback"
   train_feedbackClock = new util.Clock();
   bg_feedback_train = new visual.ImageStim({
@@ -1214,6 +1298,14 @@ async function experimentInit() {
     depth: -4.0 
   });
   
+  sound_training_feedback = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_training_feedback.setVolume(1.0);
+  sound_training_feedback.isPlaying = false;
+  sound_training_feedback.isFinished = false;
   // Initialize components for Routine "main_start_screen"
   main_start_screenClock = new util.Clock();
   bg_mainstart_img = new visual.ImageStim({
@@ -1248,6 +1340,14 @@ async function experimentInit() {
   click_mainstart_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from mainstart_screen_button_placement
   btn_mainstart_img.pos = [-3*(w/8), 0];  // bottom-right third center
+  sound_mainstart = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_mainstart.setVolume(1.0);
+  sound_mainstart.isPlaying = false;
+  sound_mainstart.isFinished = false;
   // Initialize components for Routine "csv_selector_main"
   csv_selector_mainClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_main
@@ -2071,6 +2171,9 @@ function library_checkRoutineBegin(snapshot) {
     click_libfirst1_mouse.time = [];
     click_libfirst1_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_library1.isFinished = false;
+    sound_library1.setValue('assets/sounds/Main_2.wav');
+    sound_library1.setVolume(1.0);
     psychoJS.experiment.addData('library_check.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 2));
@@ -2081,6 +2184,7 @@ function library_checkRoutineBegin(snapshot) {
     library_checkComponents.push(bg_library1_img);
     library_checkComponents.push(btn_libfirst1_img);
     library_checkComponents.push(click_libfirst1_mouse);
+    library_checkComponents.push(sound_library1);
     
     for (const thisComponent of library_checkComponents)
       if ('status' in thisComponent)
@@ -2174,6 +2278,30 @@ function library_checkRoutineEachFrame() {
         }
       }
     }
+    if (sound_library1.status === STARTED) {
+        sound_library1.isPlaying = true;
+        if (t >= (sound_library1.getDuration() + sound_library1.tStart)) {
+            sound_library1.isFinished = true;
+        }
+    }
+    // start/stop sound_library1
+    if (t >= 0.0 && sound_library1.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_library1.tStart = t;  // (not accounting for frame time here)
+      sound_library1.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_library1.play(); });  // screen flip
+      sound_library1.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_library1.status === PsychoJS.Status.STARTED && Boolean(false) || sound_library1.isFinished) {
+      // keep track of stop time/frame for later
+      sound_library1.tStop = t;  // not accounting for scr refresh
+      sound_library1.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_library1.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_library1.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -2220,6 +2348,7 @@ function library_checkRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_libfirst1_mouse.time', click_libfirst1_mouse.time);
     psychoJS.experiment.addData('click_libfirst1_mouse.clicked_name', click_libfirst1_mouse.clicked_name);
     
+    sound_library1.stop();  // ensure sound has stopped at end of Routine
     // the Routine "library_check" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2259,6 +2388,9 @@ function library_entryRoutineBegin(snapshot) {
     click_libfirst2_mouse.time = [];
     click_libfirst2_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_library2.isFinished = false;
+    sound_library2.setValue('assets/sounds/Main_3.wav');
+    sound_library2.setVolume(1.0);
     psychoJS.experiment.addData('library_entry.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 2));
@@ -2269,6 +2401,7 @@ function library_entryRoutineBegin(snapshot) {
     library_entryComponents.push(bg_library2_img);
     library_entryComponents.push(btn_libfirst2_img);
     library_entryComponents.push(click_libfirst2_mouse);
+    library_entryComponents.push(sound_library2);
     
     for (const thisComponent of library_entryComponents)
       if ('status' in thisComponent)
@@ -2362,6 +2495,30 @@ function library_entryRoutineEachFrame() {
         }
       }
     }
+    if (sound_library2.status === STARTED) {
+        sound_library2.isPlaying = true;
+        if (t >= (sound_library2.getDuration() + sound_library2.tStart)) {
+            sound_library2.isFinished = true;
+        }
+    }
+    // start/stop sound_library2
+    if (t >= 0.0 && sound_library2.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_library2.tStart = t;  // (not accounting for frame time here)
+      sound_library2.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_library2.play(); });  // screen flip
+      sound_library2.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_library2.status === PsychoJS.Status.STARTED && Boolean(false) || sound_library2.isFinished) {
+      // keep track of stop time/frame for later
+      sound_library2.tStop = t;  // not accounting for scr refresh
+      sound_library2.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_library2.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_library2.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -2408,6 +2565,7 @@ function library_entryRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_libfirst2_mouse.time', click_libfirst2_mouse.time);
     psychoJS.experiment.addData('click_libfirst2_mouse.clicked_name', click_libfirst2_mouse.clicked_name);
     
+    sound_library2.stop();  // ensure sound has stopped at end of Routine
     // the Routine "library_entry" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2447,6 +2605,9 @@ function library_seenRoutineBegin(snapshot) {
     click_libsecond_mouse.time = [];
     click_libsecond_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_library3.isFinished = false;
+    sound_library3.setValue('assets/sounds/Main_2_ALT.wav');
+    sound_library3.setVolume(1.0);
     psychoJS.experiment.addData('library_seen.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 1));
@@ -2457,6 +2618,7 @@ function library_seenRoutineBegin(snapshot) {
     library_seenComponents.push(bg_library3_img);
     library_seenComponents.push(btn_libsecond_img);
     library_seenComponents.push(click_libsecond_mouse);
+    library_seenComponents.push(sound_library3);
     
     for (const thisComponent of library_seenComponents)
       if ('status' in thisComponent)
@@ -2550,6 +2712,30 @@ function library_seenRoutineEachFrame() {
         }
       }
     }
+    if (sound_library3.status === STARTED) {
+        sound_library3.isPlaying = true;
+        if (t >= (sound_library3.getDuration() + sound_library3.tStart)) {
+            sound_library3.isFinished = true;
+        }
+    }
+    // start/stop sound_library3
+    if (t >= 0.0 && sound_library3.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_library3.tStart = t;  // (not accounting for frame time here)
+      sound_library3.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_library3.play(); });  // screen flip
+      sound_library3.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_library3.status === PsychoJS.Status.STARTED && Boolean(false) || sound_library3.isFinished) {
+      // keep track of stop time/frame for later
+      sound_library3.tStop = t;  // not accounting for scr refresh
+      sound_library3.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_library3.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_library3.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -2596,6 +2782,7 @@ function library_seenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_libsecond_mouse.time', click_libsecond_mouse.time);
     psychoJS.experiment.addData('click_libsecond_mouse.clicked_name', click_libsecond_mouse.clicked_name);
     
+    sound_library3.stop();  // ensure sound has stopped at end of Routine
     // the Routine "library_seen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2635,6 +2822,9 @@ function rules_start_screenRoutineBegin(snapshot) {
     click_rulesstart_mouse.time = [];
     click_rulesstart_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_rulesstart.isFinished = false;
+    sound_rulesstart.setValue('assets/sounds/Main_4.wav');
+    sound_rulesstart.setVolume(1.0);
     psychoJS.experiment.addData('rules_start_screen.started', globalClock.getTime());
     rules_start_screenMaxDuration = null
     // keep track of which components have finished
@@ -2642,6 +2832,7 @@ function rules_start_screenRoutineBegin(snapshot) {
     rules_start_screenComponents.push(bg_rulesstart_img);
     rules_start_screenComponents.push(btn_rulesstart_img);
     rules_start_screenComponents.push(click_rulesstart_mouse);
+    rules_start_screenComponents.push(sound_rulesstart);
     
     for (const thisComponent of rules_start_screenComponents)
       if ('status' in thisComponent)
@@ -2735,6 +2926,30 @@ function rules_start_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_rulesstart.status === STARTED) {
+        sound_rulesstart.isPlaying = true;
+        if (t >= (sound_rulesstart.getDuration() + sound_rulesstart.tStart)) {
+            sound_rulesstart.isFinished = true;
+        }
+    }
+    // start/stop sound_rulesstart
+    if (t >= 0.0 && sound_rulesstart.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_rulesstart.tStart = t;  // (not accounting for frame time here)
+      sound_rulesstart.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_rulesstart.play(); });  // screen flip
+      sound_rulesstart.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_rulesstart.status === PsychoJS.Status.STARTED && Boolean(false) || sound_rulesstart.isFinished) {
+      // keep track of stop time/frame for later
+      sound_rulesstart.tStop = t;  // not accounting for scr refresh
+      sound_rulesstart.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_rulesstart.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_rulesstart.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -2781,6 +2996,7 @@ function rules_start_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_rulesstart_mouse.time', click_rulesstart_mouse.time);
     psychoJS.experiment.addData('click_rulesstart_mouse.clicked_name', click_rulesstart_mouse.clicked_name);
     
+    sound_rulesstart.stop();  // ensure sound has stopped at end of Routine
     // the Routine "rules_start_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -2820,6 +3036,9 @@ function rules_01_screenRoutineBegin(snapshot) {
     click_rules01_mouse.time = [];
     click_rules01_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_rules1.isFinished = false;
+    sound_rules1.setValue('assets/sounds/Main_5.wav');
+    sound_rules1.setVolume(1.0);
     psychoJS.experiment.addData('rules_01_screen.started', globalClock.getTime());
     rules_01_screenMaxDuration = null
     // keep track of which components have finished
@@ -2827,6 +3046,7 @@ function rules_01_screenRoutineBegin(snapshot) {
     rules_01_screenComponents.push(bg_rules01_img);
     rules_01_screenComponents.push(btn_rules01_img);
     rules_01_screenComponents.push(click_rules01_mouse);
+    rules_01_screenComponents.push(sound_rules1);
     
     for (const thisComponent of rules_01_screenComponents)
       if ('status' in thisComponent)
@@ -2920,6 +3140,30 @@ function rules_01_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_rules1.status === STARTED) {
+        sound_rules1.isPlaying = true;
+        if (t >= (sound_rules1.getDuration() + sound_rules1.tStart)) {
+            sound_rules1.isFinished = true;
+        }
+    }
+    // start/stop sound_rules1
+    if (t >= 0.0 && sound_rules1.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_rules1.tStart = t;  // (not accounting for frame time here)
+      sound_rules1.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_rules1.play(); });  // screen flip
+      sound_rules1.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_rules1.status === PsychoJS.Status.STARTED && Boolean(false) || sound_rules1.isFinished) {
+      // keep track of stop time/frame for later
+      sound_rules1.tStop = t;  // not accounting for scr refresh
+      sound_rules1.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_rules1.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_rules1.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -2966,6 +3210,7 @@ function rules_01_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_rules01_mouse.time', click_rules01_mouse.time);
     psychoJS.experiment.addData('click_rules01_mouse.clicked_name', click_rules01_mouse.clicked_name);
     
+    sound_rules1.stop();  // ensure sound has stopped at end of Routine
     // the Routine "rules_01_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -3005,6 +3250,9 @@ function rules_02_screenRoutineBegin(snapshot) {
     click_rules02_mouse.time = [];
     click_rules02_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_rules2.isFinished = false;
+    sound_rules2.setValue('assets/sounds/Main_6.wav');
+    sound_rules2.setVolume(1.0);
     psychoJS.experiment.addData('rules_02_screen.started', globalClock.getTime());
     rules_02_screenMaxDuration = null
     // keep track of which components have finished
@@ -3012,6 +3260,7 @@ function rules_02_screenRoutineBegin(snapshot) {
     rules_02_screenComponents.push(bg_rules02_img);
     rules_02_screenComponents.push(btn_rules02_img);
     rules_02_screenComponents.push(click_rules02_mouse);
+    rules_02_screenComponents.push(sound_rules2);
     
     for (const thisComponent of rules_02_screenComponents)
       if ('status' in thisComponent)
@@ -3105,6 +3354,30 @@ function rules_02_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_rules2.status === STARTED) {
+        sound_rules2.isPlaying = true;
+        if (t >= (sound_rules2.getDuration() + sound_rules2.tStart)) {
+            sound_rules2.isFinished = true;
+        }
+    }
+    // start/stop sound_rules2
+    if (t >= 0.0 && sound_rules2.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_rules2.tStart = t;  // (not accounting for frame time here)
+      sound_rules2.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_rules2.play(); });  // screen flip
+      sound_rules2.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_rules2.status === PsychoJS.Status.STARTED && Boolean(false) || sound_rules2.isFinished) {
+      // keep track of stop time/frame for later
+      sound_rules2.tStop = t;  // not accounting for scr refresh
+      sound_rules2.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_rules2.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_rules2.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -3151,6 +3424,7 @@ function rules_02_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_rules02_mouse.time', click_rules02_mouse.time);
     psychoJS.experiment.addData('click_rules02_mouse.clicked_name', click_rules02_mouse.clicked_name);
     
+    sound_rules2.stop();  // ensure sound has stopped at end of Routine
     // the Routine "rules_02_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -3190,6 +3464,9 @@ function trial_start_screenRoutineBegin(snapshot) {
     click_trialstart_mouse.time = [];
     click_trialstart_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_trialstart.isFinished = false;
+    sound_trialstart.setValue('assets/sounds/Main_7.wav');
+    sound_trialstart.setVolume(1.0);
     psychoJS.experiment.addData('trial_start_screen.started', globalClock.getTime());
     trial_start_screenMaxDuration = null
     // keep track of which components have finished
@@ -3197,6 +3474,7 @@ function trial_start_screenRoutineBegin(snapshot) {
     trial_start_screenComponents.push(bg_trialstart_img);
     trial_start_screenComponents.push(btn_trialstart_img);
     trial_start_screenComponents.push(click_trialstart_mouse);
+    trial_start_screenComponents.push(sound_trialstart);
     
     for (const thisComponent of trial_start_screenComponents)
       if ('status' in thisComponent)
@@ -3290,6 +3568,30 @@ function trial_start_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_trialstart.status === STARTED) {
+        sound_trialstart.isPlaying = true;
+        if (t >= (sound_trialstart.getDuration() + sound_trialstart.tStart)) {
+            sound_trialstart.isFinished = true;
+        }
+    }
+    // start/stop sound_trialstart
+    if (t >= 0.0 && sound_trialstart.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_trialstart.tStart = t;  // (not accounting for frame time here)
+      sound_trialstart.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_trialstart.play(); });  // screen flip
+      sound_trialstart.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_trialstart.status === PsychoJS.Status.STARTED && Boolean(false) || sound_trialstart.isFinished) {
+      // keep track of stop time/frame for later
+      sound_trialstart.tStop = t;  // not accounting for scr refresh
+      sound_trialstart.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_trialstart.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_trialstart.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -3336,6 +3638,7 @@ function trial_start_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_trialstart_mouse.time', click_trialstart_mouse.time);
     psychoJS.experiment.addData('click_trialstart_mouse.clicked_name', click_trialstart_mouse.clicked_name);
     
+    sound_trialstart.stop();  // ensure sound has stopped at end of Routine
     // the Routine "trial_start_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -4482,6 +4785,9 @@ function train_written_responseRoutineBegin(snapshot) {
     click_written_mouse.time = [];
     click_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_train_written.isFinished = false;
+    sound_train_written.setValue('assets/sounds/Main_8_b.wav');
+    sound_train_written.setVolume(1.0);
     psychoJS.experiment.addData('train_written_response.started', globalClock.getTime());
     train_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -4490,6 +4796,7 @@ function train_written_responseRoutineBegin(snapshot) {
     train_written_responseComponents.push(textbox_response_training);
     train_written_responseComponents.push(click_written_mouse);
     train_written_responseComponents.push(btn_written_img);
+    train_written_responseComponents.push(sound_train_written);
     
     for (const thisComponent of train_written_responseComponents)
       if ('status' in thisComponent)
@@ -4598,6 +4905,30 @@ function train_written_responseRoutineEachFrame() {
     if (btn_written_img.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_train_written.status === STARTED) {
+        sound_train_written.isPlaying = true;
+        if (t >= (sound_train_written.getDuration() + sound_train_written.tStart)) {
+            sound_train_written.isFinished = true;
+        }
+    }
+    // start/stop sound_train_written
+    if (t >= 0.0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_train_written.tStart = t;  // (not accounting for frame time here)
+      sound_train_written.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_train_written.play(); });  // screen flip
+      sound_train_written.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_train_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_train_written.isFinished) {
+      // keep track of stop time/frame for later
+      sound_train_written.tStop = t;  // not accounting for scr refresh
+      sound_train_written.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_train_written.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_train_written.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -4647,6 +4978,7 @@ function train_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_written_mouse.time', click_written_mouse.time);
     psychoJS.experiment.addData('click_written_mouse.clicked_name', click_written_mouse.clicked_name);
     
+    sound_train_written.stop();  // ensure sound has stopped at end of Routine
     // the Routine "train_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -4687,6 +5019,9 @@ function train_feedbackRoutineBegin(snapshot) {
     click_feedback_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     feedback_concept.setText(concept);
+    sound_training_feedback.isFinished = false;
+    sound_training_feedback.setValue('assets/sounds/Main_8_d.wav');
+    sound_training_feedback.setVolume(1.0);
     psychoJS.experiment.addData('train_feedback.started', globalClock.getTime());
     train_feedbackMaxDuration = 3
     // keep track of which components have finished
@@ -4695,6 +5030,7 @@ function train_feedbackRoutineBegin(snapshot) {
     train_feedbackComponents.push(btn_feedback_img);
     train_feedbackComponents.push(click_feedback_mouse);
     train_feedbackComponents.push(feedback_concept);
+    train_feedbackComponents.push(sound_training_feedback);
     
     for (const thisComponent of train_feedbackComponents)
       if ('status' in thisComponent)
@@ -4808,6 +5144,30 @@ function train_feedbackRoutineEachFrame() {
     if (feedback_concept.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_training_feedback.status === STARTED) {
+        sound_training_feedback.isPlaying = true;
+        if (t >= (sound_training_feedback.getDuration() + sound_training_feedback.tStart)) {
+            sound_training_feedback.isFinished = true;
+        }
+    }
+    // start/stop sound_training_feedback
+    if (t >= 0.0 && sound_training_feedback.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_training_feedback.tStart = t;  // (not accounting for frame time here)
+      sound_training_feedback.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_training_feedback.play(); });  // screen flip
+      sound_training_feedback.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_training_feedback.status === PsychoJS.Status.STARTED && Boolean(false) || sound_training_feedback.isFinished) {
+      // keep track of stop time/frame for later
+      sound_training_feedback.tStop = t;  // not accounting for scr refresh
+      sound_training_feedback.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_training_feedback.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_training_feedback.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -4854,6 +5214,7 @@ function train_feedbackRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_feedback_mouse.time', click_feedback_mouse.time);
     psychoJS.experiment.addData('click_feedback_mouse.clicked_name', click_feedback_mouse.clicked_name);
     
+    sound_training_feedback.stop();  // ensure sound has stopped at end of Routine
     // the Routine "train_feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -4893,6 +5254,9 @@ function main_start_screenRoutineBegin(snapshot) {
     click_mainstart_mouse.time = [];
     click_mainstart_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_mainstart.isFinished = false;
+    sound_mainstart.setValue('assets/sounds/Main_9.wav');
+    sound_mainstart.setVolume(1.0);
     psychoJS.experiment.addData('main_start_screen.started', globalClock.getTime());
     main_start_screenMaxDuration = null
     // keep track of which components have finished
@@ -4900,6 +5264,7 @@ function main_start_screenRoutineBegin(snapshot) {
     main_start_screenComponents.push(bg_mainstart_img);
     main_start_screenComponents.push(btn_mainstart_img);
     main_start_screenComponents.push(click_mainstart_mouse);
+    main_start_screenComponents.push(sound_mainstart);
     
     for (const thisComponent of main_start_screenComponents)
       if ('status' in thisComponent)
@@ -4993,6 +5358,30 @@ function main_start_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_mainstart.status === STARTED) {
+        sound_mainstart.isPlaying = true;
+        if (t >= (sound_mainstart.getDuration() + sound_mainstart.tStart)) {
+            sound_mainstart.isFinished = true;
+        }
+    }
+    // start/stop sound_mainstart
+    if (t >= 0.0 && sound_mainstart.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_mainstart.tStart = t;  // (not accounting for frame time here)
+      sound_mainstart.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_mainstart.play(); });  // screen flip
+      sound_mainstart.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_mainstart.status === PsychoJS.Status.STARTED && Boolean(false) || sound_mainstart.isFinished) {
+      // keep track of stop time/frame for later
+      sound_mainstart.tStop = t;  // not accounting for scr refresh
+      sound_mainstart.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_mainstart.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_mainstart.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -5039,6 +5428,7 @@ function main_start_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_mainstart_mouse.time', click_mainstart_mouse.time);
     psychoJS.experiment.addData('click_mainstart_mouse.clicked_name', click_mainstart_mouse.clicked_name);
     
+    sound_mainstart.stop();  // ensure sound has stopped at end of Routine
     // the Routine "main_start_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
