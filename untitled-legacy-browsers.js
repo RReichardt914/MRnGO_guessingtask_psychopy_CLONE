@@ -143,7 +143,6 @@ psychoJS.start({
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/images/18_Main_Test.jpg', 'path': 'assets/images/18_Main_Test.jpg'},
-    {'name': 'assets/sounds/Main_8_b.wav', 'path': 'assets/sounds/Main_8_b.wav'},
     {'name': 'assets/images/13_Main_Practice_Reveal.jpg', 'path': 'assets/images/13_Main_Practice_Reveal.jpg'},
     {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
@@ -1192,7 +1191,7 @@ async function experimentInit() {
   });
   sound_trial_yesno = new sound.Sound({
       win: psychoJS.window,
-      value: 'A',
+      value: null,
       secs: (- 1),
       });
   sound_trial_yesno.setVolume(1.0);
@@ -1228,7 +1227,7 @@ async function experimentInit() {
   previousText = {}; 
   sound_train_written = new sound.Sound({
       win: psychoJS.window,
-      value: 'A',
+      value: null,
       secs: (- 1),
       });
   sound_train_written.setVolume(1.0);
@@ -4570,11 +4569,16 @@ function train_yesno_responseRoutineBegin(snapshot) {
         soundYN = "assets/sounds/Main_8_a.wav";   // empty
     }
     
-    sound_trial_yesno.stop();  // Replace sound_1 with your sound component name
-    sound_trial_yesno.status = PsychoJS.Status.NOT_STARTED;
+    sound_trial_yesno = new sound.Sound({
+        win: psychoJS.window,
+        value: soundYN,   // your loop variable
+        secs: -1            // play full file
+    });
+    
+    sound_trial_yesno.play();
     bg_trial_yesno.setImage(bgImage);
     sound_trial_yesno.isFinished = false;
-    sound_trial_yesno.setValue(soundYN);
+    sound_trial_yesno.setValue('');
     sound_trial_yesno.setVolume(1.0);
     trial_yesno_response.keys = undefined;
     trial_yesno_response.rt = undefined;
@@ -4890,10 +4894,15 @@ function train_written_responseRoutineBegin(snapshot) {
     
     defaultText = previousText[concept] || "";
     
-    sound_train_written.stop();  // Replace sound_1 with your sound component name
-    sound_train_written.status = PsychoJS.Status.NOT_STARTED;
+    sound_train_written = new sound.Sound({
+        win: psychoJS.window,
+        value: soundYN,   // your loop variable
+        secs: -1            // play full file
+    });
+    
+    sound_train_written.play();
     sound_train_written.isFinished = false;
-    sound_train_written.setValue('assets/sounds/Main_8_b.wav');
+    sound_train_written.setValue('');
     sound_train_written.setVolume(1.0);
     textbox_response_training.setText('');
     textbox_response_training.refresh();
