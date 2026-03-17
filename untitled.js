@@ -151,6 +151,7 @@ psychoJS.start({
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/images/18_Main_Test.jpg', 'path': 'assets/images/18_Main_Test.jpg'},
+    {'name': 'assets/sounds/Main_8_b.wav', 'path': 'assets/sounds/Main_8_b.wav'},
     {'name': 'assets/images/13_Main_Practice_Reveal.jpg', 'path': 'assets/images/13_Main_Practice_Reveal.jpg'},
     {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
@@ -1199,7 +1200,7 @@ async function experimentInit() {
   });
   sound_trial_yesno = new sound.Sound({
       win: psychoJS.window,
-      value: null,
+      value: 'A',
       secs: (- 1),
       });
   sound_trial_yesno.setVolume(1.0);
@@ -1235,8 +1236,8 @@ async function experimentInit() {
   previousText = {}; 
   sound_train_written = new sound.Sound({
       win: psychoJS.window,
-      value: null,
-      secs: (- 1),
+      value: 'A',
+      secs: 2,
       });
   sound_train_written.setVolume(1.0);
   sound_train_written.isPlaying = false;
@@ -4558,17 +4559,10 @@ function train_yesno_responseRoutineBegin(snapshot) {
     } else {
         soundYN = "assets/sounds/Main_8_a.wav";   // empty
     }
-    
-    sound_trial_yesno = new sound.Sound({
-        win: psychoJS.window,
-        value: soundYN,   // your loop variable
-        secs: -1            // play full file
-    });
-    
-    sound_trial_yesno.play();
     bg_trial_yesno.setImage(bgImage);
     sound_trial_yesno.isFinished = false;
-    sound_trial_yesno.setValue('');
+    sound_trial_yesno.setValue(soundYN);
+    sound_trial_yesno.secs=3;
     sound_trial_yesno.setVolume(1.0);
     trial_yesno_response.keys = undefined;
     trial_yesno_response.rt = undefined;
@@ -4661,7 +4655,7 @@ function train_yesno_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_trial_yesno
-    if (t >= 0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.1 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_trial_yesno.tStart = t;  // (not accounting for frame time here)
       sound_trial_yesno.frameNStart = frameN;  // exact frame index
@@ -4669,7 +4663,8 @@ function train_yesno_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_trial_yesno.play(); });  // screen flip
       sound_trial_yesno.status = PsychoJS.Status.STARTED;
     }
-    if (sound_trial_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_trial_yesno.isFinished) {
+    frameRemains = 0.1 + 3 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_trial_yesno.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_trial_yesno.isFinished) {
       // keep track of stop time/frame for later
       sound_trial_yesno.tStop = t;  // not accounting for scr refresh
       sound_trial_yesno.frameNStop = frameN;  // exact frame index
@@ -4882,16 +4877,9 @@ function train_written_responseRoutineBegin(snapshot) {
     }
     
     defaultText = previousText[concept] || "";
-    
-    sound_train_written = new sound.Sound({
-        win: psychoJS.window,
-        value: soundYN,   // your loop variable
-        secs: -1            // play full file
-    });
-    
-    sound_train_written.play();
     sound_train_written.isFinished = false;
-    sound_train_written.setValue('');
+    sound_train_written.setValue('assets/sounds/Main_8_b.wav');
+    sound_train_written.secs=2;
     sound_train_written.setVolume(1.0);
     textbox_response_training.setText('');
     textbox_response_training.refresh();
@@ -4953,7 +4941,7 @@ function train_written_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_train_written
-    if (t >= 0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.1 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_train_written.tStart = t;  // (not accounting for frame time here)
       sound_train_written.frameNStart = frameN;  // exact frame index
@@ -4961,7 +4949,8 @@ function train_written_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_train_written.play(); });  // screen flip
       sound_train_written.status = PsychoJS.Status.STARTED;
     }
-    if (sound_train_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_train_written.isFinished) {
+    frameRemains = 0.1 + 2 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (sound_train_written.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_train_written.isFinished) {
       // keep track of stop time/frame for later
       sound_train_written.tStop = t;  // not accounting for scr refresh
       sound_train_written.frameNStop = frameN;  // exact frame index

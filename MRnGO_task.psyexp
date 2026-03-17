@@ -193,8 +193,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="previousText = {}    &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="previousText = {}; " valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;&amp;#10;&amp;#10;sound_train_written = new sound.Sound({&amp;#10;    win: psychoJS.window,&amp;#10;    value: soundYN,   // your loop variable&amp;#10;    secs: -1            // play full file&amp;#10;});&amp;#10;&amp;#10;sound_train_written.play();" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)&amp;#10;&amp;#10;sound_train_written = sound.Sound(soundFile)&amp;#10;sound_train_written.play()" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -213,12 +213,12 @@
         <Param val="True" valType="bool" updates="constant" name="hamming"/>
         <Param val="sound_train_written" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="str" updates="set every repeat" name="sound"/>
+        <Param val="assets/sounds/Main_8_b.wav" valType="str" updates="set every repeat" name="sound"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0" valType="code" updates="None" name="startVal"/>
+        <Param val="0.1" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="2" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="constant" name="stopWithRoutine"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
         <Param val="" valType="code" updates="None" name="validator"/>
@@ -1502,8 +1502,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="if (previousText[concept]) {&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;;   // empty&amp;#10;}&amp;#10;&amp;#10;if (previousText[concept]) {&amp;#10;    soundYN = &quot;assets/sounds/Main_8_c.wav&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    soundYN = &quot;assets/sounds/Main_8_a.wav&quot;;   // empty&amp;#10;}&amp;#10;&amp;#10;sound_trial_yesno = new sound.Sound({&amp;#10;    win: psychoJS.window,&amp;#10;    value: soundYN,   // your loop variable&amp;#10;    secs: -1            // play full file&amp;#10;});&amp;#10;&amp;#10;sound_trial_yesno.play();" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if previousText[concept]:&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;   # NOT empty&amp;#10;else:&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;   # empty&amp;#10;&amp;#10;if previousText[concept]:&amp;#10;    soundYN = &quot;assets/sounds/Main_8_c.wav&quot;   # NOT empty&amp;#10;else:&amp;#10;    soundYN = &quot;assets/sounds/Main_8_a.wav&quot;   # empty&amp;#10;&amp;#10;sound_trial_yesno = sound.Sound(soundYN)&amp;#10;sound_trial_yesno.play()" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="if (previousText[concept]) {&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;;   // empty&amp;#10;}&amp;#10;&amp;#10;if (previousText[concept]) {&amp;#10;    soundYN = &quot;assets/sounds/Main_8_c.wav&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    soundYN = &quot;assets/sounds/Main_8_a.wav&quot;;   // empty&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="if previousText[concept]:&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;   # NOT empty&amp;#10;else:&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;   # empty&amp;#10;&amp;#10;if previousText[concept]:&amp;#10;    soundYN = &quot;assets/sounds/Main_8_c.wav&quot;   # NOT empty&amp;#10;else:&amp;#10;    soundYN = &quot;assets/sounds/Main_8_a.wav&quot;   # empty" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1609,12 +1609,12 @@
         <Param val="True" valType="bool" updates="constant" name="hamming"/>
         <Param val="sound_trial_yesno" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="str" updates="set every repeat" name="sound"/>
+        <Param val="$soundYN" valType="str" updates="set every repeat" name="sound"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0" valType="code" updates="None" name="startVal"/>
+        <Param val="0.1" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="3" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="constant" name="stopWithRoutine"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
         <Param val="" valType="code" updates="None" name="validator"/>
