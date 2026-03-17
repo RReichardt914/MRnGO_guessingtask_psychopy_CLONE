@@ -492,6 +492,8 @@ psychoJS.start({
     {'name': 'randomized_lists/stimlist13.csv', 'path': 'randomized_lists/stimlist13.csv'},
     {'name': 'randomized_lists/stimlist14.csv', 'path': 'randomized_lists/stimlist14.csv'},
     {'name': 'randomized_lists/stimlist15.csv', 'path': 'randomized_lists/stimlist15.csv'},
+    {'name': 'assets/images/16_Main_Test.jpg', 'path': 'assets/images/16_Main_Test.jpg'},
+    {'name': 'assets/images/17_Main_Test.jpg', 'path': 'assets/images/17_Main_Test.jpg'},
   ]
 });
 
