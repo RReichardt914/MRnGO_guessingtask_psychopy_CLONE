@@ -148,8 +148,9 @@ psychoJS.start({
     {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
     {'name': 'assets/sounds/Main_9.wav', 'path': 'assets/sounds/Main_9.wav'},
-    {'name': 'assets/sounds/Main_10_d.wav', 'path': 'assets/sounds/Main_10_d.wav'},
+    {'name': 'assets/sounds/Main_10_b.wav', 'path': 'assets/sounds/Main_10_b.wav'},
     {'name': 'assets/images/19_Main_Test_Reveal.jpg', 'path': 'assets/images/19_Main_Test_Reveal.jpg'},
+    {'name': 'assets/sounds/Main_10_d.wav', 'path': 'assets/sounds/Main_10_d.wav'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/sounds/Main_11.wav', 'path': 'assets/sounds/Main_11.wav'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
@@ -6091,7 +6092,7 @@ function main_yesno_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     sound_main_yesno.isFinished = false;
     sound_main_yesno.setValue(soundYN);
-    sound_main_yesno.secs=3;
+    sound_main_yesno.secs=4;
     sound_main_yesno.setVolume(1.0);
     psychoJS.experiment.addData('main_yesno_response.started', globalClock.getTime());
     main_yesno_responseMaxDuration = null
@@ -6256,7 +6257,7 @@ function main_yesno_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_main_yesno.play(); });  // screen flip
       sound_main_yesno.status = PsychoJS.Status.STARTED;
     }
-    frameRemains = 0.1 + 3 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.1 + 4 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (sound_main_yesno.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_main_yesno.isFinished) {
       // keep track of stop time/frame for later
       sound_main_yesno.tStop = t;  // not accounting for scr refresh
@@ -6404,7 +6405,7 @@ function main_written_responseRoutineBegin(snapshot) {
     main_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     sound_main_written.isFinished = false;
-    sound_main_written.setValue('assets/sounds/Main_10_d.wav');
+    sound_main_written.setValue('assets/sounds/Main_10_b.wav');
     sound_main_written.secs=3;
     sound_main_written.setVolume(1.0);
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
