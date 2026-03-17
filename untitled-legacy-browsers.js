@@ -963,6 +963,8 @@ async function experimentInit() {
     interpolate: true, 
   });
   
+  // Run 'Begin Experiment' code from jitter
+  expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
   // Initialize components for Routine "train_stimulus_presentation"
   train_stimulus_presentationClock = new util.Clock();
   bg_trial_stimpres = new visual.ImageStim({
