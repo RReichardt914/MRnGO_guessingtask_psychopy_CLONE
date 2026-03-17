@@ -473,7 +473,21 @@ psychoJS.start({
     {'name': 'sequences/v04/v04_listC.csv', 'path': 'sequences/v04/v04_listC.csv'},
     {'name': 'sequences/v04/v04_listD.csv', 'path': 'sequences/v04/v04_listD.csv'},
     {'name': 'sequences/v04/v04_listE.csv', 'path': 'sequences/v04/v04_listE.csv'},
-    {'name': 'concept_lists/demo.csv', 'path': 'concept_lists/demo.csv'},
+    {'name': 'randomized_lists/stimlist01.csv', 'path': 'randomized_lists/stimlist01.csv'},
+    {'name': 'randomized_lists/stimlist02.csv', 'path': 'randomized_lists/stimlist02.csv'},
+    {'name': 'randomized_lists/stimlist03.csv', 'path': 'randomized_lists/stimlist03.csv'},
+    {'name': 'randomized_lists/stimlist04.csv', 'path': 'randomized_lists/stimlist04.csv'},
+    {'name': 'randomized_lists/stimlist05.csv', 'path': 'randomized_lists/stimlist05.csv'},
+    {'name': 'randomized_lists/stimlist06.csv', 'path': 'randomized_lists/stimlist06.csv'},
+    {'name': 'randomized_lists/stimlist07.csv', 'path': 'randomized_lists/stimlist07.csv'},
+    {'name': 'randomized_lists/stimlist08.csv', 'path': 'randomized_lists/stimlist08.csv'},
+    {'name': 'randomized_lists/stimlist09.csv', 'path': 'randomized_lists/stimlist09.csv'},
+    {'name': 'randomized_lists/stimlist10.csv', 'path': 'randomized_lists/stimlist10.csv'},
+    {'name': 'randomized_lists/stimlist11.csv', 'path': 'randomized_lists/stimlist11.csv'},
+    {'name': 'randomized_lists/stimlist12.csv', 'path': 'randomized_lists/stimlist12.csv'},
+    {'name': 'randomized_lists/stimlist13.csv', 'path': 'randomized_lists/stimlist13.csv'},
+    {'name': 'randomized_lists/stimlist14.csv', 'path': 'randomized_lists/stimlist14.csv'},
+    {'name': 'randomized_lists/stimlist15.csv', 'path': 'randomized_lists/stimlist15.csv'},
   ]
 });
 
