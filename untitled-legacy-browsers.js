@@ -135,8 +135,9 @@ psychoJS.start({
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
     {'name': 'assets/images/18_Main_Test.jpg', 'path': 'assets/images/18_Main_Test.jpg'},
-    {'name': 'assets/bg_feedback.png', 'path': 'assets/bg_feedback.png'},
+    {'name': 'assets/images/13_Main_Practice_Reveal.jpg', 'path': 'assets/images/13_Main_Practice_Reveal.jpg'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
+    {'name': 'assets/images/19_Main_Test_Reveal.jpg', 'path': 'assets/images/19_Main_Test_Reveal.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
     {'name': 'sequences/v13/v13_listA.csv', 'path': 'sequences/v13/v13_listA.csv'},
@@ -1083,8 +1084,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_button_placement
-  btn_yesno_yes_img.pos = [w/3, -h/6];
-  btn_yesno_no_img.pos = [-w/3, -h/6];
+  btn_yesno_yes_img.pos = [w/2, -h/6];
+  btn_yesno_no_img.pos = [-w/2, -h/6];
   
   
   // Initialize components for Routine "train_written_response"
@@ -1154,7 +1155,7 @@ async function experimentInit() {
   bg_feedback_train = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_feedback_train', units : 'norm', 
-    image : 'assets/bg_feedback.png', mask : undefined,
+    image : 'assets/images/13_Main_Practice_Reveal.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1361,8 +1362,8 @@ async function experimentInit() {
   });
   main_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from main_yesno_button_placement
-  btn_yesno_yes_main.pos = [w/3, -h/6];
-  btn_yesno_no_main.pos = [-w/3, -h/6];
+  btn_yesno_yes_main.pos = [w/2, -h/6];
+  btn_yesno_no_main.pos = [-w/2, -h/6];
   // Initialize components for Routine "main_written_response"
   main_written_responseClock = new util.Clock();
   bg_main_written = new visual.ImageStim({
@@ -1428,7 +1429,7 @@ async function experimentInit() {
   bg_feedback_main = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_feedback_main', units : 'norm', 
-    image : 'assets/bg_feedback.png', mask : undefined,
+    image : 'assets/images/19_Main_Test_Reveal.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 

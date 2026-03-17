@@ -1491,8 +1491,8 @@
       <CodeComponent name="training_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = (w/3, -h/6) &amp;#10;btn_yesno_no_img.pos = (-w/3, -h/6) &amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = [w/3, -h/6];&amp;#10;btn_yesno_no_img.pos = [-w/3, -h/6];&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = (w/2, -h/6) &amp;#10;btn_yesno_no_img.pos = (-w/2, -h/6) &amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = [w/2, -h/6];&amp;#10;btn_yesno_no_img.pos = [-w/2, -h/6];&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
@@ -1533,7 +1533,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_feedback.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/13_Main_Practice_Reveal.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_feedback_train" valType="code" updates="None" name="name"/>
@@ -1809,8 +1809,8 @@
       <CodeComponent name="main_yesno_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_main.pos = (w/3, -h/6) &amp;#10;btn_yesno_no_main.pos = (-w/3, -h/6) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_main.pos = [w/3, -h/6];&amp;#10;btn_yesno_no_main.pos = [-w/3, -h/6];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_main.pos = (w/2, -h/6) &amp;#10;btn_yesno_no_main.pos = (-w/2, -h/6) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_main.pos = [w/2, -h/6];&amp;#10;btn_yesno_no_main.pos = [-w/2, -h/6];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
@@ -1851,7 +1851,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="assets/bg_feedback.png" valType="file" updates="constant" name="image"/>
+        <Param val="assets/images/19_Main_Test_Reveal.jpg" valType="file" updates="constant" name="image"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="bg_feedback_main" valType="code" updates="None" name="name"/>
