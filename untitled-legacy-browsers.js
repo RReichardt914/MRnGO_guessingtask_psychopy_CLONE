@@ -569,6 +569,7 @@ var click_trialstart_mouse;
 var csv_selectorClock;
 var concPathTrain;
 var train_fixationClock;
+var bg_trial_fix;
 var polygon;
 var train_maskClock;
 var bg_trial_mask;
@@ -600,6 +601,7 @@ var click_mainstart_mouse;
 var csv_selector_mainClock;
 var concPathMain;
 var main_fixationClock;
+var bg_main_fix;
 var polygon_main;
 var main_maskClock;
 var bg_trial_mask_2;
@@ -956,19 +958,32 @@ async function experimentInit() {
   expInfo['concPathTrain'] = concPathTrain;
   // Initialize components for Routine "train_fixation"
   train_fixationClock = new util.Clock();
+  bg_trial_fix = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_trial_fix', units : 'norm', 
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
   polygon = new visual.ShapeStim ({
     win: psychoJS.window, name: 'polygon', 
-    vertices: 'cross', size:[0.5, 0.5],
+    vertices: 'cross', size:[0.3, 0.3],
     ori: 0.0, 
     pos: [0, 0], 
     draggable: false, 
     anchor: 'center', 
-    lineWidth: 1.0, 
-    lineColor: new util.Color('white'), 
-    fillColor: new util.Color('white'), 
+    lineWidth: 0.5, 
+    lineColor: new util.Color('black'), 
+    fillColor: new util.Color('black'), 
     colorSpace: 'rgb', 
     opacity: undefined, 
-    depth: 0, 
+    depth: -1, 
     interpolate: true, 
   });
   
@@ -1221,19 +1236,32 @@ async function experimentInit() {
   expInfo['concPathMain'] = concPathMain;
   // Initialize components for Routine "main_fixation"
   main_fixationClock = new util.Clock();
+  bg_main_fix = new visual.ImageStim({
+    win : psychoJS.window,
+    name : 'bg_main_fix', units : 'norm', 
+    image : 'assets/images/9_Main_Practice.jpg', mask : undefined,
+    anchor : 'center',
+    ori : 0.0, 
+    pos : [0, 0], 
+    draggable: false,
+    size : [2, 2],
+    color : new util.Color([1,1,1]), opacity : undefined,
+    flipHoriz : false, flipVert : false,
+    texRes : 128.0, interpolate : true, depth : 0.0 
+  });
   polygon_main = new visual.ShapeStim ({
     win: psychoJS.window, name: 'polygon_main', 
-    vertices: 'cross', size:[0.5, 0.5],
+    vertices: 'cross', size:[0.3, 0.3],
     ori: 0.0, 
     pos: [0, 0], 
     draggable: false, 
     anchor: 'center', 
-    lineWidth: 1.0, 
-    lineColor: new util.Color('white'), 
-    fillColor: new util.Color('white'), 
+    lineWidth: 0.5, 
+    lineColor: new util.Color('black'), 
+    fillColor: new util.Color('black'), 
     colorSpace: 'rgb', 
     opacity: undefined, 
-    depth: 0, 
+    depth: -1, 
     interpolate: true, 
   });
   
@@ -3698,6 +3726,7 @@ function train_fixationRoutineBegin(snapshot) {
     train_fixationMaxDuration = expInfo["fixDuration"]
     // keep track of which components have finished
     train_fixationComponents = [];
+    train_fixationComponents.push(bg_trial_fix);
     train_fixationComponents.push(polygon);
     
     train_fixationComponents.forEach( function(thisComponent) {
@@ -3722,6 +3751,21 @@ function train_fixationRoutineEachFrame() {
         train_fixationMaxDurationReached = true
         continueRoutine = false
     }
+    
+    // *bg_trial_fix* updates
+    if (t >= 0.0 && bg_trial_fix.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_trial_fix.tStart = t;  // (not accounting for frame time here)
+      bg_trial_fix.frameNStart = frameN;  // exact frame index
+      
+      bg_trial_fix.setAutoDraw(true);
+    }
+    
+    
+    // if bg_trial_fix is active this frame...
+    if (bg_trial_fix.status === PsychoJS.Status.STARTED) {
+    }
+    
     
     // *polygon* updates
     if (t >= 0.0 && polygon.status === PsychoJS.Status.NOT_STARTED) {
@@ -5096,6 +5140,7 @@ function main_fixationRoutineBegin(snapshot) {
     main_fixationMaxDuration = expInfo["fixDuration"]
     // keep track of which components have finished
     main_fixationComponents = [];
+    main_fixationComponents.push(bg_main_fix);
     main_fixationComponents.push(polygon_main);
     
     main_fixationComponents.forEach( function(thisComponent) {
@@ -5119,6 +5164,21 @@ function main_fixationRoutineEachFrame() {
         main_fixationMaxDurationReached = true
         continueRoutine = false
     }
+    
+    // *bg_main_fix* updates
+    if (t >= 0.0 && bg_main_fix.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      bg_main_fix.tStart = t;  // (not accounting for frame time here)
+      bg_main_fix.frameNStart = frameN;  // exact frame index
+      
+      bg_main_fix.setAutoDraw(true);
+    }
+    
+    
+    // if bg_main_fix is active this frame...
+    if (bg_main_fix.status === PsychoJS.Status.STARTED) {
+    }
+    
     
     // *polygon_main* updates
     if (t >= 0.0 && polygon_main.status === PsychoJS.Status.NOT_STARTED) {
