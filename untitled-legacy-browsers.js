@@ -134,7 +134,7 @@ psychoJS.start({
     {'name': 'default.png', 'path': 'https://pavlovia.org/assets/default/default.png'},
     {'name': 'assets/button_igen.png', 'path': 'assets/button_igen.png'},
     {'name': 'assets/button_nem.png', 'path': 'assets/button_nem.png'},
-    {'name': 'assets/bg_written.png', 'path': 'assets/bg_written.png'},
+    {'name': 'assets/images/18_Main_Test.jpg', 'path': 'assets/images/18_Main_Test.jpg'},
     {'name': 'assets/bg_feedback.png', 'path': 'assets/bg_feedback.png'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
@@ -1092,7 +1092,7 @@ async function experimentInit() {
   bg_trial_written = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_trial_written', units : 'norm', 
-    image : 'assets/bg_written.png', mask : undefined,
+    image : 'assets/images/18_Main_Test.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1368,7 +1368,7 @@ async function experimentInit() {
   bg_main_written = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_main_written', units : 'norm', 
-    image : 'assets/bg_written.png', mask : undefined,
+    image : 'assets/images/18_Main_Test.jpg', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
