@@ -925,6 +925,8 @@ async function experimentInit() {
   let listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;
   
   console.log("Loading:", listPath);
+  
+  expInfo['listPath'] = listPath;
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
