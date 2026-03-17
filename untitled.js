@@ -92,6 +92,7 @@ flowScheduler.add(train_outer_loopLoopEnd);
 
 
 
+
 flowScheduler.add(main_start_screenRoutineBegin());
 flowScheduler.add(main_start_screenRoutineEachFrame());
 flowScheduler.add(main_start_screenRoutineEnd());
@@ -572,6 +573,8 @@ var btn_trialstart_img;
 var click_trialstart_mouse;
 var csv_selectorClock;
 var concPathTrain;
+var train_fixationClock;
+var polygon;
 var train_stimulus_presentationClock;
 var bg_trial_stimpres;
 var stimulus_presentation_train;
@@ -950,6 +953,24 @@ async function experimentInit() {
   
   // Make it available globally (Builder-friendly)
   expInfo['concPathTrain'] = concPathTrain;
+  // Initialize components for Routine "train_fixation"
+  train_fixationClock = new util.Clock();
+  polygon = new visual.Polygon({
+    win: psychoJS.window, name: 'polygon', 
+    edges: 100, size:[0.5, 0.5],
+    ori: 0.0, 
+    pos: [0, 0], 
+    draggable: false, 
+    anchor: 'center', 
+    lineWidth: 1.0, 
+    lineColor: new util.Color('white'), 
+    fillColor: new util.Color('white'), 
+    colorSpace: 'rgb', 
+    opacity: undefined, 
+    depth: 0, 
+    interpolate: true, 
+  });
+  
   // Initialize components for Routine "train_stimulus_presentation"
   train_stimulus_presentationClock = new util.Clock();
   bg_trial_stimpres = new visual.ImageStim({
@@ -3253,6 +3274,9 @@ function training_loopLoopBegin(training_loopLoopScheduler, snapshot) {
     for (const thisTraining_loop of training_loop) {
       snapshot = training_loop.getSnapshot();
       training_loopLoopScheduler.add(importConditions(snapshot));
+      training_loopLoopScheduler.add(train_fixationRoutineBegin(snapshot));
+      training_loopLoopScheduler.add(train_fixationRoutineEachFrame());
+      training_loopLoopScheduler.add(train_fixationRoutineEnd(snapshot));
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineBegin(snapshot));
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineEachFrame());
       training_loopLoopScheduler.add(train_stimulus_presentationRoutineEnd(snapshot));
@@ -3562,6 +3586,128 @@ function csv_selectorRoutineEnd(snapshot) {
     }
     psychoJS.experiment.addData('csv_selector.stopped', globalClock.getTime());
     // the Routine "csv_selector" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var train_fixationMaxDurationReached;
+var fix_duration;
+var train_fixationMaxDuration;
+var train_fixationComponents;
+function train_fixationRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'train_fixation' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    train_fixationClock.reset();
+    routineTimer.reset();
+    train_fixationMaxDurationReached = false;
+    // update component parameters for each repeat
+    // Run 'Begin Routine' code from jitter
+    // duration between 0.8 and 1.2 seconds
+    fix_duration = 0.8 + Math.random() * 0.4;
+    psychoJS.experiment.addData('train_fixation.started', globalClock.getTime());
+    train_fixationMaxDuration = fixDuration
+    // keep track of which components have finished
+    train_fixationComponents = [];
+    train_fixationComponents.push(polygon);
+    
+    for (const thisComponent of train_fixationComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+var frameRemains;
+function train_fixationRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'train_fixation' ---
+    // get current time
+    t = train_fixationClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // is it time to end the Routine? (based on local clock)
+    if (t > train_fixationMaxDuration) {
+        train_fixationMaxDurationReached = true
+        continueRoutine = false
+    }
+    
+    // *polygon* updates
+    if (t >= 0.0 && polygon.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      polygon.tStart = t;  // (not accounting for frame time here)
+      polygon.frameNStart = frameN;  // exact frame index
+      
+      polygon.setAutoDraw(true);
+    }
+    
+    
+    // if polygon is active this frame...
+    if (polygon.status === PsychoJS.Status.STARTED) {
+    }
+    
+    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    if (polygon.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      // keep track of stop time/frame for later
+      polygon.tStop = t;  // not accounting for scr refresh
+      polygon.frameNStop = frameN;  // exact frame index
+      // update status
+      polygon.status = PsychoJS.Status.FINISHED;
+      polygon.setAutoDraw(false);
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of train_fixationComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function train_fixationRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'train_fixation' ---
+    for (const thisComponent of train_fixationComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('train_fixation.stopped', globalClock.getTime());
+    // the Routine "train_fixation" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     // Routines running outside a loop should always advance the datafile row
