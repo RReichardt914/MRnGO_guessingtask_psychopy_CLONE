@@ -4151,9 +4151,9 @@ function train_yesno_responseRoutineBegin(snapshot) {
     gotValidClick = false; // until a click is received
     // Run 'Begin Routine' code from training_yesno_button_placement
     if (previousText[concept]) {
-        bgImage = "17_Main_Test.jpg";   // NOT empty
+        bgImage = "assets/images/17_Main_Test.jpg";   // NOT empty
     } else {
-        bgImage = "16_Main_Test.jpg";   // empty
+        bgImage = "assets/images/16_Main_Test.jpg";   // empty
     }
     psychoJS.experiment.addData('train_yesno_response.started', globalClock.getTime());
     train_yesno_responseMaxDuration = null
