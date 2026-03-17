@@ -3620,7 +3620,7 @@ function train_fixationRoutineBegin(snapshot) {
     // duration between 0.8 and 1.2 seconds
     expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
     psychoJS.experiment.addData('train_fixation.started', globalClock.getTime());
-    train_fixationMaxDuration = fixDuration
+    train_fixationMaxDuration = expInfo["fixDuration"]
     // keep track of which components have finished
     train_fixationComponents = [];
     train_fixationComponents.push(polygon);
