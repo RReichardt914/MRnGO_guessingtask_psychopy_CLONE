@@ -583,7 +583,6 @@ var btn_yesno_yes_img;
 var btn_yesno_no_img;
 var trial_yesno_response;
 var click_yesno_mouse;
-var bgImage;
 var train_written_responseClock;
 var bg_trial_written;
 var previousText;
@@ -1086,11 +1085,7 @@ async function experimentInit() {
   btn_yesno_yes_img.pos = [w/4, -h/3];
   btn_yesno_no_img.pos = [-w/4, -h/3];
   
-  if (previousText[concept]) {
-      bgImage = "17_Main_Test.jpg";   // NOT empty
-  } else {
-      bgImage = "16_Main_Test.jpg";   // empty
-  }
+  
   // Initialize components for Routine "train_written_response"
   train_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
@@ -4133,6 +4128,7 @@ function train_stimulus_presentationRoutineEnd(snapshot) {
 
 var train_yesno_responseMaxDurationReached;
 var _trial_yesno_response_allKeys;
+var bgImage;
 var train_yesno_responseMaxDuration;
 var train_yesno_responseComponents;
 function train_yesno_responseRoutineBegin(snapshot) {
@@ -4163,6 +4159,12 @@ function train_yesno_responseRoutineBegin(snapshot) {
     click_yesno_mouse.time = [];
     click_yesno_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    // Run 'Begin Routine' code from training_yesno_button_placement
+    if (previousText[concept]) {
+        bgImage = "17_Main_Test.jpg";   // NOT empty
+    } else {
+        bgImage = "16_Main_Test.jpg";   // empty
+    }
     psychoJS.experiment.addData('train_yesno_response.started', globalClock.getTime());
     train_yesno_responseMaxDuration = null
     // keep track of which components have finished
