@@ -1,0 +1,11 @@
+category,concept,featurelist_type,sequence_file
+ty,ty10,listE,sequences/ty10/ty10_listE.csv
+c,c13,listD,sequences/c13/c13_listD.csv
+a,a16,listB,sequences/a16/a16_listB.csv
+v,v04,listA,sequences/v04/v04_listA.csv
+b,b10,listC,sequences/b10/b10_listC.csv
+f,f15,listE,sequences/f15/f15_listE.csv
+p,p20,listB,sequences/p20/p20_listB.csv
+t,t20,listD,sequences/t20/t20_listD.csv
+l,l12,listA,sequences/l12/l12_listA.csv
+pl,pl22,listC,sequences/pl22/pl22_listC.csv

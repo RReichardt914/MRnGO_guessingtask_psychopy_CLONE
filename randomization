@@ -1,0 +1,168 @@
+import os
+import random
+import re
+import pandas as pd
+
+CONCEPT_NAMES = {
+    "a05": "kacsa", "a16": "kutya", "a19": "ló",
+    "b02": "szem", "b10": "kéz", "b11": "láb",
+    "c10": "nadrág", "c13": "cipő", "c28": "pulóver",
+    "f12": "alma", "f15": "citrom", "f17": "eper",
+    "l02": "játszótér", "l12": "nappali", "l23": "erdő",
+    "p13": "gyerek", "p20": "tűzoltó", "p35": "hercegnő",
+    "pl11": "gomba", "pl22": "krumpli", "pl24": "bab",
+    "t17": "asztal", "t20": "szőnyeg", "t24": "seprű",
+    "ty07": "ceruza", "ty10": "könyv", "ty12": "kard",
+    "v03": "helikopter", "v04": "vonat", "v13": "autó"
+}
+
+def get_categories_dynamically(base_dir="sequences"):
+    categories = {}
+    if not os.path.exists(base_dir):
+        print(f"ERROR: The '{base_dir}' folder was not found in this directory.")
+        return categories
+
+    for item in os.listdir(base_dir):
+        item_path = os.path.join(base_dir, item)
+        if os.path.isdir(item_path) and not item.startswith('.'):
+            match = re.match(r"([a-zA-Z]+)", item)
+            if match:
+                cat_code = match.group(1)
+                if cat_code not in categories:
+                    categories[cat_code] = []
+                categories[cat_code].append(item)
+                
+    for cat in categories:
+        categories[cat].sort()
+    return categories
+
+def format_trial(trial_no, concept_code, list_type_full):
+    version = list_type_full.replace("list", "") 
+    concept_name = CONCEPT_NAMES.get(concept_code, f"UNKNOWN ({concept_code})")
+    seq_file = f"sequences/{concept_code}/{concept_code}_{list_type_full}.csv"
+    
+    return {
+        "concept_trial": trial_no,
+        "version": version,
+        "conceptno": concept_code,
+        "concept": concept_name,
+        "sequence_filepath": seq_file
+    }
+
+def generate_complete_design():
+    categories = get_categories_dynamically("sequences")
+    if not categories:
+        return
+        
+    list_types = ["listA", "listB", "listC", "listD", "listE"]
+    cat_keys = sorted(list(categories.keys()))
+    
+    all_concepts = [c for cat_list in categories.values() for c in cat_list]
+    
+    concept_to_cat = {c: cat for cat, clist in categories.items() for c in clist}
+    
+    output_dir = "randomized_lists"
+    inverse_dir = "inverse_lists"
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(inverse_dir, exist_ok=True)
+    
+    for p in range(15):
+        session_items = []
+        
+        for c_idx, cat in enumerate(cat_keys):
+            concept_idx = p % len(categories[cat])
+            concept = categories[cat][concept_idx]
+            
+            l_idx = (p + c_idx) % 5
+            l_type = list_types[l_idx]
+            
+            session_items.append({
+                "category": cat,
+                "concept": concept,
+                "featurelist_type": l_type,
+            })
+            
+        by_type = {lt: [] for lt in list_types}
+        for item in session_items:
+            by_type[item["featurelist_type"]].append(item)
+            
+        block_1, block_2 = [], []
+        for lt in list_types:
+            random.shuffle(by_type[lt])
+            block_1.append(by_type[lt][0])
+            block_2.append(by_type[lt][1])
+            
+        random.shuffle(block_1)
+        random.shuffle(block_2)
+        
+        while block_1[-1]["featurelist_type"] == block_2[0]["featurelist_type"]:
+            random.shuffle(block_2)
+            
+        final_session = block_1 + block_2
+        
+        last_item_cat = final_session[-1]["category"]
+        used_concept = final_session[-1]["concept"]
+        
+        remaining_in_cat = [c for c in categories[last_item_cat] if c != used_concept]
+        practice_concept = random.choice(remaining_in_cat)
+        
+        available_versions = list_types.copy()
+        trial_1_version = final_session[0]["featurelist_type"]
+        available_versions.remove(trial_1_version)
+        practice_list_type = random.choice(available_versions)
+            
+        formatted_session = []
+        formatted_session.append(format_trial(0, practice_concept, practice_list_type))
+        
+        for idx, item in enumerate(final_session, start=1):
+            formatted_session.append(format_trial(idx, item["concept"], item["featurelist_type"]))
+            
+        df = pd.DataFrame(formatted_session)
+        columns_order = ["concept_trial", "version", "conceptno", "concept", "sequence_filepath"]
+        df = df[columns_order]
+        
+        filename = f"{output_dir}/stimlist{p+1:02d}.csv"
+        df.to_csv(filename, index=False)
+        
+
+        used_concepts = [row["conceptno"] for row in formatted_session]
+        unused_concepts = [c for c in all_concepts if c not in used_concepts]
+        
+        while True:
+            random.shuffle(unused_concepts)
+            valid_categories = True
+            for i in range(1, len(unused_concepts)):
+                if concept_to_cat[unused_concepts[i]] == concept_to_cat[unused_concepts[i-1]]:
+                    valid_categories = False
+                    break
+            if valid_categories:
+                break
+                
+        version_pool = list_types * 4  
+        version_pool.remove(random.choice(list_types))  
+        
+        while True:
+            random.shuffle(version_pool)
+            valid_versions = True
+            for i in range(1, len(version_pool)):
+                if version_pool[i] == version_pool[i-1]:
+                    valid_versions = False
+                    break
+            if valid_versions:
+                break
+        
+        formatted_inverse = []
+        for idx in range(len(unused_concepts)):
+            formatted_inverse.append(format_trial(idx + 1, unused_concepts[idx], version_pool[idx]))
+            
+        df_inv = pd.DataFrame(formatted_inverse)
+        df_inv = df_inv[columns_order]
+        
+        inv_filename = f"{inverse_dir}/stimlist{p+1:02d}pair.csv"
+        df_inv.to_csv(inv_filename, index=False)
+        
+    print(f"Success! 15 perfectly formatted files saved to '{output_dir}'.")
+    print(f"Success! 15 inverse files saved to '{inverse_dir}'.")
+
+if __name__ == "__main__":
+    generate_complete_design()
