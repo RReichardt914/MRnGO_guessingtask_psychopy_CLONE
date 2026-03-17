@@ -1643,8 +1643,8 @@
       <CodeComponent name="training_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = (w/3, -h/6) &amp;#10;btn_yesno_no_img.pos = (-w/3, -h/6) &amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_img.pos = [w/3, -h/6];&amp;#10;btn_yesno_no_img.pos = [-w/3, -h/6];&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = (w/4, -h/6) &amp;#10;btn_yesno_no_img.pos = (-w/4, -h/6) &amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_img.pos = [w/4, -h/6];&amp;#10;btn_yesno_no_img.pos = [-w/4, -h/6];&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
@@ -1839,8 +1839,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="if (previousText[concept]) {&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;;   // empty&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if previousText[concept]:&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;   # NOT empty&amp;#10;else:&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;   # empty" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="if (previousText[concept]) {&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;;   // empty&amp;#10;}&amp;#10;&amp;#10;if (previousText[concept]) {&amp;#10;    soundYN = &quot;assets/sounds/Main_10_c.wav&quot;;   // NOT empty&amp;#10;} else {&amp;#10;    soundYN = &quot;assets/sounds/Main_10_a.wav&quot;;   // empty&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="if previousText[concept]:&amp;#10;    bgImage = &quot;assets/images/17_Main_Test.jpg&quot;   # NOT empty&amp;#10;else:&amp;#10;    bgImage = &quot;assets/images/16_Main_Test.jpg&quot;   # empty&amp;#10;    &amp;#10;if previousText[concept]:&amp;#10;    soundYN = &quot;assets/sounds/Main_10_c.wav&quot;   # NOT empty&amp;#10;else:&amp;#10;    soundYN = &quot;assets/sounds/Main_10_a.wav&quot;   # empty" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1980,8 +1980,8 @@
       <CodeComponent name="main_yesno_button_placement" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="btn_yesno_yes_main.pos = (w/2, -h/6) &amp;#10;btn_yesno_no_main.pos = (-w/2, -h/6) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="btn_yesno_yes_main.pos = [w/2, -h/6];&amp;#10;btn_yesno_no_main.pos = [-w/2, -h/6];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="btn_yesno_yes_main.pos = (w/4, -h/6) &amp;#10;btn_yesno_no_main.pos = (-w/4, -h/6) &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="btn_yesno_yes_main.pos = [w/4, -h/6];&amp;#10;btn_yesno_no_main.pos = [-w/4, -h/6];" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
@@ -1994,6 +1994,25 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="main_yesno_button_placement" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <SoundComponent name="sound_main_yesno" plugin="None">
+        <Param val="" valType="device" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_main_yesno" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="$soundYN" valType="str" updates="set every repeat" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="stopWithRoutine"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
     </Routine>
     <Routine name="main_feedback">
       <RoutineSettingsComponent name="main_feedback" plugin="None">
@@ -2382,6 +2401,25 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="written_button_placement_main" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <SoundComponent name="sound_main_written" plugin="None">
+        <Param val="" valType="device" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_main_written" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="assets/sounds/Main_10_d.wav" valType="str" updates="set every repeat" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="stopWithRoutine"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
     </Routine>
     <Routine name="csv_selector">
       <RoutineSettingsComponent name="csv_selector" plugin="None">

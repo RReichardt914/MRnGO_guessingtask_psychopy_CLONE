@@ -148,6 +148,7 @@ psychoJS.start({
     {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
     {'name': 'assets/sounds/Main_9.wav', 'path': 'assets/sounds/Main_9.wav'},
+    {'name': 'assets/sounds/Main_10_d.wav', 'path': 'assets/sounds/Main_10_d.wav'},
     {'name': 'assets/images/19_Main_Test_Reveal.jpg', 'path': 'assets/images/19_Main_Test_Reveal.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
@@ -658,11 +659,13 @@ var btn_yesno_yes_main;
 var btn_yesno_no_main;
 var main_yesno_key_response;
 var main_yesno_mouse;
+var sound_main_yesno;
 var main_written_responseClock;
 var bg_main_written;
 var textbox_response_main;
 var main_written_mouse;
 var btn_written_main;
+var sound_main_written;
 var main_feedbackClock;
 var bg_feedback_main;
 var btn_feedback_main;
@@ -1198,8 +1201,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_button_placement
-  btn_yesno_yes_img.pos = [w/3, -h/6];
-  btn_yesno_no_img.pos = [-w/3, -h/6];
+  btn_yesno_yes_img.pos = [w/4, -h/6];
+  btn_yesno_no_img.pos = [-w/4, -h/6];
   
   
   // Initialize components for Routine "train_written_response"
@@ -1500,8 +1503,16 @@ async function experimentInit() {
   });
   main_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from main_yesno_button_placement
-  btn_yesno_yes_main.pos = [w/2, -h/6];
-  btn_yesno_no_main.pos = [-w/2, -h/6];
+  btn_yesno_yes_main.pos = [w/4, -h/6];
+  btn_yesno_no_main.pos = [-w/4, -h/6];
+  sound_main_yesno = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_main_yesno.setVolume(1.0);
+  sound_main_yesno.isPlaying = false;
+  sound_main_yesno.isFinished = false;
   // Initialize components for Routine "main_written_response"
   main_written_responseClock = new util.Clock();
   bg_main_written = new visual.ImageStim({
@@ -1562,6 +1573,14 @@ async function experimentInit() {
   });
   // Run 'Begin Experiment' code from written_button_placement_main
   btn_written_main.pos = [0, -h/3];  // bottom-right third center
+  sound_main_written = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_main_written.setVolume(1.0);
+  sound_main_written.isPlaying = false;
+  sound_main_written.isFinished = false;
   // Initialize components for Routine "main_feedback"
   main_feedbackClock = new util.Clock();
   bg_feedback_main = new visual.ImageStim({
@@ -6015,6 +6034,12 @@ function main_yesno_responseRoutineBegin(snapshot) {
     } else {
         bgImage = "assets/images/16_Main_Test.jpg";   // empty
     }
+    
+    if (previousText[concept]) {
+        soundYN = "assets/sounds/Main_10_c.wav";   // NOT empty
+    } else {
+        soundYN = "assets/sounds/Main_10_a.wav";   // empty
+    }
     bg_main_yesno.setImage(bgImage);
     main_yesno_key_response.keys = undefined;
     main_yesno_key_response.rt = undefined;
@@ -6029,6 +6054,9 @@ function main_yesno_responseRoutineBegin(snapshot) {
     main_yesno_mouse.time = [];
     main_yesno_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_main_yesno.isFinished = false;
+    sound_main_yesno.setValue(soundYN);
+    sound_main_yesno.setVolume(1.0);
     psychoJS.experiment.addData('main_yesno_response.started', globalClock.getTime());
     main_yesno_responseMaxDuration = null
     // keep track of which components have finished
@@ -6038,6 +6066,7 @@ function main_yesno_responseRoutineBegin(snapshot) {
     main_yesno_responseComponents.push(btn_yesno_no_main);
     main_yesno_responseComponents.push(main_yesno_key_response);
     main_yesno_responseComponents.push(main_yesno_mouse);
+    main_yesno_responseComponents.push(sound_main_yesno);
     
     main_yesno_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -6176,6 +6205,30 @@ function main_yesno_responseRoutineEachFrame() {
         }
       }
     }
+    if (sound_main_yesno.status === STARTED) {
+        sound_main_yesno.isPlaying = true;
+        if (t >= (sound_main_yesno.getDuration() + sound_main_yesno.tStart)) {
+            sound_main_yesno.isFinished = true;
+        }
+    }
+    // start/stop sound_main_yesno
+    if (t >= 0.0 && sound_main_yesno.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_main_yesno.tStart = t;  // (not accounting for frame time here)
+      sound_main_yesno.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_main_yesno.play(); });  // screen flip
+      sound_main_yesno.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_main_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_main_yesno.isFinished) {
+      // keep track of stop time/frame for later
+      sound_main_yesno.tStop = t;  // not accounting for scr refresh
+      sound_main_yesno.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_main_yesno.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_main_yesno.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6263,6 +6316,7 @@ function main_yesno_responseRoutineEnd(snapshot) {
         _lastKey === 'right' ||
         _yesButtonClicked
     );
+    sound_main_yesno.stop();  // ensure sound has stopped at end of Routine
     // the Routine "main_yesno_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6312,6 +6366,9 @@ function main_written_responseRoutineBegin(snapshot) {
     main_written_mouse.time = [];
     main_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_main_written.isFinished = false;
+    sound_main_written.setValue('assets/sounds/Main_10_d.wav');
+    sound_main_written.setVolume(1.0);
     psychoJS.experiment.addData('main_written_response.started', globalClock.getTime());
     main_written_responseMaxDuration = null
     // keep track of which components have finished
@@ -6320,6 +6377,7 @@ function main_written_responseRoutineBegin(snapshot) {
     main_written_responseComponents.push(textbox_response_main);
     main_written_responseComponents.push(main_written_mouse);
     main_written_responseComponents.push(btn_written_main);
+    main_written_responseComponents.push(sound_main_written);
     
     main_written_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -6429,6 +6487,30 @@ function main_written_responseRoutineEachFrame() {
     if (btn_written_main.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_main_written.status === STARTED) {
+        sound_main_written.isPlaying = true;
+        if (t >= (sound_main_written.getDuration() + sound_main_written.tStart)) {
+            sound_main_written.isFinished = true;
+        }
+    }
+    // start/stop sound_main_written
+    if (t >= 0.0 && sound_main_written.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_main_written.tStart = t;  // (not accounting for frame time here)
+      sound_main_written.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_main_written.play(); });  // screen flip
+      sound_main_written.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_main_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_main_written.isFinished) {
+      // keep track of stop time/frame for later
+      sound_main_written.tStop = t;  // not accounting for scr refresh
+      sound_main_written.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_main_written.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_main_written.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6478,6 +6560,7 @@ function main_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('main_written_mouse.time', main_written_mouse.time);
     psychoJS.experiment.addData('main_written_mouse.clicked_name', main_written_mouse.clicked_name);
     
+    sound_main_written.stop();  // ensure sound has stopped at end of Routine
     // the Routine "main_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
