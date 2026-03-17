@@ -131,6 +131,7 @@ psychoJS.start({
     {'name': 'assets/button_start.png', 'path': 'assets/button_start.png'},
     {'name': 'assets/images/2_Main_Introduction.jpg', 'path': 'assets/images/2_Main_Introduction.jpg'},
     {'name': 'assets/button_jatsszunk.png', 'path': 'assets/button_jatsszunk.png'},
+    {'name': 'assets/sounds/Main_1.wav', 'path': 'assets/sounds/Main_1.wav'},
     {'name': 'assets/images/3_Main_Introduction.jpg', 'path': 'assets/images/3_Main_Introduction.jpg'},
     {'name': 'assets/images/4_Main_Introduction.jpg', 'path': 'assets/images/4_Main_Introduction.jpg'},
     {'name': 'assets/images/22_Main_ALT_Introduction.jpg', 'path': 'assets/images/22_Main_ALT_Introduction.jpg'},
@@ -548,6 +549,7 @@ var welcome_screenClock;
 var bg_welcome_img;
 var btn_welcome_img;
 var click_welcome_mouse;
+var sound_welcome;
 var library_checkClock;
 var bg_library1_img;
 var btn_libfirst1_img;
@@ -720,6 +722,14 @@ async function experimentInit() {
   let h = psychoJS.window.size[1];  // window height in px
   
   btn_welcome_img.pos = [w/3, -h/3];  // bottom-right third center
+  sound_welcome = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_welcome.setVolume(1.0);
+  sound_welcome.isPlaying = false;
+  sound_welcome.isFinished = false;
   // Initialize components for Routine "library_check"
   library_checkClock = new util.Clock();
   bg_library1_img = new visual.ImageStim({
@@ -1844,6 +1854,9 @@ function welcome_screenRoutineBegin(snapshot) {
     click_welcome_mouse.time = [];
     click_welcome_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_welcome.isFinished = false;
+    sound_welcome.setValue('assets/sounds/Main_1.wav');
+    sound_welcome.setVolume(1.0);
     psychoJS.experiment.addData('welcome_screen.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 2));
@@ -1854,6 +1867,7 @@ function welcome_screenRoutineBegin(snapshot) {
     welcome_screenComponents.push(bg_welcome_img);
     welcome_screenComponents.push(btn_welcome_img);
     welcome_screenComponents.push(click_welcome_mouse);
+    welcome_screenComponents.push(sound_welcome);
     
     for (const thisComponent of welcome_screenComponents)
       if ('status' in thisComponent)
@@ -1947,6 +1961,30 @@ function welcome_screenRoutineEachFrame() {
         }
       }
     }
+    if (sound_welcome.status === STARTED) {
+        sound_welcome.isPlaying = true;
+        if (t >= (sound_welcome.getDuration() + sound_welcome.tStart)) {
+            sound_welcome.isFinished = true;
+        }
+    }
+    // start/stop sound_welcome
+    if (t >= 0.0 && sound_welcome.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_welcome.tStart = t;  // (not accounting for frame time here)
+      sound_welcome.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_welcome.play(); });  // screen flip
+      sound_welcome.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_welcome.status === PsychoJS.Status.STARTED && Boolean(false) || sound_welcome.isFinished) {
+      // keep track of stop time/frame for later
+      sound_welcome.tStop = t;  // not accounting for scr refresh
+      sound_welcome.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_welcome.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_welcome.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1993,6 +2031,7 @@ function welcome_screenRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_welcome_mouse.time', click_welcome_mouse.time);
     psychoJS.experiment.addData('click_welcome_mouse.clicked_name', click_welcome_mouse.clicked_name);
     
+    sound_welcome.stop();  // ensure sound has stopped at end of Routine
     // the Routine "welcome_screen" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
