@@ -3616,7 +3616,7 @@ function train_fixationRoutineBegin(snapshot) {
     // update component parameters for each repeat
     // Run 'Begin Routine' code from jitter
     // duration between 0.8 and 1.2 seconds
-    expInfo['fix_duration'] = 0.8 + Math.random() * 0.4;
+    expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;
     psychoJS.experiment.addData('train_fixation.started', globalClock.getTime());
     train_fixationMaxDuration = fixDuration
     // keep track of which components have finished

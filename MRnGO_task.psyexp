@@ -2786,8 +2786,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// duration between 0.8 and 1.2 seconds&amp;#10;expInfo['fix_duration'] = 0.8 + Math.random() * 0.4;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# duration between 0.8 and 1.2 seconds&amp;#10;expInfo['fix_duration'] = 0.8 + random() * 0.4" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="// duration between 0.8 and 1.2 seconds&amp;#10;expInfo['fixDuration'] = 0.8 + Math.random() * 0.4;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# duration between 0.8 and 1.2 seconds&amp;#10;expInfo['fixDuration'] = 0.8 + random() * 0.4" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
