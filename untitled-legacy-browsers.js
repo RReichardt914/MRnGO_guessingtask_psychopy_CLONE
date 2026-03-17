@@ -621,16 +621,16 @@ var train_yesno_responseClock;
 var bg_trial_yesno;
 var btn_yesno_yes_img;
 var btn_yesno_no_img;
+var sound_trial_yesno;
 var trial_yesno_response;
 var click_yesno_mouse;
-var sound_trial_yesno;
 var train_written_responseClock;
 var bg_trial_written;
 var previousText;
+var sound_train_written;
 var textbox_response_training;
 var click_written_mouse;
 var btn_written_img;
-var sound_train_written;
 var train_feedbackClock;
 var bg_feedback_train;
 var btn_feedback_img;
@@ -1183,6 +1183,14 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -3.0 
   });
+  sound_trial_yesno = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_trial_yesno.setVolume(1.0);
+  sound_trial_yesno.isPlaying = false;
+  sound_trial_yesno.isFinished = false;
   trial_yesno_response = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   click_yesno_mouse = new core.Mouse({
@@ -1194,14 +1202,6 @@ async function experimentInit() {
   btn_yesno_no_img.pos = [-w/3, -h/6];
   
   
-  sound_trial_yesno = new sound.Sound({
-      win: psychoJS.window,
-      value: 'A',
-      secs: (- 1),
-      });
-  sound_trial_yesno.setVolume(1.0);
-  sound_trial_yesno.isPlaying = false;
-  sound_trial_yesno.isFinished = false;
   // Initialize components for Routine "train_written_response"
   train_written_responseClock = new util.Clock();
   bg_trial_written = new visual.ImageStim({
@@ -1219,6 +1219,14 @@ async function experimentInit() {
   });
   // Run 'Begin Experiment' code from code_whatconc
   previousText = {}; 
+  sound_train_written = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_train_written.setVolume(1.0);
+  sound_train_written.isPlaying = false;
+  sound_train_written.isFinished = false;
   textbox_response_training = new visual.TextBox({
     win: psychoJS.window,
     name: 'textbox_response_training',
@@ -1242,7 +1250,7 @@ async function experimentInit() {
     editable: true,
     multiline: true,
     anchor: 'center',
-    depth: -2.0 
+    depth: -3.0 
   });
   
   click_written_mouse = new core.Mouse({
@@ -1260,18 +1268,10 @@ async function experimentInit() {
     size : [272, 74.5],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
-    texRes : 128.0, interpolate : true, depth : -4.0 
+    texRes : 128.0, interpolate : true, depth : -5.0 
   });
   // Run 'Begin Experiment' code from written_button_placement
   btn_written_img.pos = [0, -h/3];  // bottom-right third center
-  sound_train_written = new sound.Sound({
-      win: psychoJS.window,
-      value: 'A',
-      secs: (- 1),
-      });
-  sound_train_written.setVolume(1.0);
-  sound_train_written.isPlaying = false;
-  sound_train_written.isFinished = false;
   // Initialize components for Routine "train_feedback"
   train_feedbackClock = new util.Clock();
   bg_feedback_train = new visual.ImageStim({
@@ -4526,11 +4526,14 @@ function train_yesno_responseRoutineBegin(snapshot) {
     }
     
     if (previousText[concept]) {
-        soundYN = "assets/sounds/Main_8_a.wav";   // NOT empty
+        soundYN = "assets/sounds/Main_8_c.wav";   // NOT empty
     } else {
-        soundYN = "assets/sounds/Main_8_c.wav";   // empty
+        soundYN = "assets/sounds/Main_8_a.wav";   // empty
     }
     bg_trial_yesno.setImage(bgImage);
+    sound_trial_yesno.isFinished = false;
+    sound_trial_yesno.setValue(soundYN);
+    sound_trial_yesno.setVolume(1.0);
     trial_yesno_response.keys = undefined;
     trial_yesno_response.rt = undefined;
     _trial_yesno_response_allKeys = [];
@@ -4544,9 +4547,6 @@ function train_yesno_responseRoutineBegin(snapshot) {
     click_yesno_mouse.time = [];
     click_yesno_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
-    sound_trial_yesno.isFinished = false;
-    sound_trial_yesno.setValue(soundYN);
-    sound_trial_yesno.setVolume(1.0);
     psychoJS.experiment.addData('train_yesno_response.started', globalClock.getTime());
     train_yesno_responseMaxDuration = null
     // keep track of which components have finished
@@ -4554,9 +4554,9 @@ function train_yesno_responseRoutineBegin(snapshot) {
     train_yesno_responseComponents.push(bg_trial_yesno);
     train_yesno_responseComponents.push(btn_yesno_yes_img);
     train_yesno_responseComponents.push(btn_yesno_no_img);
+    train_yesno_responseComponents.push(sound_trial_yesno);
     train_yesno_responseComponents.push(trial_yesno_response);
     train_yesno_responseComponents.push(click_yesno_mouse);
-    train_yesno_responseComponents.push(sound_trial_yesno);
     
     train_yesno_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -4619,6 +4619,30 @@ function train_yesno_responseRoutineEachFrame() {
     if (btn_yesno_no_img.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_trial_yesno.status === STARTED) {
+        sound_trial_yesno.isPlaying = true;
+        if (t >= (sound_trial_yesno.getDuration() + sound_trial_yesno.tStart)) {
+            sound_trial_yesno.isFinished = true;
+        }
+    }
+    // start/stop sound_trial_yesno
+    if (t >= 0.0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_trial_yesno.tStart = t;  // (not accounting for frame time here)
+      sound_trial_yesno.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_trial_yesno.play(); });  // screen flip
+      sound_trial_yesno.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_trial_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_trial_yesno.isFinished) {
+      // keep track of stop time/frame for later
+      sound_trial_yesno.tStop = t;  // not accounting for scr refresh
+      sound_trial_yesno.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_trial_yesno.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_trial_yesno.stop();
+    }
     
     // *trial_yesno_response* updates
     if (t >= 0.0 && trial_yesno_response.status === PsychoJS.Status.NOT_STARTED) {
@@ -4695,30 +4719,6 @@ function train_yesno_responseRoutineEachFrame() {
         }
       }
     }
-    if (sound_trial_yesno.status === STARTED) {
-        sound_trial_yesno.isPlaying = true;
-        if (t >= (sound_trial_yesno.getDuration() + sound_trial_yesno.tStart)) {
-            sound_trial_yesno.isFinished = true;
-        }
-    }
-    // start/stop sound_trial_yesno
-    if (t >= 0.0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      sound_trial_yesno.tStart = t;  // (not accounting for frame time here)
-      sound_trial_yesno.frameNStart = frameN;  // exact frame index
-      
-      psychoJS.window.callOnFlip(function(){ sound_trial_yesno.play(); });  // screen flip
-      sound_trial_yesno.status = PsychoJS.Status.STARTED;
-    }
-    if (sound_trial_yesno.status === PsychoJS.Status.STARTED && Boolean(false) || sound_trial_yesno.isFinished) {
-      // keep track of stop time/frame for later
-      sound_trial_yesno.tStop = t;  // not accounting for scr refresh
-      sound_trial_yesno.frameNStop = frameN;  // exact frame index
-      // update status
-      sound_trial_yesno.status = PsychoJS.Status.FINISHED;
-      // stop playback
-      sound_trial_yesno.stop();
-    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -4759,6 +4759,7 @@ function train_yesno_responseRoutineEnd(snapshot) {
       }
     });
     psychoJS.experiment.addData('train_yesno_response.stopped', globalClock.getTime());
+    sound_trial_yesno.stop();  // ensure sound has stopped at end of Routine
     // update the trial handler
     if (currentLoop instanceof MultiStairHandler) {
       currentLoop.addResponse(trial_yesno_response.corr, level);
@@ -4809,7 +4810,6 @@ function train_yesno_responseRoutineEnd(snapshot) {
         _lastKey === 'right' ||
         _yesButtonClicked
     );
-    sound_trial_yesno.stop();  // ensure sound has stopped at end of Routine
     // the Routine "train_yesno_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -4847,6 +4847,9 @@ function train_written_responseRoutineBegin(snapshot) {
     }
     
     defaultText = previousText[concept] || "";
+    sound_train_written.isFinished = false;
+    sound_train_written.setValue('assets/sounds/Main_8_b.wav');
+    sound_train_written.setVolume(1.0);
     textbox_response_training.setText('');
     textbox_response_training.refresh();
     textbox_response_training.setText(defaultText);
@@ -4860,18 +4863,15 @@ function train_written_responseRoutineBegin(snapshot) {
     click_written_mouse.time = [];
     click_written_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
-    sound_train_written.isFinished = false;
-    sound_train_written.setValue('assets/sounds/Main_8_b.wav');
-    sound_train_written.setVolume(1.0);
     psychoJS.experiment.addData('train_written_response.started', globalClock.getTime());
     train_written_responseMaxDuration = null
     // keep track of which components have finished
     train_written_responseComponents = [];
     train_written_responseComponents.push(bg_trial_written);
+    train_written_responseComponents.push(sound_train_written);
     train_written_responseComponents.push(textbox_response_training);
     train_written_responseComponents.push(click_written_mouse);
     train_written_responseComponents.push(btn_written_img);
-    train_written_responseComponents.push(sound_train_written);
     
     train_written_responseComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -4904,6 +4904,30 @@ function train_written_responseRoutineEachFrame() {
     if (bg_trial_written.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_train_written.status === STARTED) {
+        sound_train_written.isPlaying = true;
+        if (t >= (sound_train_written.getDuration() + sound_train_written.tStart)) {
+            sound_train_written.isFinished = true;
+        }
+    }
+    // start/stop sound_train_written
+    if (t >= 0.0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_train_written.tStart = t;  // (not accounting for frame time here)
+      sound_train_written.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_train_written.play(); });  // screen flip
+      sound_train_written.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_train_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_train_written.isFinished) {
+      // keep track of stop time/frame for later
+      sound_train_written.tStop = t;  // not accounting for scr refresh
+      sound_train_written.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_train_written.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_train_written.stop();
+    }
     
     // *textbox_response_training* updates
     if (t >= 0.0 && textbox_response_training.status === PsychoJS.Status.NOT_STARTED) {
@@ -4981,30 +5005,6 @@ function train_written_responseRoutineEachFrame() {
     if (btn_written_img.status === PsychoJS.Status.STARTED) {
     }
     
-    if (sound_train_written.status === STARTED) {
-        sound_train_written.isPlaying = true;
-        if (t >= (sound_train_written.getDuration() + sound_train_written.tStart)) {
-            sound_train_written.isFinished = true;
-        }
-    }
-    // start/stop sound_train_written
-    if (t >= 0.0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      sound_train_written.tStart = t;  // (not accounting for frame time here)
-      sound_train_written.frameNStart = frameN;  // exact frame index
-      
-      psychoJS.window.callOnFlip(function(){ sound_train_written.play(); });  // screen flip
-      sound_train_written.status = PsychoJS.Status.STARTED;
-    }
-    if (sound_train_written.status === PsychoJS.Status.STARTED && Boolean(false) || sound_train_written.isFinished) {
-      // keep track of stop time/frame for later
-      sound_train_written.tStop = t;  // not accounting for scr refresh
-      sound_train_written.frameNStop = frameN;  // exact frame index
-      // update status
-      sound_train_written.status = PsychoJS.Status.FINISHED;
-      // stop playback
-      sound_train_written.stop();
-    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -5044,6 +5044,7 @@ function train_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('train_written_response.stopped', globalClock.getTime());
     // Run 'End Routine' code from code_whatconc
     previousText[concept] = textbox_response_training.text;
+    sound_train_written.stop();  // ensure sound has stopped at end of Routine
     psychoJS.experiment.addData('textbox_response_training.text',textbox_response_training.text)
     // store data for psychoJS.experiment (ExperimentHandler)
     psychoJS.experiment.addData('click_written_mouse.x', click_written_mouse.x);
@@ -5054,7 +5055,6 @@ function train_written_responseRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_written_mouse.time', click_written_mouse.time);
     psychoJS.experiment.addData('click_written_mouse.clicked_name', click_written_mouse.clicked_name);
     
-    sound_train_written.stop();  // ensure sound has stopped at end of Routine
     // the Routine "train_written_response" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
