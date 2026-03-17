@@ -505,6 +505,25 @@ psychoJS.start({
     {'name': 'randomized_lists/stimlist15.csv', 'path': 'randomized_lists/stimlist15.csv'},
     {'name': 'assets/images/16_Main_Test.jpg', 'path': 'assets/images/16_Main_Test.jpg'},
     {'name': 'assets/images/17_Main_Test.jpg', 'path': 'assets/images/17_Main_Test.jpg'},
+    {'name': 'assets/sounds/Main_1.wav', 'path': 'assets/sounds/Main_1.wav'},
+    {'name': 'assets/sounds/Main_2.wav', 'path': 'assets/sounds/Main_2.wav'},
+    {'name': 'assets/sounds/Main_2_ALT.wav', 'path': 'assets/sounds/Main_2_ALT.wav'},
+    {'name': 'assets/sounds/Main_3.wav', 'path': 'assets/sounds/Main_3.wav'},
+    {'name': 'assets/sounds/Main_4.wav', 'path': 'assets/sounds/Main_4.wav'},
+    {'name': 'assets/sounds/Main_5.wav', 'path': 'assets/sounds/Main_5.wav'},
+    {'name': 'assets/sounds/Main_6.wav', 'path': 'assets/sounds/Main_6.wav'},
+    {'name': 'assets/sounds/Main_7.wav', 'path': 'assets/sounds/Main_7.wav'},
+    {'name': 'assets/sounds/Main_8_a.wav', 'path': 'assets/sounds/Main_8_a.wav'},
+    {'name': 'assets/sounds/Main_8_b.wav', 'path': 'assets/sounds/Main_8_b.wav'},
+    {'name': 'assets/sounds/Main_8_c.wav', 'path': 'assets/sounds/Main_8_c.wav'},
+    {'name': 'assets/sounds/Main_8_d.wav', 'path': 'assets/sounds/Main_8_d.wav'},
+    {'name': 'assets/sounds/Main_9.wav', 'path': 'assets/sounds/Main_9.wav'},
+    {'name': 'assets/sounds/Main_10_a.wav', 'path': 'assets/sounds/Main_10_a.wav'},
+    {'name': 'assets/sounds/Main_10_b.wav', 'path': 'assets/sounds/Main_10_b.wav'},
+    {'name': 'assets/sounds/Main_10_c.wav', 'path': 'assets/sounds/Main_10_c.wav'},
+    {'name': 'assets/sounds/Main_10_d.wav', 'path': 'assets/sounds/Main_10_d.wav'},
+    {'name': 'assets/sounds/Main_11.wav', 'path': 'assets/sounds/Main_11.wav'},
+    {'name': 'assets/sounds/Main_12.wav', 'path': 'assets/sounds/Main_12.wav'},
   ]
 });
 
@@ -1171,8 +1190,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_button_placement
-  btn_yesno_yes_img.pos = [w/2, -h/6];
-  btn_yesno_no_img.pos = [-w/2, -h/6];
+  btn_yesno_yes_img.pos = [w/3, -h/6];
+  btn_yesno_no_img.pos = [-w/3, -h/6];
   
   
   sound_trial_yesno = new sound.Sound({
