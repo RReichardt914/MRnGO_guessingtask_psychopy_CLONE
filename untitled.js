@@ -4615,7 +4615,7 @@ function train_yesno_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_trial_yesno
-    if (t >= 0.0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0 && sound_trial_yesno.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_trial_yesno.tStart = t;  // (not accounting for frame time here)
       sound_trial_yesno.frameNStart = frameN;  // exact frame index
@@ -4899,7 +4899,7 @@ function train_written_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_train_written
-    if (t >= 0.0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_train_written.tStart = t;  // (not accounting for frame time here)
       sound_train_written.frameNStart = frameN;  // exact frame index
