@@ -151,7 +151,9 @@ psychoJS.start({
     {'name': 'assets/sounds/Main_10_d.wav', 'path': 'assets/sounds/Main_10_d.wav'},
     {'name': 'assets/images/19_Main_Test_Reveal.jpg', 'path': 'assets/images/19_Main_Test_Reveal.jpg'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
+    {'name': 'assets/sounds/Main_11.wav', 'path': 'assets/sounds/Main_11.wav'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
+    {'name': 'assets/sounds/Main_12.wav', 'path': 'assets/sounds/Main_12.wav'},
     {'name': 'sequences/v13/v13_listA.csv', 'path': 'sequences/v13/v13_listA.csv'},
     {'name': 'sequences/v13/v13_listB.csv', 'path': 'sequences/v13/v13_listB.csv'},
     {'name': 'sequences/v13/v13_listC.csv', 'path': 'sequences/v13/v13_listC.csv'},
@@ -673,10 +675,12 @@ var main_feedback_mouse;
 var feedback_concept_main;
 var endClock;
 var bg_goodbye_img;
+var sound_1;
 var binoc_findClock;
 var bg_binocfind_img;
 var btn_binocfind_img;
 var click_binocfind_mouse;
+var sound_binoc_find;
 var globalClock;
 var routineTimer;
 async function experimentInit() {
@@ -1642,6 +1646,14 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
   });
+  sound_1 = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_1.setVolume(1.0);
+  sound_1.isPlaying = false;
+  sound_1.isFinished = false;
   // Initialize components for Routine "binoc_find"
   binoc_findClock = new util.Clock();
   bg_binocfind_img = new visual.ImageStim({
@@ -1676,6 +1688,14 @@ async function experimentInit() {
   click_binocfind_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from binocfind_screen_button_placement
   btn_binocfind_img.pos = [w/3, -h/3];  // bottom-right third center
+  sound_binoc_find = new sound.Sound({
+      win: psychoJS.window,
+      value: 'A',
+      secs: (- 1),
+      });
+  sound_binoc_find.setVolume(1.0);
+  sound_binoc_find.isPlaying = false;
+  sound_binoc_find.isFinished = false;
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
@@ -4549,6 +4569,9 @@ function train_yesno_responseRoutineBegin(snapshot) {
     } else {
         soundYN = "assets/sounds/Main_8_a.wav";   // empty
     }
+    
+    sound_trial_yesno.stop();  // Replace sound_1 with your sound component name
+    sound_trial_yesno.status = PsychoJS.Status.NOT_STARTED;
     bg_trial_yesno.setImage(bgImage);
     sound_trial_yesno.isFinished = false;
     sound_trial_yesno.setValue(soundYN);
@@ -4866,6 +4889,9 @@ function train_written_responseRoutineBegin(snapshot) {
     }
     
     defaultText = previousText[concept] || "";
+    
+    sound_train_written.stop();  // Replace sound_1 with your sound component name
+    sound_train_written.status = PsychoJS.Status.NOT_STARTED;
     sound_train_written.isFinished = false;
     sound_train_written.setValue('assets/sounds/Main_8_b.wav');
     sound_train_written.setVolume(1.0);
@@ -6798,11 +6824,15 @@ function endRoutineBegin(snapshot) {
     routineTimer.reset();
     endMaxDurationReached = false;
     // update component parameters for each repeat
+    sound_1.isFinished = false;
+    sound_1.setValue('assets/sounds/Main_11.wav');
+    sound_1.setVolume(1.0);
     psychoJS.experiment.addData('end.started', globalClock.getTime());
-    endMaxDuration = 3.0
+    endMaxDuration = 10
     // keep track of which components have finished
     endComponents = [];
     endComponents.push(bg_goodbye_img);
+    endComponents.push(sound_1);
     
     endComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -6840,6 +6870,30 @@ function endRoutineEachFrame() {
     if (bg_goodbye_img.status === PsychoJS.Status.STARTED) {
     }
     
+    if (sound_1.status === STARTED) {
+        sound_1.isPlaying = true;
+        if (t >= (sound_1.getDuration() + sound_1.tStart)) {
+            sound_1.isFinished = true;
+        }
+    }
+    // start/stop sound_1
+    if (t >= 0.0 && sound_1.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_1.tStart = t;  // (not accounting for frame time here)
+      sound_1.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_1.play(); });  // screen flip
+      sound_1.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_1.status === PsychoJS.Status.STARTED && Boolean(false) || sound_1.isFinished) {
+      // keep track of stop time/frame for later
+      sound_1.tStop = t;  // not accounting for scr refresh
+      sound_1.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_1.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_1.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6877,6 +6931,7 @@ function endRoutineEnd(snapshot) {
       }
     });
     psychoJS.experiment.addData('end.stopped', globalClock.getTime());
+    sound_1.stop();  // ensure sound has stopped at end of Routine
     // the Routine "end" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6916,6 +6971,9 @@ function binoc_findRoutineBegin(snapshot) {
     click_binocfind_mouse.time = [];
     click_binocfind_mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
+    sound_binoc_find.isFinished = false;
+    sound_binoc_find.setValue('assets/sounds/Main_12.wav');
+    sound_binoc_find.setVolume(1.0);
     psychoJS.experiment.addData('binoc_find.started', globalClock.getTime());
     // skip this Routine if its 'Skip if' condition is True
     continueRoutine = continueRoutine && !((expInfo['taskOrder'] == 2));
@@ -6926,6 +6984,7 @@ function binoc_findRoutineBegin(snapshot) {
     binoc_findComponents.push(bg_binocfind_img);
     binoc_findComponents.push(btn_binocfind_img);
     binoc_findComponents.push(click_binocfind_mouse);
+    binoc_findComponents.push(sound_binoc_find);
     
     binoc_findComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -7020,6 +7079,30 @@ function binoc_findRoutineEachFrame() {
         }
       }
     }
+    if (sound_binoc_find.status === STARTED) {
+        sound_binoc_find.isPlaying = true;
+        if (t >= (sound_binoc_find.getDuration() + sound_binoc_find.tStart)) {
+            sound_binoc_find.isFinished = true;
+        }
+    }
+    // start/stop sound_binoc_find
+    if (t >= 0.0 && sound_binoc_find.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      sound_binoc_find.tStart = t;  // (not accounting for frame time here)
+      sound_binoc_find.frameNStart = frameN;  // exact frame index
+      
+      psychoJS.window.callOnFlip(function(){ sound_binoc_find.play(); });  // screen flip
+      sound_binoc_find.status = PsychoJS.Status.STARTED;
+    }
+    if (sound_binoc_find.status === PsychoJS.Status.STARTED && Boolean(false) || sound_binoc_find.isFinished) {
+      // keep track of stop time/frame for later
+      sound_binoc_find.tStop = t;  // not accounting for scr refresh
+      sound_binoc_find.frameNStop = frameN;  // exact frame index
+      // update status
+      sound_binoc_find.status = PsychoJS.Status.FINISHED;
+      // stop playback
+      sound_binoc_find.stop();
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -7066,6 +7149,7 @@ function binoc_findRoutineEnd(snapshot) {
     psychoJS.experiment.addData('click_binocfind_mouse.time', click_binocfind_mouse.time);
     psychoJS.experiment.addData('click_binocfind_mouse.clicked_name', click_binocfind_mouse.clicked_name);
     
+    sound_binoc_find.stop();  // ensure sound has stopped at end of Routine
     // the Routine "binoc_find" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
