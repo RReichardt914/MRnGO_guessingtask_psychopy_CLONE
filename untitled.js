@@ -145,7 +145,6 @@ psychoJS.start({
     {'name': 'assets/bg_written.png', 'path': 'assets/bg_written.png'},
     {'name': 'assets/bg_feedback.png', 'path': 'assets/bg_feedback.png'},
     {'name': 'assets/images/14_Main_Test.jpg', 'path': 'assets/images/14_Main_Test.jpg'},
-    {'name': 'assets/bg_yesno.png', 'path': 'assets/bg_yesno.png'},
     {'name': 'assets/images/20_Main_Goodbye.jpg', 'path': 'assets/images/20_Main_Goodbye.jpg'},
     {'name': 'assets/images/21_Main_ALT_LeadtoMIC.jpg', 'path': 'assets/images/21_Main_ALT_LeadtoMIC.jpg'},
     {'name': 'sequences/v13/v13_listA.csv', 'path': 'sequences/v13/v13_listA.csv'},
@@ -1092,8 +1091,8 @@ async function experimentInit() {
   });
   click_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from training_button_placement
-  btn_yesno_yes_img.pos = [w/4, -h/3];
-  btn_yesno_no_img.pos = [-w/4, -h/3];
+  btn_yesno_yes_img.pos = [w/4, -h/4];
+  btn_yesno_no_img.pos = [-w/4, -h/4];
   
   
   // Initialize components for Routine "train_written_response"
@@ -1327,7 +1326,7 @@ async function experimentInit() {
   bg_main_yesno = new visual.ImageStim({
     win : psychoJS.window,
     name : 'bg_main_yesno', units : 'norm', 
-    image : 'assets/bg_yesno.png', mask : undefined,
+    image : 'default.png', mask : undefined,
     anchor : 'center',
     ori : 0.0, 
     pos : [0, 0], 
@@ -1335,7 +1334,7 @@ async function experimentInit() {
     size : [2, 2],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
-    texRes : 128.0, interpolate : true, depth : 0.0 
+    texRes : 128.0, interpolate : true, depth : -1.0 
   });
   btn_yesno_yes_main = new visual.ImageStim({
     win : psychoJS.window,
@@ -1348,7 +1347,7 @@ async function experimentInit() {
     size : [268.5, 87],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
-    texRes : 128.0, interpolate : true, depth : -1.0 
+    texRes : 128.0, interpolate : true, depth : -2.0 
   });
   btn_yesno_no_main = new visual.ImageStim({
     win : psychoJS.window,
@@ -1361,7 +1360,7 @@ async function experimentInit() {
     size : [268.5, 87],
     color : new util.Color([1,1,1]), opacity : undefined,
     flipHoriz : false, flipVert : false,
-    texRes : 128.0, interpolate : true, depth : -2.0 
+    texRes : 128.0, interpolate : true, depth : -3.0 
   });
   main_yesno_key_response = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
@@ -1370,8 +1369,8 @@ async function experimentInit() {
   });
   main_yesno_mouse.mouseClock = new util.Clock();
   // Run 'Begin Experiment' code from main_yesno_button_placement
-  btn_yesno_yes_main.pos = [w/4, -h/3];
-  btn_yesno_no_main.pos = [-w/4, -h/3];
+  btn_yesno_yes_main.pos = [w/4, -h/4];
+  btn_yesno_no_main.pos = [-w/4, -h/4];
   // Initialize components for Routine "main_written_response"
   main_written_responseClock = new util.Clock();
   bg_main_written = new visual.ImageStim({
@@ -5498,6 +5497,13 @@ function main_yesno_responseRoutineBegin(snapshot) {
     routineTimer.reset();
     main_yesno_responseMaxDurationReached = false;
     // update component parameters for each repeat
+    // Run 'Begin Routine' code from main_yesno_bg_setting
+    if (previousText[concept]) {
+        bgImage = "assets/images/17_Main_Test.jpg";   // NOT empty
+    } else {
+        bgImage = "assets/images/16_Main_Test.jpg";   // empty
+    }
+    bg_main_yesno.setImage(bgImage);
     main_yesno_key_response.keys = undefined;
     main_yesno_key_response.rt = undefined;
     _main_yesno_key_response_allKeys = [];
