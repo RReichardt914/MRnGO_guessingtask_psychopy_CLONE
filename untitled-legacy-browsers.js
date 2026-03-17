@@ -914,10 +914,9 @@ async function experimentInit() {
   // Initialize components for Routine "outer_csv_selector"
   outer_csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from outer_list_pathway_construction
+  let listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;
   
-  let listPath = `randomized_lists/stimlist${listNum}.csv`;
-  
-  console.log("Loading:", listPath);``
+  console.log("Loading:", listPath);
   // Initialize components for Routine "csv_selector"
   csv_selectorClock = new util.Clock();
   // Run 'Begin Experiment' code from pathway_construction_training
