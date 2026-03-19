@@ -696,7 +696,7 @@ var routineTimer;
 async function experimentInit() {
   // Initialize components for Routine "outer_csv_selector"
   outer_csv_selectorClock = new util.Clock();
-  // Run 'Begin Experiment' code from outer_list_pathway_construction
+  // Run 'Begin Experiment' code from outer_list_path_construction
   listPath = `randomized_lists/stimlist${expInfo['listNum']}.csv`;
   
   console.log("Loading:", listPath);
@@ -4951,7 +4951,7 @@ function train_written_responseRoutineEachFrame() {
         }
     }
     // start/stop sound_train_written
-    if (t >= 0.1 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.05 && sound_train_written.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       sound_train_written.tStart = t;  // (not accounting for frame time here)
       sound_train_written.frameNStart = frameN;  // exact frame index
@@ -4959,7 +4959,7 @@ function train_written_responseRoutineEachFrame() {
       psychoJS.window.callOnFlip(function(){ sound_train_written.play(); });  // screen flip
       sound_train_written.status = PsychoJS.Status.STARTED;
     }
-    frameRemains = 0.1 + 2 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.05 + 2 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (sound_train_written.status === PsychoJS.Status.STARTED && t >= frameRemains || sound_train_written.isFinished) {
       // keep track of stop time/frame for later
       sound_train_written.tStop = t;  // not accounting for scr refresh
