@@ -555,13 +555,13 @@
         <Param val="norm" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </ImageComponent>
-      <SoundComponent name="sound_1" plugin="None">
+      <SoundComponent name="sound_goodbye" plugin="None">
         <Param val="" valType="device" updates="None" name="deviceLabel"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="sound_1" valType="code" updates="None" name="name"/>
+        <Param val="sound_goodbye" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="assets/sounds/Main_11.wav" valType="str" updates="set every repeat" name="sound"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>

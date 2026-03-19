@@ -677,7 +677,7 @@ var feedback_concept_main;
 var sound_main_feedback;
 var endClock;
 var bg_goodbye_img;
-var sound_1;
+var sound_goodbye;
 var binoc_findClock;
 var bg_binocfind_img;
 var btn_binocfind_img;
@@ -1656,14 +1656,14 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
   });
-  sound_1 = new sound.Sound({
+  sound_goodbye = new sound.Sound({
       win: psychoJS.window,
       value: 'A',
       secs: (- 1),
       });
-  sound_1.setVolume(1.0);
-  sound_1.isPlaying = false;
-  sound_1.isFinished = false;
+  sound_goodbye.setVolume(1.0);
+  sound_goodbye.isPlaying = false;
+  sound_goodbye.isFinished = false;
   // Initialize components for Routine "binoc_find"
   binoc_findClock = new util.Clock();
   bg_binocfind_img = new visual.ImageStim({
@@ -6869,15 +6869,15 @@ function endRoutineBegin(snapshot) {
     routineTimer.reset();
     endMaxDurationReached = false;
     // update component parameters for each repeat
-    sound_1.isFinished = false;
-    sound_1.setValue('assets/sounds/Main_11.wav');
-    sound_1.setVolume(1.0);
+    sound_goodbye.isFinished = false;
+    sound_goodbye.setValue('assets/sounds/Main_11.wav');
+    sound_goodbye.setVolume(1.0);
     psychoJS.experiment.addData('end.started', globalClock.getTime());
     endMaxDuration = 10
     // keep track of which components have finished
     endComponents = [];
     endComponents.push(bg_goodbye_img);
-    endComponents.push(sound_1);
+    endComponents.push(sound_goodbye);
     
     endComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -6915,29 +6915,29 @@ function endRoutineEachFrame() {
     if (bg_goodbye_img.status === PsychoJS.Status.STARTED) {
     }
     
-    if (sound_1.status === STARTED) {
-        sound_1.isPlaying = true;
-        if (t >= (sound_1.getDuration() + sound_1.tStart)) {
-            sound_1.isFinished = true;
+    if (sound_goodbye.status === STARTED) {
+        sound_goodbye.isPlaying = true;
+        if (t >= (sound_goodbye.getDuration() + sound_goodbye.tStart)) {
+            sound_goodbye.isFinished = true;
         }
     }
-    // start/stop sound_1
-    if (t >= 0.0 && sound_1.status === PsychoJS.Status.NOT_STARTED) {
+    // start/stop sound_goodbye
+    if (t >= 0.0 && sound_goodbye.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      sound_1.tStart = t;  // (not accounting for frame time here)
-      sound_1.frameNStart = frameN;  // exact frame index
+      sound_goodbye.tStart = t;  // (not accounting for frame time here)
+      sound_goodbye.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ sound_1.play(); });  // screen flip
-      sound_1.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ sound_goodbye.play(); });  // screen flip
+      sound_goodbye.status = PsychoJS.Status.STARTED;
     }
-    if (sound_1.status === PsychoJS.Status.STARTED && Boolean(false) || sound_1.isFinished) {
+    if (sound_goodbye.status === PsychoJS.Status.STARTED && Boolean(false) || sound_goodbye.isFinished) {
       // keep track of stop time/frame for later
-      sound_1.tStop = t;  // not accounting for scr refresh
-      sound_1.frameNStop = frameN;  // exact frame index
+      sound_goodbye.tStop = t;  // not accounting for scr refresh
+      sound_goodbye.frameNStop = frameN;  // exact frame index
       // update status
-      sound_1.status = PsychoJS.Status.FINISHED;
+      sound_goodbye.status = PsychoJS.Status.FINISHED;
       // stop playback
-      sound_1.stop();
+      sound_goodbye.stop();
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
@@ -6976,7 +6976,7 @@ function endRoutineEnd(snapshot) {
       }
     });
     psychoJS.experiment.addData('end.stopped', globalClock.getTime());
-    sound_1.stop();  // ensure sound has stopped at end of Routine
+    sound_goodbye.stop();  // ensure sound has stopped at end of Routine
     // the Routine "end" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
