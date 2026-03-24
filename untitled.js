@@ -4887,13 +4887,16 @@ function train_written_responseRoutineBegin(snapshot) {
     }
     
     defaultText = previousText[concept] || "";
+    
+    // for this to work you need to add $defaultText
+    // to textbox_response_training
     sound_train_written.isFinished = false;
     sound_train_written.setValue('assets/sounds/Main_8_b.wav');
     sound_train_written.secs=2;
     sound_train_written.setVolume(1.0);
     textbox_response_training.setText('');
     textbox_response_training.refresh();
-    textbox_response_training.setText(defaultText);
+    textbox_response_training.setText('');
     // setup some python lists for storing info about the click_written_mouse
     // current position of the mouse:
     click_written_mouse.x = [];
@@ -6374,7 +6377,7 @@ function main_written_responseRoutineBegin(snapshot) {
     defaultText = previousText[concept] || "";
     textbox_response_main.setText('');
     textbox_response_main.refresh();
-    textbox_response_main.setText(defaultText);
+    textbox_response_main.setText('');
     // setup some python lists for storing info about the main_written_mouse
     // current position of the mouse:
     main_written_mouse.x = [];

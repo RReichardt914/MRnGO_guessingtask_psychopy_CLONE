@@ -129,7 +129,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="previousText = {}    &amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="previousText = {}; " valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="// If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if (!needTextInput) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;&amp;#10;defaultText = previousText[concept] || &quot;&quot;;&amp;#10;&amp;#10;// for this to work you need to add $defaultText&amp;#10;// to textbox_response_training" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="# PYTHON&amp;#10;# If the previous response wasn't 'y' or 'left', skip this routine&amp;#10;if not needTextInput:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;# If we've seen this concept before, preload the previous text&amp;#10;defaultText = previousText.get(concept, &quot;&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
@@ -198,7 +198,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$defaultText" valType="str" updates="set every repeat" name="text"/>
+        <Param val="" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </TextboxComponent>
@@ -2305,7 +2305,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$defaultText" valType="str" updates="set every repeat" name="text"/>
+        <Param val="" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
       </TextboxComponent>
