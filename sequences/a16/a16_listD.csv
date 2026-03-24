@@ -1,11 +1,11 @@
 ﻿trialno,feature_name,feature_file
 01,ILYEN_NAGY,stimuli/f00968.png
 02,HOL_HÁZ,stimuli/f00772.png
-03,ILYEN_BARNA,stimuli/f00840.png
+03,ILYEN_HOSSZÚ,stimuli/f01327.png
 04,LEHET_JÁTSZIK,stimuli/f01441.png
-05,HOL_UTCA,stimuli/f00907.png
+05,HOL_KERT,stimuli/f00278.png
 06,ILYEN_GYORS,stimuli/f00608.png
-07,ILYEN_PUHA,stimuli/f00071.png
-08,ILYEN_FINOM,stimuli/f00192.png
-09,RÉSZE_ORR,stimuli/f01794.png
-10,RÉSZE_SZÁJ,stimuli/f00171.png
+07,HOL_VÁROS,stimuli/f00275.png
+08,TUD_JÁTSZIK,stimuli/f01536.png
+09,TUD_FUT,stimuli/f00429.png
+10,RÉSZE_FAROK,stimuli/f01755.png

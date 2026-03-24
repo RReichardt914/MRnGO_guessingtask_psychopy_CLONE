@@ -1,11 +1,11 @@
 ﻿trialno,feature_name,feature_file
-01,ILYEN_SZŐRÖS,stimuli/f01669.png
-02,MIBŐL_FONAL,stimuli/f01926.png
-03,FAJTA_ÁLLAT,stimuli/f00660.png
-04,HOL_RÉGEN,stimuli/f00451.png
+01,EMBER_KI,stimuli/f00219.png
+02,HOL_SZOBA,stimuli/f00287.png
+03,LEHET_JÁR,stimuli/f00426.png
+04,ILYEN_PUHA,stimuli/f00071.png
 05,LEHET_RAK,stimuli/f00325.png
 06,FAJTA_TÁRGY,stimuli/f02335.png
-07,ALFAJTA_ZÖLD,stimuli/f00843.png
-08,HOL_FÖLD,stimuli/f01051.png
+07,ILYEN_FEHÉR,stimuli/f00864.png
+08,LEHET_VESZ,stimuli/f01860.png
 09,ILYEN_HOSSZÚ,stimuli/f01327.png
 10,HOL_HÁZ,stimuli/f00772.png

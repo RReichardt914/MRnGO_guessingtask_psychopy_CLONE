@@ -1,11 +1,11 @@
 ﻿trialno,feature_name,feature_file
-01,RÉSZE_UJJ,stimuli/f00485.png
+01,LEHET_FELVESZ,stimuli/f00457.png
 02,RÉSZE_MINTA,stimuli/f00612.png
-03,MIBŐL_CÉRNA,stimuli/f01203.png
-04,ALFAJTA_VÉKONY,stimuli/f00386.png
-05,MIBŐL_FONAL,stimuli/f01926.png
-06,HOL_EMBER,stimuli/f00440.png
-07,LEHET_HÚZ,stimuli/f00133.png
-08,HOL_OTTHON,stimuli/f00774.png
-09,ILYEN_NAGY,stimuli/f00968.png
-10,LEHET_MOZOG,stimuli/f00611.png
+03,FAJTA_RUHADARAB,stimuli/f00095.png
+04,MIVEL_VARR,stimuli/f01278.png
+05,LEHET_VESZ,stimuli/f01860.png
+06,RÉSZE_KÉZ,stimuli/f00169.png
+07,MIBŐL_SZÖVET,stimuli/f01250.png
+08,LEHET_HÚZ,stimuli/f00133.png
+09,HOL_TEST,stimuli/f00445.png
+10,ILYEN_SZÍNES ,stimuli/f00847.png

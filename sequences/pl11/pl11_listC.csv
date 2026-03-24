@@ -1,10 +1,10 @@
 ﻿trialno,feature_name,feature_file
-01,LEHET_FŐZ,stimuli/f01813.png
-02,HOL_LEVES,stimuli/f02070.png
+01,LEHET_MEGKÓSTOL,stimuli/f00809.png
+02,LESZ_LEVES,stimuli/f01518.png
 03,TUD_NŐ,stimuli/f00874.png
-04,RÉSZE_SZÁR,stimuli/f00396.png
-05,FAJTA_ÉLŐLÉNY,stimuli/f00635.png
-06,RÉSZE_LÁB,stimuli/f00189.png
+04,HOL_ERDŐ,stimuli/f01149.png
+05,HOL_FA,stimuli/f01714.png
+06,ILYEN_EHETŐ,stimuli/f01344.png
 07,ILYEN_PIROS,stimuli/f00862.png
 08,HOL_KERT,stimuli/f00278.png
 09,HOL_FÖLD,stimuli/f01051.png

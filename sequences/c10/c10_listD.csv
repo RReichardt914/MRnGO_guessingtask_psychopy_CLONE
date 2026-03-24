@@ -1,11 +1,11 @@
 ﻿trialno,feature_name,feature_file
 01,ILYEN_NAGY,stimuli/f00968.png
-02,RÉSZE_BELSŐ,stimuli/f01588.png
+02,ILYEN_HOSSZÚ,stimuli/f01327.png
 03,LEHET_VESZ,stimuli/f01860.png
 04,HOL_UTCA,stimuli/f00907.png
 05,LEHET_FELVESZ,stimuli/f00457.png
-06,HOL_EMBER,stimuli/f00440.png
-07,ILYEN_KÉK,stimuli/f00861.png
-08,LEHET_HORD,stimuli/f01490.png
+06,ILYEN_FEKETE,stimuli/f00865.png
+07,ILYEN_VASTAG,stimuli/f00390.png
+08,LEHET_HÚZ,stimuli/f00133.png
 09,RÉSZE_COMB,stimuli/f00178.png
-10,ILYEN_NÉGYZETALAKÚ,stimuli/f01315.png
+10,MIVEL_VARR,stimuli/f01278.png
