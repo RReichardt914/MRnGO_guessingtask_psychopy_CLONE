@@ -1,0 +1,11 @@
+trialno,feature_name,feature_file
+1,LEHET_ESZIK,stimuli/f00417.png
+2,HOL_KERT,stimuli/f00278.png
+3,ILYEN_PIROS,stimuli/f00862.png
+4,ALFAJTA_ZOLD,stimuli/f00843.png
+5,FAJTA_GYUMOLCS,stimuli/f00142.png
+6,ILYEN_EGESZSEGES,stimuli/f01008.png
+7,ILYEN_KORALAKU,stimuli/f01320.png
+8,HOL_PIAC,stimuli/f01585.png
+9,HOL_FA,stimuli/f01714.png
+10,ILYEN_FINOM,stimuli/f00192.png

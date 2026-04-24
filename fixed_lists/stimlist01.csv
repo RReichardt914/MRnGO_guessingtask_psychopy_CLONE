@@ -1,0 +1,11 @@
+﻿concept_trial,conceptno,concept,sequence_filepath
+1,t17,asztal,sequences/t17/t17_list.csv
+2,v13,autó,sequences/v13/v13_list.csv
+3,ty07,ceruza,sequences/ty07/ty07_list.csv
+4,c13,cipő,sequences/c13/c13_list.csv
+5,f15,citrom,sequences/f15/f15_list.csv
+6,pl11,gomba,sequences/pl11/pl11_list.csv
+7,p35,hercegnő,sequences/p35/p35_list.csv
+8,l02,játszótér,sequences/l02/l02_list.csv
+9,a16,kutya,sequences/a16/a16_list.csv
+10,b11,láb,sequences/b11/b11_list.csv
