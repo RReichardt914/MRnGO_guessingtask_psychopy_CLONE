@@ -1,0 +1,4 @@
+﻿concept_trial,conceptno,concept,sequence_filepath
+P1,f12,alma,sequences\f12\f12_list.csv
+P2,t24,seprű,sequences\t24\t24_list.csv
+P3,a19,ló,sequences\a19\a19_list.csv
